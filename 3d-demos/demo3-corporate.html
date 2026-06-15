@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World Sweets Kuwait — Corporate (3D Demo 3)</title>
+<meta name="description" content="World Sweets Kuwait — Kuwait's leading confectionery distributor since 1986.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFDFB; --cream:#FFF8F0; --line:#E7DDD2;
+    --navy:#16213E; --navy-2:#1A1A2E;
+    --burgundy:#8B1A2B; --burgundy-d:#6E1322;
+    --gold:#D4A853; --gold-d:#b88a36;
+    --ink:#1A1A2E; --muted:#5f5862; --soft:#857d88;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden;line-height:1.65}
+  h1,h2,h3{font-family:'Playfair Display',serif;letter-spacing:-.01em;font-weight:700}
+  .wrap{max-width:1200px;margin-inline:auto;padding-inline:32px}
+  a{color:inherit;text-decoration:none}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--burgundy)}
+  .rule{width:46px;height:3px;background:var(--gold);border-radius:2px}
+
+  /* top bar */
+  .topbar{background:var(--navy-2);color:#cfc8d2;font-size:12.5px;letter-spacing:.04em}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;padding-block:9px}
+  .topbar a:hover{color:var(--gold)}
+  @media(max-width:680px){.topbar .wrap span:last-child{display:none}}
+
+  nav{position:sticky;inset-block-start:0;z-index:50;background:rgba(255,253,251,.92);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-block:14px}
+  .brand{display:flex;align-items:center;gap:13px}
+  .brand img{width:46px;height:46px;border-radius:50%;box-shadow:0 4px 14px rgba(139,26,43,.22)}
+  .brand b{font-family:'Playfair Display';font-weight:800;color:var(--burgundy);font-size:1.2rem;line-height:1}
+  .brand small{display:block;font-family:'Inter';font-weight:600;font-size:10px;letter-spacing:.22em;color:var(--soft);text-transform:uppercase;margin-top:3px}
+  .navlinks{display:flex;gap:32px;font-size:14.5px;font-weight:500;color:var(--ink)}
+  .navlinks a{position:relative}
+  .navlinks a::after{content:"";position:absolute;inset-block-end:-6px;inset-inline:0;height:2px;background:var(--burgundy);transform:scaleX(0);transition:transform .25s}
+  .navlinks a:hover::after{transform:scaleX(1)}
+  @media(max-width:820px){.navlinks{display:none}}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;padding:11px 22px;border-radius:8px;
+    transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .2s,background .2s}
+  .btn-primary{background:var(--burgundy);color:#fff;box-shadow:0 8px 20px -8px rgba(139,26,43,.5)}
+  .btn-primary:hover{background:var(--burgundy-d);transform:translateY(-2px);box-shadow:0 14px 28px -10px rgba(139,26,43,.6)}
+  .btn-primary:active{transform:translateY(1px)}
+  .btn-outline{border:1.5px solid var(--line);color:var(--ink)}
+  .btn-outline:hover{border-color:var(--burgundy);color:var(--burgundy);transform:translateY(-2px)}
+
+  /* HERO — formal split, subtle 3D depth */
+  .hero{background:linear-gradient(180deg,var(--cream),var(--paper));border-bottom:1px solid var(--line)}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;padding-block:90px;perspective:1600px}
+  @media(max-width:920px){.hero .wrap{grid-template-columns:1fr;gap:48px;padding-block:64px}}
+  .hero .kicker{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+  .hero .kicker::before{content:"";width:30px;height:2px;background:var(--gold)}
+  .hero h1{font-size:clamp(2.5rem,5.2vw,4.1rem);line-height:1.06;color:var(--navy-2)}
+  .hero h1 span{color:var(--burgundy)}
+  .hero .lead{margin:24px 0 32px;color:var(--muted);font-size:1.12rem;max-width:48ch}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .since{margin-left:6px;font-size:13px;color:var(--soft);font-weight:500}
+
+  /* 3D layered credential stack */
+  .stack{position:relative;height:430px;transform-style:preserve-3d;transform:rotateY(-16deg) rotateX(6deg);
+    transition:transform .3s ease}
+  @media(max-width:920px){.stack{transform:none;height:auto}}
+  .panel{position:absolute;inset-inline:0;background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 28px;
+    box-shadow:0 30px 50px -28px rgba(22,33,62,.45)}
+  @media(max-width:920px){.panel{position:relative;margin-bottom:18px;box-shadow:0 14px 30px -20px rgba(22,33,62,.35)}}
+  .p1{inset-block-start:0;transform:translateZ(70px);border-block-start:4px solid var(--burgundy)}
+  .p2{inset-block-start:120px;transform:translateZ(35px);border-block-start:4px solid var(--gold)}
+  .p3{inset-block-start:240px;transform:translateZ(0);border-block-start:4px solid var(--navy)}
+  .panel .pl{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+  .panel .pv{font-family:'Playfair Display';font-weight:800;font-size:1.9rem;color:var(--navy-2);margin-top:4px;line-height:1.1}
+  .panel .pd{font-size:13.5px;color:var(--muted);margin-top:4px}
+  .panel .seal{position:absolute;inset-block-start:22px;inset-inline-end:24px;width:40px;height:40px;border-radius:50%;opacity:.9}
+
+  /* metric strip */
+  .metrics{border-bottom:1px solid var(--line)}
+  .metrics .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+  @media(max-width:760px){.metrics .wrap{grid-template-columns:repeat(2,1fr)}}
+  .metric{padding:38px 24px;text-align:center;border-inline-end:1px solid var(--line)}
+  .metric:last-child{border-inline-end:0}
+  @media(max-width:760px){.metric:nth-child(2){border-inline-end:0}.metric:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+  .metric .n{font-family:'Playfair Display';font-weight:800;font-size:2.6rem;color:var(--burgundy);line-height:1}
+  .metric .l{font-size:13px;color:var(--muted);margin-top:8px;letter-spacing:.03em}
+
+  section{padding-block:96px}
+  .sec-head{max-width:680px;margin-bottom:56px}
+  .sec-head .kicker{display:block;margin-bottom:14px}
+  .sec-head h2{font-size:clamp(1.9rem,3.6vw,2.8rem);color:var(--navy-2)}
+  .sec-head p{color:var(--muted);margin-top:14px;font-size:1.05rem}
+
+  /* capabilities — formal cards w/ subtle 3D lift */
+  .cap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:var(--line);
+    border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .cap{background:#fff;padding:38px 32px;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,z-index 0s;position:relative}
+  .cap:hover{transform:translateY(-6px);box-shadow:0 26px 46px -28px rgba(22,33,62,.5);z-index:2;border-radius:14px}
+  .cap .ix{width:52px;height:52px;border-radius:12px;display:grid;place-items:center;margin-bottom:22px;background:var(--cream);border:1px solid var(--line)}
+  .cap .ix svg{width:26px;height:26px;stroke:var(--burgundy);stroke-width:1.8;fill:none}
+  .cap h3{font-size:1.25rem;margin-bottom:10px;color:var(--navy-2)}
+  .cap p{color:var(--muted);font-size:.96rem}
+  .cap .no{position:absolute;inset-block-start:30px;inset-inline-end:32px;font-family:'Playfair Display';font-weight:700;color:var(--line);font-size:1.4rem}
+
+  /* about / heritage split */
+  .about{background:var(--cream);border-block:1px solid var(--line)}
+  .about .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}
+  @media(max-width:920px){.about .wrap{grid-template-columns:1fr;gap:40px}}
+  .about-media{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);
+    box-shadow:0 30px 60px -34px rgba(22,33,62,.5);aspect-ratio:4/3;background:#fff}
+  .about-media img{width:100%;height:100%;object-fit:cover}
+  .about-media .stamp{position:absolute;inset-block-end:18px;inset-inline-start:18px;background:rgba(22,33,62,.9);color:#fff;
+    padding:10px 16px;border-radius:8px;font-size:13px;font-weight:600;letter-spacing:.04em}
+  .about h2{font-size:clamp(1.8rem,3.4vw,2.6rem);color:var(--navy-2);margin:16px 0 18px}
+  .about p{color:var(--muted);margin-bottom:16px}
+  .vals{display:flex;gap:28px;margin-top:24px;flex-wrap:wrap}
+  .val b{display:block;font-family:'Playfair Display';font-size:1.3rem;color:var(--burgundy)}
+  .val span{font-size:13px;color:var(--soft)}
+
+  /* brands */
+  .brands{text-align:center}
+  .brands .marquee-wrap{overflow:hidden;border-block:1px solid var(--line);padding-block:34px;margin-top:40px;background:var(--paper)}
+  .marquee{display:flex;gap:64px;animation:scroll 30s linear infinite;width:max-content;align-items:center}
+  .marquee img{height:42px;width:auto;object-fit:contain;filter:grayscale(.35);opacity:.8;transition:.3s}
+  .marquee img:hover{filter:none;opacity:1}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  /* app cta — formal navy band */
+  .appcta{background:linear-gradient(135deg,var(--navy-2),var(--navy));color:#fff;position:relative;overflow:hidden}
+  .appcta::after{content:"";position:absolute;inset-block-start:-30%;inset-inline-end:-6%;width:380px;height:380px;border-radius:50%;
+    background:radial-gradient(circle,rgba(212,168,83,.3),transparent 70%)}
+  .appcta .wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:center;position:relative;z-index:1}
+  @media(max-width:760px){.appcta .wrap{grid-template-columns:1fr;text-align:center}}
+  .appcta .kicker{color:var(--gold)}
+  .appcta h2{font-size:clamp(1.8rem,3.6vw,2.6rem);color:#fff;margin:14px 0 16px}
+  .appcta p{color:rgba(255,255,255,.82);max-width:46ch;margin-bottom:26px}
+  @media(max-width:760px){.appcta p{margin-inline:auto}}
+  .store-row{display:flex;gap:14px;flex-wrap:wrap}
+  @media(max-width:760px){.store-row{justify-content:center}}
+  .store{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;padding:13px 24px;border-radius:8px;font-weight:600;font-size:14px;transition:.22s}
+  .store:hover{background:#fff;color:var(--navy-2);transform:translateY(-2px)}
+  .seal-lg{justify-self:center;width:180px;height:180px;border-radius:50%;overflow:hidden;border:5px solid rgba(212,168,83,.35);box-shadow:0 30px 50px -20px rgba(0,0,0,.6)}
+  .seal-lg img{width:100%;height:100%;object-fit:cover}
+  @media(max-width:760px){.seal-lg{display:none}}
+
+  footer{background:var(--navy-2);color:#9b94a3;font-size:13.5px}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;padding-block:30px;flex-wrap:wrap;gap:12px}
+  footer a:hover{color:var(--gold)}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.stack{transform:none}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap"><span>Kuwait · Established 1986</span><span>info@worldsweets.com &nbsp;·&nbsp; +965 0000 0000</span></div></div>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#"><img src="../images/icons/logo.png" alt="World Sweets logo"><span><b>World Sweets</b><small>General Trading · Kuwait</small></span></a>
+    <div class="navlinks"><a href="#company">Company</a><a href="#capabilities">Capabilities</a><a href="#heritage">Heritage</a><a href="#brands">Brands</a><a href="#app">App</a></div>
+    <a class="btn btn-primary" href="#app">Download App</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="kicker">Confectionery Distribution · Since 1986</span>
+      <h1>Kuwait's trusted partner in <span>fine confectionery</span>.</h1>
+      <p class="lead">World Sweets distributes the world's leading confectionery brands across Kuwait, backed by four decades of cold-chain logistics, retail relationships, and reliable service.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#app">Download the app</a>
+        <a class="btn btn-outline" href="#company">About the company</a>
+        <span class="since">Serving Kuwait for 40 years</span>
+      </div>
+    </div>
+    <div class="stack" id="stack">
+      <div class="panel p1"><div class="seal" style="background:radial-gradient(circle,var(--burgundy),var(--burgundy-d))"></div><div class="pl">Established</div><div class="pv">1986</div><div class="pd">Four decades of distribution in Kuwait.</div></div>
+      <div class="panel p2"><div class="seal" style="background:radial-gradient(circle,var(--gold),var(--gold-d))"></div><div class="pl">Team</div><div class="pv">150+ professionals</div><div class="pd">Sales, logistics, and showroom specialists.</div></div>
+      <div class="panel p3"><div class="seal" style="background:radial-gradient(circle,var(--navy),#0d1326)"></div><div class="pl">Network</div><div class="pv">Nationwide reach</div><div class="pd">Two showrooms, six governorates served.</div></div>
+    </div>
+  </div>
+</header>
+
+<section class="metrics" id="company" style="padding:0">
+  <div class="wrap">
+    <div class="metric reveal"><div class="n">1986</div><div class="l">Year established</div></div>
+    <div class="metric reveal"><div class="n">40+</div><div class="l">Years of distribution</div></div>
+    <div class="metric reveal"><div class="n">150+</div><div class="l">Professionals</div></div>
+    <div class="metric reveal"><div class="n">165K+</div><div class="l">Community followers</div></div>
+  </div>
+</section>
+
+<section id="capabilities" class="wrap">
+  <div class="sec-head reveal">
+    <span class="kicker">What we do</span>
+    <h2>A complete distribution operation, end to end.</h2>
+    <p>From sourcing global brands to placing them on the shelf nearest the shopper, World Sweets manages every link in the chain.</p>
+  </div>
+  <div class="cap-grid">
+    <div class="cap reveal"><span class="no">01</span><div class="ix"><svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/></svg></div><h3>Brand sourcing & agency</h3><p>Exclusive and shared representation for leading confectionery makers entering the Kuwaiti market.</p></div>
+    <div class="cap reveal"><span class="no">02</span><div class="ix"><svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v9h20V9a2 2 0 0 0-2-2z"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div><h3>Cold-chain logistics</h3><p>Temperature-controlled storage and delivery that protect product quality from warehouse to retail.</p></div>
+    <div class="cap reveal"><span class="no">03</span><div class="ix"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/></svg></div><h3>Nationwide retail reach</h3><p>Placement across hypermarkets, groceries, and HORECA in all six governorates of Kuwait.</p></div>
+    <div class="cap reveal"><span class="no">04</span><div class="ix"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M11 18h2"/></svg></div><h3>Direct-to-shopper app</h3><p>The full catalogue and showroom experience, delivered through one mobile application.</p></div>
+  </div>
+</section>
+
+<section id="heritage" class="about">
+  <div class="wrap">
+    <div class="about-media reveal"><img src="../images/showrooms/shop-exterior.webp" alt="World Sweets showroom"><div class="stamp">Flagship Showroom · Kuwait</div></div>
+    <div class="reveal">
+      <div class="rule"></div>
+      <h2>A legacy of sweetness since 1986.</h2>
+      <p>What began as a single Kuwait warehouse has grown into a nationwide distribution network trusted by global brands and local retailers alike.</p>
+      <p>Today, a team of more than 150 professionals operates two flagship showrooms and a cold-chain logistics backbone that reaches every corner of the country.</p>
+      <div class="vals">
+        <div class="val"><b>Trust</b><span>Four decades of partnership</span></div>
+        <div class="val"><b>Quality</b><span>Cold-chain controlled</span></div>
+        <div class="val"><b>Reach</b><span>Six governorates</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="brands" class="wrap brands">
+  <div class="sec-head reveal" style="margin-inline:auto;text-align:center">
+    <span class="kicker">Our partners</span>
+    <h2>Trusted by leading brands worldwide.</h2>
+  </div>
+  <div class="marquee-wrap reveal"><div class="marquee" id="m1"></div></div>
+</section>
+
+<section id="app" class="appcta">
+  <div class="wrap">
+    <div>
+      <span class="kicker">The World Sweets app</span>
+      <h2>The full catalogue, in your pocket.</h2>
+      <p>Browse every brand we carry, follow new arrivals, and connect with our showrooms. Download the World Sweets app to stay close to what's sweet.</p>
+      <div class="store-row"><a class="store" href="#">App Store</a><a class="store" href="#">Google Play</a></div>
+    </div>
+    <div class="seal-lg"><img src="../images/icons/logo.png" alt="World Sweets app"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 1986–2026 World Sweets General Trading Co. — Kuwait. All rights reserved.</span>
+    <span>Demo 3 · Corporate</span>
+  </div>
+</footer>
+
+<script>
+  const brands=['choki','kopiko','yupi','red-band','elvan','fortuin','coffee-joy','pepero','oly'];
+  const ext={choki:'webp',kopiko:'webp','red-band':'webp','coffee-joy':'png',pepero:'jpg',oly:'png',yupi:'png',elvan:'png',fortuin:'png'};
+  document.getElementById('m1').innerHTML=[...brands,...brands].map(b=>`<img src="../images/brands/${b}.${ext[b]}" alt="${b}" loading="lazy">`).join('');
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const stack=document.getElementById('stack');
+  if(stack&&!reduce&&innerWidth>920){
+    window.addEventListener('pointermove',e=>{const x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);
+      stack.style.transform=`rotateY(${-16+x*8}deg) rotateX(${6-y*8}deg)`;});
+  }
+</script>
+</body>
+</html>

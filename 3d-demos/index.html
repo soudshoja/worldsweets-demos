@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World Sweets — 3D Demo Picker</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',sans-serif;background:#FFF8F0;color:#1A1A2E;min-height:100vh;padding:60px 24px;
+    background-image:radial-gradient(circle at 15% 10%,rgba(232,86,127,.1),transparent 40%),radial-gradient(circle at 85% 20%,rgba(212,168,83,.14),transparent 40%)}
+  h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);text-align:center;color:#8B1A2B}
+  .sub{text-align:center;color:#5b5560;margin:14px auto 50px;max-width:50ch}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;max-width:1100px;margin-inline:auto}
+  a.card{display:block;text-decoration:none;color:inherit;background:#fff;border-radius:24px;overflow:hidden;
+    box-shadow:0 24px 50px -30px rgba(30,26,22,.5);transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s}
+  a.card:hover{transform:translateY(-8px);box-shadow:0 40px 70px -34px rgba(30,26,22,.6)}
+  .top{height:150px;display:grid;place-items:center;color:#fff;font-family:'Playfair Display';font-weight:800;font-size:1.6rem}
+  .t1{background:linear-gradient(135deg,#8B1A2B,#b33148)}
+  .t2{background:linear-gradient(135deg,#15121b,#b5283f)}
+  .t3{background:linear-gradient(135deg,#16213E,#8B1A2B)}
+  .body{padding:24px}
+  .body h3{font-family:'Playfair Display';font-size:1.3rem;margin-bottom:6px}
+  .body p{color:#5b5560;font-size:.95rem}
+  .tag{display:inline-block;margin-top:14px;font-size:12px;font-weight:700;color:#8B1A2B;background:rgba(139,26,43,.08);padding:5px 12px;border-radius:999px}
+</style>
+</head>
+<body>
+  <h1>World Sweets — 3D Demos</h1>
+  <p class="sub">Three corporate company-profile concepts, all 3D, all on brand. Pick one to open.</p>
+  <div class="grid">
+    <a class="card" href="demo1-depth.html"><div class="top t1">01 · Depth</div><div class="body"><h3>Depth</h3><p>Cream & burgundy corporate. Floating 3D badge, parallax stage, tilt-on-hover cards.</p><span class="tag">Light · Classic</span></div></a>
+    <a class="card" href="demo2-atelier.html"><div class="top t2">02 · Atelier</div><div class="body"><h3>Atelier</h3><p>Dark premium with gold. 3D rotating badge, glass capability cards, showroom panels.</p><span class="tag">Dark · Luxury</span></div></a>
+    <a class="card" href="demo3-corporate.html"><div class="top t3">03 · Corporate</div><div class="body"><h3>Corporate</h3><p>Formal company profile. Layered 3D credential panels, structured metrics, navy & gold.</p><span class="tag">Formal · Professional</span></div></a>
+  </div>
+</body>
+</html>
