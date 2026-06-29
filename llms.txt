@@ -1,0 +1,20 @@
+# World Sweets Kuwait
+> Kuwait's leading confectionery distributor since 1986
+
+## About
+World Sweets is a family-run company founded in 1986 that has evolved into Kuwait's premier confectionery distributor. With 150+ skilled professionals, two showrooms (Shuwaikh and Fahaheel), and partnerships with leading international brands.
+
+## Key Pages
+- [Home](https://worldsweets.com/) - Company overview, brands, showrooms, app download
+- [Privacy Policy](https://worldsweets.com/privacy.html)
+- [Terms of Service](https://worldsweets.com/terms.html)
+
+## Contact
+- Phone: +(965) 2492 0204
+- WhatsApp: +(965) 6939 0055
+- Email: info@worldsweets.com
+- Address: 69 Street Shuwaikh, Shuwaikh Industrial, Kuwait
+
+## Mobile App
+- iOS: https://apps.apple.com/us/app/id1505741130
+- Android: https://play.google.com/store/apps/details?id=worldsweets.by.brain.stack
