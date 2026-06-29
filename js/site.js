@@ -134,23 +134,23 @@
     var appPopupStages = [
       {
         title: 'Shop easier on our app!',
-        desc:  'Browse 1,000+ products, get exclusive offers, and enjoy fast delivery across Kuwait.'
+        desc:  'Browse our full confectionery catalogue and enjoy fast delivery across Kuwait.'
       },
       {
-        title: "Don't miss exclusive app deals!",
-        desc:  "Our app users get early access to special promotions and discounts you won't find anywhere else."
+        title: "Don't miss app-exclusive offers!",
+        desc:  'Get early access to promotions and new arrivals, straight from the World Sweets app.'
       },
       {
-        title: 'Join thousands of sweet lovers on our app!',
-        desc:  'Over 10,000 happy customers order their favorite treats through our app every month.'
+        title: 'Join 165,000+ sweet lovers!',
+        desc:  'Follow new arrivals and order your favourites — all in one app.'
       },
       {
-        title: 'Last chance! Download now for special offers',
-        desc:  "Limited-time app-only deals are waiting for you. Don't let them slip away!"
+        title: 'Order from anywhere in Kuwait',
+        desc:  'Delivery across the country, plus pickup at our Shuwaikh and Fahaheel showrooms.'
       },
       {
-        title: 'Your sweets are waiting!',
-        desc:  "One tap away from Kuwait's finest confectionery collection. Download now and start exploring."
+        title: 'Your sweets are waiting',
+        desc:  "Kuwait's finest confectionery, since 1986 — download the World Sweets app to start exploring."
       }
     ];
 

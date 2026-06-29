@@ -355,8 +355,10 @@ footer.site .fbot a:hover{color:var(--gold)}
 /* ===== official store badges (replace custom buttons) ===== */
 .store-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 .store-badge{display:inline-flex;border-radius:9px;transition:transform .2s,opacity .2s}
-.store-badge img{height:48px;width:auto;display:block}
+.store-badge img{height:44px;width:auto;display:block;object-fit:contain}
 .store-badge:hover{transform:translateY(-2px);opacity:.88}
+/* logo always fills + centers its round/box container */
+.brand img,.app-bar img,.pc-ix img,.seal-lg img{object-fit:cover}
 @media(max-width:760px){.appcta .store-row{justify-content:center}}
 .popup-card .store-row{justify-content:center}
 .popup-card .store-badge img{height:46px}
