@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact World Sweets Kuwait — Showrooms, Phone & WhatsApp</title>
+<meta name="description" content="Reach World Sweets Kuwait via phone +965 2492 0204, WhatsApp, email, or visit our showrooms in Shuwaikh and Fahaheel. Open daily 9 AM – 10 PM.">
+<link rel="canonical" href="https://www.worldsweets.com/contact.html">
+<meta name="theme-color" content="#1A1A2E">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="World Sweets Kuwait">
+<meta property="og:title" content="Contact World Sweets Kuwait — Showrooms, Phone & WhatsApp">
+<meta property="og:description" content="Get in touch with World Sweets Kuwait. Phone, email, WhatsApp, or visit our two flagship showrooms.">
+<meta property="og:url" content="https://www.worldsweets.com/contact.html">
+<meta property="og:image" content="https://www.worldsweets.com/images/showrooms/shop-exterior.webp">
+<meta property="og:locale" content="en_KW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contact World Sweets Kuwait">
+<meta name="twitter:description" content="Phone: +965 2492 0204 · WhatsApp · Email · Showrooms in Shuwaikh & Fahaheel">
+<meta name="twitter:image" content="https://www.worldsweets.com/images/showrooms/shop-exterior.webp">
+<link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/icons/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/icons/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact World Sweets Kuwait",
+    "url": "https://www.worldsweets.com/contact.html",
+    "description": "Contact page for World Sweets Kuwait with showroom locations, phone, email, and contact form."
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "World Sweets",
+    "image": "https://www.worldsweets.com/images/icons/logo.png",
+    "description": "Kuwait's leading confectionery distributor since 1986",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "69 Street, Shuwaikh Industrial",
+      "addressLocality": "Shuwaikh",
+      "addressCountry": "KW"
+    },
+    "telephone": "+965 2492 0204",
+    "email": "info@worldsweets.com",
+    "openingHours": "Mo-Su 09:00-22:00",
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "World Sweets",
+      "url": "https://www.worldsweets.com"
+    }
+  }
+]
+</script>
+<style>
+/* Contact form styles */
+.contact-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--navy-2);
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--burgundy);
+  box-shadow: 0 0 0 3px rgba(139, 26, 43, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.form-submit {
+  display: flex;
+  gap: 12px;
+}
+
+.form-submit .btn {
+  flex: 1;
+  text-align: center;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Locations grid */
+.locations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.location-card {
+  background: var(--cream-2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 28px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.location-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.location-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--navy-2);
+  margin-bottom: 8px;
+}
+
+.location-card .tag {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--burgundy);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.location-card p {
+  color: var(--soft);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.location-card .lc-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.location-card .lc-meta span {
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.location-card .lc-meta strong {
+  font-weight: 600;
+  color: var(--navy-2);
+}
+
+.location-card a.btn {
+  width: 100%;
+  text-align: center;
+}
+
+/* 2-column contact layout */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 32px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+/* Responsive contact info */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Maps section */
+.maps-wrapper {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  margin-top: 32px;
+}
+
+.maps-wrapper iframe {
+  width: 100%;
+  height: 400px;
+  border: none;
+}
+
+/* Social links in contact */
+.contact-social {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.contact-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--cream-2);
+  border: 2px solid var(--line);
+  transition: all 0.2s;
+}
+
+.contact-social a:hover {
+  background: var(--burgundy);
+  border-color: var(--burgundy);
+}
+
+.contact-social img {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.contact-social a:hover img {
+  filter: brightness(0) invert(1);
+}
+</style>
+</head>
+<body>
+
+<!-- top bar -->
+<div class="topbar">
+  <div class="wrap">
+    <span>Kuwait · Established 1986</span>
+    <div class="tb-contact" style="display:flex;gap:18px;align-items:center">
+      <a href="tel:+96524920204">+965 2492 0204</a>
+      <span>·</span>
+      <a href="mailto:info@worldsweets.com">info@worldsweets.com</a>
+    </div>
+  </div>
+</div>
+
+<!-- nav -->
+<nav class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="World Sweets home">
+      <img src="images/icons/logo.png" alt="World Sweets logo" width="46" height="46">
+      <span><b>World Sweets</b><small>General Trading · Kuwait</small></span>
+    </a>
+    <div class="navlinks">
+      <a href="about.html">About</a>
+      <a href="distribution.html">Distribution</a>
+      <a href="showrooms.html">Showrooms</a>
+      <a href="app.html">App</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="app.html">Download App</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- mobile menu -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="mobile-menu-head">
+    <span class="brand"><b>World Sweets</b><small>Kuwait</small></span>
+    <button class="mm-close" id="mm-close" aria-label="Close menu">&times;</button>
+  </div>
+  <a class="mm-link" href="about.html">About</a>
+  <a class="mm-link" href="distribution.html">Distribution</a>
+  <a class="mm-link" href="showrooms.html">Showrooms</a>
+  <a class="mm-link" href="app.html">App</a>
+  <a class="mm-link" href="contact.html" aria-current="page">Contact</a>
+  <a class="btn btn-gold" href="app.html">Download the app</a>
+</div>
+
+<main>
+
+<!-- hero -->
+<header class="hero page-hero" id="hero">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="kicker">Get in touch</span>
+      <h1>Let's talk sweets.</h1>
+      <p class="lead">Whether you're a retailer, caterer, or simply a fan of fine confectionery, we're here to help. Reach out via phone, email, WhatsApp, or visit one of our showrooms across Kuwait.</p>
+    </div>
+  </div>
+</header>
+
+<!-- contact section -->
+<section class="wrap">
+  <div class="contact-layout">
+    <!-- Left: Contact Info -->
+    <div>
+      <div class="contact-info">
+        <div class="ci">
+          <div class="ci-ix"><svg viewBox="0 0 24 24"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="ci-l">Head office</div><div class="ci-v">69 Street, Shuwaikh Industrial, Kuwait</div></div>
+        </div>
+        <div class="ci">
+          <div class="ci-ix"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></div>
+          <div><div class="ci-l">Phone</div><div class="ci-v"><a href="tel:+96524920204">+965 2492 0204</a></div></div>
+        </div>
+        <div class="ci">
+          <div class="ci-ix"><img src="images/social/whatsapp.svg" alt="" width="22" height="22"></div>
+          <div><div class="ci-l">WhatsApp</div><div class="ci-v"><a href="https://wa.me/96524920204" target="_blank" rel="noopener">+965 2492 0204</a></div></div>
+        </div>
+        <div class="ci">
+          <div class="ci-ix"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></div>
+          <div><div class="ci-l">Email</div><div class="ci-v"><a href="mailto:info@worldsweets.com">info@worldsweets.com</a></div></div>
+        </div>
+        <div class="ci">
+          <div class="ci-ix"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div><div class="ci-l">Working hours</div><div class="ci-v">Daily · 9:00 AM – 10:00 PM</div></div>
+        </div>
+      </div>
+
+      <!-- Social Links -->
+      <div style="margin-top: 32px">
+        <h3 style="font-size: 1.1rem; color: var(--navy-2); margin-bottom: 16px;">Follow us</h3>
+        <div class="contact-social">
+          <a href="https://www.instagram.com/worldsweetskuwait" target="_blank" rel="noopener" aria-label="Instagram">
+            <img src="images/social/instagram.svg" alt="Instagram">
+          </a>
+          <a href="https://www.tiktok.com/@worldsweets" target="_blank" rel="noopener" aria-label="TikTok">
+            <img src="images/social/tiktok.svg" alt="TikTok">
+          </a>
+          <a href="https://youtube.com/@worldsweets1986" target="_blank" rel="noopener" aria-label="YouTube">
+            <img src="images/social/youtube.svg" alt="YouTube">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Contact Form -->
+    <div>
+      <div class="contact-form-wrapper">
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--navy-2); margin-bottom: 24px;">Send us a message</h2>
+        <form action="https://api.web3forms.com/submit" method="POST">
+          <!-- Web3Forms access key: TODO replace with the real Web3Forms key -->
+          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+
+          <div class="form-submit">
+            <button type="submit" class="btn btn-primary">Send message</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- locations section -->
+<section class="wrap">
+  <div class="sec-head reveal">
+    <span class="kicker">Visit us</span>
+    <h2>Three ways to reach World Sweets.</h2>
+  </div>
+
+  <div class="locations-grid">
+    <!-- Head Office -->
+    <div class="location-card reveal">
+      <span class="tag">Head Office</span>
+      <h3>Shuwaikh Industrial</h3>
+      <div class="lc-meta">
+        <span><strong>69 Street, Shuwaikh</strong></span>
+        <span>Shuwaikh Industrial, Kuwait</span>
+      </div>
+      <p>Our main distribution and office hub for all wholesale inquiries and corporate partnerships.</p>
+      <a class="btn btn-outline" href="tel:+96524920204">Call us</a>
+    </div>
+
+    <!-- Shuwaikh Showroom -->
+    <div class="location-card reveal">
+      <span class="tag">Showroom</span>
+      <h3>Shuwaikh Showroom</h3>
+      <div class="lc-meta">
+        <span><strong>550 m²</strong></span>
+        <span>Kuwait City</span>
+      </div>
+      <p>Our flagship retail location with the full range of premium confectionery brands from around the world.</p>
+      <a class="btn btn-outline" href="https://maps.app.goo.gl/JJyNGuVDmwmfUHDL9" target="_blank" rel="noopener">Open in Maps</a>
+    </div>
+
+    <!-- Fahaheel Showroom -->
+    <div class="location-card reveal">
+      <span class="tag">Showroom</span>
+      <h3>Fahaheel Showroom</h3>
+      <div class="lc-meta">
+        <span><strong>650 m²</strong></span>
+        <span>Southern Kuwait</span>
+      </div>
+      <p>Serving the southern governorates with the complete World Sweets collection and expert assistance.</p>
+      <a class="btn btn-outline" href="https://maps.app.goo.gl/7aEmgM1BftRYwrcG6" target="_blank" rel="noopener">Open in Maps</a>
+    </div>
+  </div>
+</section>
+
+<!-- maps embed -->
+<section class="wrap">
+  <div class="sec-head reveal">
+    <span class="kicker">Find us</span>
+    <h2>World Sweets Shuwaikh location on Google Maps.</h2>
+  </div>
+  <div class="maps-wrapper reveal">
+    <iframe src="https://www.google.com/maps?q=World+Sweets+Shuwaikh+Kuwait&output=embed" title="World Sweets Shuwaikh location" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>
+
+<!-- app promo -->
+<section class="appcta">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="kicker">The World Sweets app</span>
+      <h2>Shop anytime, anywhere.</h2>
+      <p>Can't visit a showroom? Browse our full catalogue from your phone, track your order, and enjoy fast delivery across Kuwait. Download the World Sweets app today.</p>
+      <div class="store-row">
+        <a class="store-badge app-store-link" href="app.html" aria-label="Download on the App Store"><img src="images/badges/app-store.svg" alt="Download on the App Store" width="135" height="48"></a>
+        <a class="store-badge app-store-link" href="app.html" aria-label="Get it on Google Play"><img src="images/badges/google-play.png" alt="Get it on Google Play" width="124" height="48"></a>
+      </div>
+    </div>
+    <div class="seal-lg reveal"><img src="images/icons/logo.png" alt="World Sweets app icon"></div>
+  </div>
+</section>
+
+</main>
+
+<!-- footer -->
+<footer class="site">
+  <div class="wrap">
+    <div class="ftop">
+      <div class="fcol">
+        <a class="brand" href="index.html"><img src="images/icons/logo.png" alt="World Sweets" width="46" height="46"><span><b>World Sweets</b><small>Kuwait</small></span></a>
+        <p class="fblurb">Kuwait's leading confectionery distributor since 1986. Premium global brands, two flagship showrooms, and delivery across Kuwait.</p>
+        <div class="store-row">
+          <a class="store-badge" href="app.html" aria-label="Download on the App Store"><img src="images/badges/app-store.svg" alt="Download on the App Store" width="124" height="42"></a>
+          <a class="store-badge" href="app.html" aria-label="Get it on Google Play"><img src="images/badges/google-play.png" alt="Get it on Google Play" width="114" height="42"></a>
+        </div>
+        <div class="fsocial">
+          <a href="https://www.instagram.com/worldsweetskuwait" target="_blank" rel="noopener" aria-label="Instagram"><img src="images/social/instagram.svg" alt="" width="20" height="20"></a>
+          <a href="https://www.tiktok.com/@worldsweets" target="_blank" rel="noopener" aria-label="TikTok"><img src="images/social/tiktok.svg" alt="" width="20" height="20"></a>
+          <a href="https://youtube.com/@worldsweets1986" target="_blank" rel="noopener" aria-label="YouTube"><img src="images/social/youtube.svg" alt="" width="20" height="20"></a>
+          <a class="wa" href="https://wa.me/96524920204" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="images/social/whatsapp.svg" alt="" width="20" height="20"></a>
+        </div>
+      </div>
+      <div class="fcol">
+        <h4>Company</h4>
+        <a href="about.html">About us</a>
+        <a href="distribution.html">Distribution</a>
+        <a href="showrooms.html">Showrooms</a>
+        <a href="app.html">Mobile app</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="fcol">
+        <h4>Our showrooms</h4>
+        <p><strong style="color:#fff">Shuwaikh</strong><br>550 m² · Kuwait City<br><span style="font-size:12.5px">Tel: to be confirmed</span></p>
+        <a href="https://maps.app.goo.gl/JJyNGuVDmwmfUHDL9" target="_blank" rel="noopener">Open in Maps →</a>
+        <p style="margin-top:14px"><strong style="color:#fff">Fahaheel</strong><br>650 m² · Southern Kuwait<br><span style="font-size:12.5px">Tel: to be confirmed</span></p>
+        <a href="https://maps.app.goo.gl/7aEmgM1BftRYwrcG6" target="_blank" rel="noopener">Open in Maps →</a>
+      </div>
+      <div class="fcol">
+        <h4>Head office</h4>
+        <p>69 Street, Shuwaikh Industrial, Kuwait</p>
+        <a href="tel:+96524920204">+965 2492 0204</a>
+        <a href="https://wa.me/96524920204" target="_blank" rel="noopener">WhatsApp us</a>
+        <a href="mailto:info@worldsweets.com">info@worldsweets.com</a>
+        <p style="margin-top:10px">Daily · 9:00 AM – 10:00 PM</p>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>© 1986–2026 World Sweets General Trading Co. — Kuwait. All rights reserved.</span>
+      <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- floating WhatsApp -->
+<a class="wa-float" id="whatsapp-float" href="https://wa.me/96524920204?text=Hi%20World%20Sweets%2C%20I%27d%20like%20to%20know%20more." target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <img src="images/social/whatsapp-white.svg" alt="" width="32" height="32">
+</a>
+
+<!-- sticky mobile app bar -->
+<div class="app-bar" id="app-bar">
+  <img src="images/icons/logo.png" alt="World Sweets app">
+  <div class="ab-txt"><b>World Sweets app</b><span>Shop &amp; get delivery across Kuwait</span></div>
+  <a class="btn btn-gold" href="app.html">Get it</a>
+</div>
+
+<!-- escalating app popup -->
+<div class="popup hidden" id="app-popup" role="dialog" aria-modal="true" aria-labelledby="app-popup-title">
+  <div class="popup-backdrop" data-dismiss="app-popup"></div>
+  <div class="popup-card app-popup-content">
+    <button class="popup-close" id="app-popup-close" aria-label="Close">&times;</button>
+    <div class="pc-ix"><img src="images/icons/logo.png" alt="World Sweets app"></div>
+    <h3 id="app-popup-title">Shop easier on our app!</h3>
+    <p id="app-popup-desc">Browse our full catalogue, get exclusive offers, and enjoy fast delivery across Kuwait.</p>
+    <div class="store-row">
+      <a class="store-badge app-store-link" href="app.html" aria-label="Download on the App Store"><img src="images/badges/app-store.svg" alt="Download on the App Store" width="135" height="46"></a>
+      <a class="store-badge app-store-link" href="app.html" aria-label="Get it on Google Play"><img src="images/badges/google-play.png" alt="Get it on Google Play" width="124" height="46"></a>
+    </div>
+  </div>
+</div>
+
+<!-- follow popup -->
+<div class="popup hidden" id="follow-popup" role="dialog" aria-modal="true" aria-label="Follow us" style="align-items:center">
+  <div class="popup-backdrop" data-dismiss="follow-popup"></div>
+  <div class="follow-card">
+    <button class="popup-close" id="follow-popup-close" aria-label="Close">&times;</button>
+    <h3>Join 165,000+ sweet lovers</h3>
+    <p>Follow World Sweets for new arrivals and promotions.</p>
+    <div class="follow-row">
+      <a href="https://www.instagram.com/worldsweetskuwait" target="_blank" rel="noopener" aria-label="Instagram"><img src="images/social/instagram.svg" alt="" width="24" height="24"></a>
+      <a href="https://www.tiktok.com/@worldsweets" target="_blank" rel="noopener" aria-label="TikTok"><img src="images/social/tiktok.svg" alt="" width="24" height="24"></a>
+      <a href="https://youtube.com/@worldsweets1986" target="_blank" rel="noopener" aria-label="YouTube"><img src="images/social/youtube.svg" alt="" width="24" height="24"></a>
+    </div>
+  </div>
+</div>
+
+<script src="js/site.js" defer></script>
+</body>
+</html>
