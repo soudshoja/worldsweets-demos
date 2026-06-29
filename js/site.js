@@ -314,5 +314,28 @@
       }
     });
 
+    // =============================================
+    // 10. Showroom click-to-play video
+    //     Null-safe: pages without .video-play-btn (home, about) are unaffected.
+    //     Never autoplays — video plays only on explicit click, so
+    //     prefers-reduced-motion is respected structurally.
+    // =============================================
+    document.querySelectorAll('.video-play-btn').forEach(function (btn) {
+      var frame = btn.closest('.sr-video') || btn.parentElement;
+      var video = frame ? frame.querySelector('video') : null;
+      if (!video) return;
+
+      btn.addEventListener('click', function () {
+        btn.hidden = true;
+        var playAttempt = video.play();
+        if (playAttempt && typeof playAttempt.catch === 'function') {
+          playAttempt.catch(function () { btn.hidden = false; });
+        }
+      });
+
+      video.addEventListener('play',  function () { btn.hidden = true;  });
+      video.addEventListener('ended', function () { btn.hidden = false; });
+    });
+
   }); /* end DOMContentLoaded */
 })();
