@@ -114,72 +114,70 @@
   justify-content: center;
 }
 
-/* Locations grid */
+/* Locations grid — each branch is its own box with its own map */
 .locations-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   margin-top: 32px;
 }
+@media (max-width: 980px) { .locations-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 680px) { .locations-grid { grid-template-columns: 1fr; } }
 
 .location-card {
-  background: var(--cream-2);
+  background: #fff;
   border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 28px;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .location-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  box-shadow: 0 18px 40px -24px rgba(22,33,62,0.45);
 }
+
+.location-card .lc-map { aspect-ratio: 16 / 10; background: var(--cream); }
+.location-card .lc-map iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+.location-card .lc-body { padding: 24px; display: flex; flex-direction: column; flex: 1; }
 
 .location-card h3 {
   font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: var(--navy-2);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .location-card .tag {
-  display: inline-block;
-  background: var(--gold-light);
-  color: var(--burgundy);
+  align-self: flex-start;
+  background: var(--gold);
+  color: var(--navy-2);
   padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: 600;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   margin-bottom: 12px;
 }
 
-.location-card p {
-  color: var(--soft);
-  margin-bottom: 16px;
-  line-height: 1.6;
-}
+.location-card .lc-addr { color: var(--muted); font-size: 0.95rem; margin-bottom: 14px; }
 
 .location-card .lc-meta {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.location-card .lc-meta span {
+  gap: 6px;
+  margin-bottom: 18px;
   font-size: 0.9rem;
-  color: var(--text);
+  color: var(--ink);
 }
 
-.location-card .lc-meta strong {
-  font-weight: 600;
-  color: var(--navy-2);
-}
+.location-card .lc-meta strong { font-weight: 700; color: var(--navy-2); margin-inline-end: 6px; }
 
-.location-card a.btn {
-  width: 100%;
-  text-align: center;
-}
+.location-card a.btn { margin-top: auto; width: 100%; justify-content: center; }
 
 /* 2-column contact layout */
 .contact-layout {
@@ -404,55 +402,54 @@
   <div class="sec-head reveal">
     <span class="kicker">Visit us</span>
     <h2>Three ways to reach World Sweets.</h2>
+    <p>Our head office and two flagship showrooms — each with its own location on the map.</p>
   </div>
 
   <div class="locations-grid">
     <!-- Head Office -->
     <div class="location-card reveal">
-      <span class="tag">Head Office</span>
-      <h3>Shuwaikh Industrial</h3>
-      <div class="lc-meta">
-        <span><strong>69 Street, Shuwaikh</strong></span>
-        <span>Shuwaikh Industrial, Kuwait</span>
+      <div class="lc-map"><iframe src="https://www.google.com/maps?q=Shuwaikh+Industrial+Kuwait&output=embed" title="World Sweets head office — Shuwaikh Industrial" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+      <div class="lc-body">
+        <span class="tag">Head Office</span>
+        <h3>Shuwaikh Industrial</h3>
+        <p class="lc-addr">69 Street, Shuwaikh Industrial, Kuwait</p>
+        <div class="lc-meta">
+          <span><strong>Phone</strong><a href="tel:+96524920204">+965 2492 0204</a></span>
+          <span><strong>Hours</strong>Daily · 9:00 AM – 10:00 PM</span>
+        </div>
+        <a class="btn btn-outline" href="https://maps.app.goo.gl/JJyNGuVDmwmfUHDL9" target="_blank" rel="noopener">Open in Maps</a>
       </div>
-      <p>Our main distribution and office hub for all wholesale inquiries and corporate partnerships.</p>
-      <a class="btn btn-outline" href="tel:+96524920204">Call us</a>
     </div>
 
     <!-- Shuwaikh Showroom -->
     <div class="location-card reveal">
-      <span class="tag">Showroom</span>
-      <h3>Shuwaikh Showroom</h3>
-      <div class="lc-meta">
-        <span><strong>550 m²</strong></span>
-        <span>Kuwait City</span>
+      <div class="lc-map"><iframe src="https://www.google.com/maps?q=World+Sweets+Shuwaikh+Kuwait&output=embed" title="World Sweets Shuwaikh showroom" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+      <div class="lc-body">
+        <span class="tag">Showroom</span>
+        <h3>Shuwaikh Showroom</h3>
+        <p class="lc-addr">550 m² · Kuwait City</p>
+        <div class="lc-meta">
+          <span><strong>Tel</strong>To be confirmed</span>
+          <span><strong>Hours</strong>Daily · 9:00 AM – 10:00 PM</span>
+        </div>
+        <a class="btn btn-outline" href="https://maps.app.goo.gl/JJyNGuVDmwmfUHDL9" target="_blank" rel="noopener">Open in Maps</a>
       </div>
-      <p>Our flagship retail location with the full range of premium confectionery brands from around the world.</p>
-      <a class="btn btn-outline" href="https://maps.app.goo.gl/JJyNGuVDmwmfUHDL9" target="_blank" rel="noopener">Open in Maps</a>
     </div>
 
     <!-- Fahaheel Showroom -->
     <div class="location-card reveal">
-      <span class="tag">Showroom</span>
-      <h3>Fahaheel Showroom</h3>
-      <div class="lc-meta">
-        <span><strong>650 m²</strong></span>
-        <span>Southern Kuwait</span>
+      <div class="lc-map"><iframe src="https://www.google.com/maps?q=World+Sweets+Fahaheel+Kuwait&output=embed" title="World Sweets Fahaheel showroom" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+      <div class="lc-body">
+        <span class="tag">Showroom</span>
+        <h3>Fahaheel Showroom</h3>
+        <p class="lc-addr">650 m² · Southern Kuwait</p>
+        <div class="lc-meta">
+          <span><strong>Tel</strong>To be confirmed</span>
+          <span><strong>Hours</strong>Daily · 9:00 AM – 10:00 PM</span>
+        </div>
+        <a class="btn btn-outline" href="https://maps.app.goo.gl/7aEmgM1BftRYwrcG6" target="_blank" rel="noopener">Open in Maps</a>
       </div>
-      <p>Serving the southern governorates with the complete World Sweets collection and expert assistance.</p>
-      <a class="btn btn-outline" href="https://maps.app.goo.gl/7aEmgM1BftRYwrcG6" target="_blank" rel="noopener">Open in Maps</a>
     </div>
-  </div>
-</section>
-
-<!-- maps embed -->
-<section class="wrap">
-  <div class="sec-head reveal">
-    <span class="kicker">Find us</span>
-    <h2>World Sweets Shuwaikh location on Google Maps.</h2>
-  </div>
-  <div class="maps-wrapper reveal">
-    <iframe src="https://www.google.com/maps?q=World+Sweets+Shuwaikh+Kuwait&output=embed" title="World Sweets Shuwaikh location" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
 </section>
 
@@ -518,6 +515,7 @@
     </div>
     <div class="fbot">
       <span>© 1986–2026 World Sweets General Trading Co. — Kuwait. All rights reserved.</span>
+      <a class="powered" href="https://resayil.io" target="_blank" rel="noopener">Powered by <img src="images/icons/resayil-icon.png" alt=""> <strong>Resayil.io</strong></a>
       <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span>
     </div>
   </div>

@@ -285,6 +285,10 @@ footer.site .fbadges a:hover{background:rgba(255,255,255,.08);color:var(--gold)}
 footer.site .fbot{border-top:1px solid rgba(255,255,255,.1);padding-block:22px;display:flex;justify-content:space-between;
   flex-wrap:wrap;gap:10px;font-size:12.5px}
 footer.site .fbot a:hover{color:var(--gold)}
+footer.site .fbot .powered{display:inline-flex;align-items:center;gap:6px;color:#9b94a3}
+footer.site .fbot .powered img{height:18px;width:auto;display:block}
+footer.site .fbot .powered strong{color:#cfc8d2;font-weight:700}
+footer.site .fbot .powered:hover strong{color:var(--gold)}
 
 /* floating WhatsApp */
 .wa-float{position:fixed;inset-block-end:24px;inset-inline-end:24px;z-index:var(--z-float);width:58px;height:58px;
