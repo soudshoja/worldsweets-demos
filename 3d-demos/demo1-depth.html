@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World Sweets Kuwait — Depth (3D Demo 1)</title>
+<meta name="description" content="World Sweets Kuwait — Kuwait's leading confectionery distributor since 1986.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF8F0; --cream-2:#FDEFE2;
+    --burgundy:#8B1A2B; --burgundy-d:#6E1322;
+    --gold:#D4A853; --pink:#E8567F; --coral:#FF6B35;
+    --ink:#1A1A2E; --muted:#5b5560;
+    --shadow:30 26 22;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',sans-serif;background:var(--cream);color:var(--ink);
+    overflow-x:hidden;line-height:1.6;
+    background-image:
+      radial-gradient(circle at 12% 8%, rgba(232,86,127,.10), transparent 38%),
+      radial-gradient(circle at 88% 22%, rgba(212,168,83,.14), transparent 40%);
+  }
+  h1,h2,h3{font-family:'Playfair Display',serif;letter-spacing:-.01em}
+  .wrap{max-width:1180px;margin-inline:auto;padding-inline:24px}
+  a{color:inherit;text-decoration:none}
+
+  /* NAV */
+  nav{position:fixed;inset-block-start:0;inset-inline:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 32px;backdrop-filter:blur(12px);
+    background:rgba(255,248,240,.7);border-bottom:1px solid rgba(139,26,43,.10);}
+  .brand{display:flex;align-items:center;gap:12px;font-family:'Playfair Display';font-weight:800;color:var(--burgundy)}
+  .brand img{width:42px;height:42px;border-radius:50%;box-shadow:0 6px 18px rgba(139,26,43,.28)}
+  .navlinks{display:flex;gap:30px;font-size:14px;font-weight:500;color:var(--muted)}
+  .navlinks a:hover{color:var(--burgundy)}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;
+    padding:11px 22px;border-radius:999px;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s;}
+  .btn-primary{background:var(--burgundy);color:#fff;box-shadow:0 10px 24px rgba(139,26,43,.35)}
+  .btn-primary:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 16px 32px rgba(139,26,43,.45)}
+  .btn-primary:active{transform:translateY(1px) scale(.98)}
+  @media(max-width:760px){.navlinks{display:none}}
+
+  /* HERO with 3D parallax stage */
+  .hero{position:relative;min-height:100dvh;display:grid;place-items:center;
+    perspective:1400px;padding:120px 0 60px;}
+  .stage{position:relative;transform-style:preserve-3d;width:100%;display:grid;
+    grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+  @media(max-width:880px){.stage{grid-template-columns:1fr;text-align:center}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--burgundy);
+    background:rgba(139,26,43,.08);padding:7px 14px;border-radius:999px;margin-bottom:22px}
+  .eyebrow b{color:var(--gold)}
+  .hero h1{font-size:clamp(2.6rem,6vw,4.7rem);line-height:1.02;color:var(--ink)}
+  .hero h1 em{font-style:italic;color:var(--burgundy)}
+  .hero p{margin:22px 0 30px;color:var(--muted);font-size:1.12rem;max-width:46ch}
+  @media(max-width:880px){.hero p{margin-inline:auto}}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap}
+  @media(max-width:880px){.cta-row{justify-content:center}}
+  .btn-ghost{border:1.5px solid rgba(139,26,43,.25);color:var(--burgundy)}
+  .btn-ghost:hover{background:rgba(139,26,43,.06);transform:translateY(-2px)}
+
+  /* floating 3D badge scene */
+  .scene{position:relative;height:440px;transform-style:preserve-3d}
+  .float{position:absolute;border-radius:50%;display:grid;place-items:center;
+    box-shadow:0 30px 60px -18px rgba(var(--shadow),.45);will-change:transform}
+  .badge-main{inset-block-start:50%;inset-inline-start:50%;width:300px;height:300px;
+    margin:-150px 0 0 -150px;background:#fff;padding:14px;
+    transform:translateZ(60px);animation:bob 7s ease-in-out infinite}
+  .badge-main img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+  .chip{width:96px;height:96px;font-size:13px;font-weight:700;color:#fff;text-align:center;line-height:1.15}
+  .c1{background:linear-gradient(140deg,var(--coral),#ff9466);inset-block-start:2%;inset-inline-end:6%;transform:translateZ(120px);animation:bob 5s ease-in-out infinite}
+  .c2{background:linear-gradient(140deg,var(--pink),#f59ab6);inset-block-end:6%;inset-inline-start:0;transform:translateZ(95px);animation:bob 6.4s ease-in-out infinite .6s}
+  .c3{background:linear-gradient(140deg,var(--gold),#eaca8c);width:78px;height:78px;font-size:12px;inset-block-end:18%;inset-inline-end:2%;transform:translateZ(150px);animation:bob 5.8s ease-in-out infinite 1s}
+  @keyframes bob{0%,100%{translate:0 0}50%{translate:0 -16px}}
+
+  /* STATS extruded blocks */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;
+    margin-top:30px;perspective:1000px}
+  .stat{background:#fff;border-radius:20px;padding:30px 26px;
+    box-shadow:0 1px 0 rgba(139,26,43,.05),0 22px 40px -24px rgba(var(--shadow),.5);
+    transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;
+    border-block-start:4px solid var(--gold)}
+  .stat:hover{transform:translateY(-6px) rotateX(7deg);box-shadow:0 36px 60px -28px rgba(var(--shadow),.6)}
+  .stat .n{font-family:'Playfair Display';font-weight:800;font-size:2.7rem;color:var(--burgundy);line-height:1}
+  .stat .l{color:var(--muted);font-size:.92rem;margin-top:8px;font-weight:500}
+
+  section{padding:96px 0}
+  .sec-head{max-width:620px;margin-bottom:54px}
+  .sec-head .eyebrow{margin-bottom:16px}
+  .sec-head h2{font-size:clamp(2rem,4vw,3rem);color:var(--ink)}
+  .sec-head p{color:var(--muted);margin-top:14px;font-size:1.05rem}
+
+  /* PILLAR tilt cards */
+  .pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;perspective:1200px}
+  .card{position:relative;background:#fff;border-radius:24px;padding:34px 30px;
+    transform-style:preserve-3d;transition:transform .2s ease,box-shadow .3s;
+    box-shadow:0 24px 50px -30px rgba(var(--shadow),.55);overflow:hidden}
+  .card::before{content:"";position:absolute;inset:0;background:linear-gradient(150deg,rgba(212,168,83,.10),transparent 55%);opacity:0;transition:opacity .3s}
+  .card:hover::before{opacity:1}
+  .ico{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;margin-bottom:20px;
+    transform:translateZ(40px);box-shadow:0 12px 24px -8px rgba(var(--shadow),.4)}
+  .ico svg{width:30px;height:30px;stroke:#fff;stroke-width:2;fill:none}
+  .card h3{font-size:1.35rem;margin-bottom:10px;transform:translateZ(28px)}
+  .card p{color:var(--muted);font-size:.97rem;transform:translateZ(18px)}
+
+  /* BRANDS marquee */
+  .brands{background:linear-gradient(180deg,var(--cream),var(--cream-2));overflow:hidden}
+  .marquee{display:flex;gap:60px;animation:scroll 28s linear infinite;width:max-content;align-items:center}
+  .marquee img{height:46px;width:auto;object-fit:contain;filter:grayscale(.2);opacity:.85;transition:.3s}
+  .marquee img:hover{filter:none;opacity:1;transform:scale(1.08)}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  /* APP CTA 3D phone */
+  .appcta{background:linear-gradient(135deg,var(--burgundy),var(--burgundy-d));color:#fff;border-radius:36px;
+    margin:0 24px 90px;max-width:1180px;margin-inline:auto;padding:60px;position:relative;overflow:hidden;perspective:1000px}
+  .appcta::after{content:"";position:absolute;inset-block-start:-40%;inset-inline-end:-10%;width:420px;height:420px;
+    background:radial-gradient(circle,rgba(212,168,83,.35),transparent 70%)}
+  .appcta-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:30px;align-items:center;position:relative;z-index:1}
+  @media(max-width:760px){.appcta-grid{grid-template-columns:1fr;text-align:center}.appcta{padding:40px 26px}}
+  .appcta h2{font-size:clamp(1.8rem,4vw,2.8rem);color:#fff}
+  .appcta p{color:rgba(255,255,255,.85);margin:16px 0 26px}
+  .store-row{display:flex;gap:14px;flex-wrap:wrap}
+  @media(max-width:760px){.store-row{justify-content:center}}
+  .store{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;
+    padding:12px 22px;border-radius:14px;font-weight:600;font-size:14px;transition:.25s}
+  .store:hover{background:#fff;color:var(--burgundy);transform:translateY(-3px)}
+  .phone{justify-self:center;width:200px;height:400px;background:#0e0e18;border-radius:34px;padding:10px;
+    box-shadow:0 40px 70px -20px rgba(0,0,0,.6);transform:rotateY(-18deg) rotateX(6deg);transform-style:preserve-3d}
+  .phone .scr{width:100%;height:100%;border-radius:26px;background:linear-gradient(160deg,var(--pink),var(--coral));
+    display:grid;place-items:center}
+  .phone .scr img{width:80px;height:80px;border-radius:50%;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+  @media(max-width:760px){.phone{display:none}}
+
+  footer{padding:40px 24px;text-align:center;color:var(--muted);font-size:14px;border-top:1px solid rgba(139,26,43,.1)}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="brand" href="#"><img src="../images/icons/logo.png" alt="World Sweets logo">World Sweets</a>
+  <div class="navlinks">
+    <a href="#about">Heritage</a><a href="#pillars">Capabilities</a><a href="#brands">Brands</a><a href="#app">App</a>
+  </div>
+  <a class="btn btn-primary" href="#app">Download App</a>
+</nav>
+
+<header class="hero">
+  <div class="wrap stage" id="stage">
+    <div>
+      <span class="eyebrow">Distributing joy since <b>1986</b></span>
+      <h1>Kuwait's house of <em>confectionery</em>, built on trust.</h1>
+      <p>For nearly four decades World Sweets has connected the world's finest brands to every shelf in Kuwait, from corner grocer to national retailer.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#app">Get the app</a>
+        <a class="btn btn-ghost" href="#about">Our story</a>
+      </div>
+    </div>
+    <div class="scene" id="scene">
+      <div class="float chip c1">40<small>yrs</small></div>
+      <div class="float chip c2">165K+<br><small>followers</small></div>
+      <div class="float chip c3">2 show<br>rooms</div>
+      <div class="float badge-main"><img src="../images/icons/logo.png" alt="World Sweets badge"></div>
+    </div>
+  </div>
+</header>
+
+<section class="wrap" style="padding-top:0">
+  <div class="stats reveal">
+    <div class="stat"><div class="n">1986</div><div class="l">Established in Kuwait</div></div>
+    <div class="stat"><div class="n">150+</div><div class="l">Professionals on the team</div></div>
+    <div class="stat"><div class="n">40+</div><div class="l">International brands carried</div></div>
+    <div class="stat"><div class="n">165K+</div><div class="l">Community followers</div></div>
+  </div>
+</section>
+
+<section id="about" class="wrap">
+  <div class="sec-head reveal">
+    <span class="eyebrow">A legacy of sweetness</span>
+    <h2>Four decades distributing the brands the region loves.</h2>
+    <p>What began in 1986 as a single Kuwait warehouse is now a nationwide distribution network — cold-chain logistics, two flagship showrooms, and partnerships with confectionery houses across four continents.</p>
+  </div>
+  <div class="pillars" id="pillars">
+    <div class="card reveal"><div class="ico" style="background:linear-gradient(140deg,var(--burgundy),#b33148)"><svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/></svg></div><h3>Nationwide distribution</h3><p>A logistics backbone that reaches hypermarkets, groceries, and HORECA across all six governorates.</p></div>
+    <div class="card reveal"><div class="ico" style="background:linear-gradient(140deg,var(--gold),#e0bd76)"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6 4.4 2.3 7.2L12 16.7 5.7 21l2.3-7.2-6-4.4h7.6z"/></svg></div><h3>Trusted brand partner</h3><p>Exclusive and shared agency for leading global confectionery names entering the Kuwaiti market.</p></div>
+    <div class="card reveal"><div class="ico" style="background:linear-gradient(140deg,var(--pink),#f07ca0)"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3>Service in two languages</h3><p>Arabic-first support and a bilingual team serving retail partners and shoppers alike.</p></div>
+    <div class="card reveal"><div class="ico" style="background:linear-gradient(140deg,var(--coral),#ff9466)"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M11 18h2"/></svg></div><h3>One app, every aisle</h3><p>Browse the full catalogue, track favorites, and order — the showroom in your pocket.</p></div>
+  </div>
+</section>
+
+<section id="brands" class="brands">
+  <div class="wrap sec-head reveal" style="text-align:center;margin-inline:auto">
+    <h2>Trusted by leading brands worldwide</h2>
+  </div>
+  <div class="marquee" id="m1"></div>
+</section>
+
+<section id="app" class="appcta reveal">
+  <div class="appcta-grid">
+    <div>
+      <h2>The whole world of sweets, in your pocket.</h2>
+      <p>Download the World Sweets app to browse the catalogue, discover new arrivals, and connect with our showrooms — anywhere in Kuwait.</p>
+      <div class="store-row">
+        <a class="store" href="#">App Store</a>
+        <a class="store" href="#">Google Play</a>
+      </div>
+    </div>
+    <div class="phone"><div class="scr"><img src="../images/icons/logo.png" alt="App"></div></div>
+  </div>
+</section>
+
+<footer>© 1986–2026 World Sweets General Trading Co. — Kuwait. &nbsp;·&nbsp; Demo 1 · Depth</footer>
+
+<script>
+  // brand marquee (duplicated for loop)
+  const brands=['choki','kopiko','yupi','red-band','elvan','fortuin','coffee-joy','pepero','oly'];
+  const ext={choki:'webp',kopiko:'webp','red-band':'webp','coffee-joy':'png',pepero:'jpg',oly:'png',yupi:'png',elvan:'png',fortuin:'png'};
+  const m1=document.getElementById('m1');
+  const set=[...brands,...brands].map(b=>`<img src="../images/brands/${b}.${ext[b]}" alt="${b}" loading="lazy">`).join('');
+  m1.innerHTML=set;
+
+  // scroll reveal
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // hero parallax tilt (pointer)
+  const scene=document.getElementById('scene');
+  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(scene&&!reduce){
+    window.addEventListener('pointermove',e=>{
+      const x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);
+      scene.style.transform=`rotateY(${x*14}deg) rotateX(${-y*14}deg)`;
+      scene.style.transition='transform .2s ease-out';
+    });
+  }
+
+  // card 3D tilt
+  if(!reduce)document.querySelectorAll('.card').forEach(card=>{
+    card.addEventListener('pointermove',e=>{
+      const r=card.getBoundingClientRect();
+      const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      card.style.transform=`rotateY(${x*10}deg) rotateX(${-y*10}deg) translateY(-4px)`;
+    });
+    card.addEventListener('pointerleave',()=>card.style.transform='');
+  });
+</script>
+</body>
+</html>
