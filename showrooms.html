@@ -97,6 +97,7 @@
   .wrap{max-width:1180px;margin-inline:auto;padding-inline:24px}
   a{color:inherit;text-decoration:none}
 
+  /* NAV — shared site vocabulary */
   nav{position:fixed;inset-block-start:0;inset-inline:0;z-index:50;
     display:flex;align-items:center;justify-content:space-between;
     padding:16px 32px;backdrop-filter:blur(12px);
@@ -106,55 +107,125 @@
   .navlinks{display:flex;gap:30px;font-size:14px;font-weight:500;color:var(--muted)}
   .navlinks a:hover,.navlinks a[aria-current]{color:var(--burgundy)}
   .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;
-    padding:11px 22px;border-radius:999px;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s;}
+    padding:11px 22px;border-radius:999px;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s;white-space:nowrap}
   .btn-primary{background:var(--burgundy);color:#fff;box-shadow:0 10px 24px rgba(139,26,43,.35)}
   .btn-primary:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 16px 32px rgba(139,26,43,.45)}
+  .btn-primary:active{transform:translateY(1px) scale(.98)}
   .btn-outline{border:1.5px solid rgba(139,26,43,.25);color:var(--burgundy)}
   .btn-outline:hover{background:rgba(139,26,43,.06);transform:translateY(-2px)}
+  .btn-outline:active{transform:translateY(0) scale(.98)}
+  .btn-outline.on-dark{border-color:rgba(255,255,255,.4);color:#fff}
+  .btn-outline.on-dark:hover{background:rgba(255,255,255,.12)}
   .btn-gold{background:var(--gold);color:var(--ink);box-shadow:0 10px 24px rgba(212,168,83,.35)}
+  .btn-gold:hover{transform:translateY(-2px) scale(1.02)}
   @media(max-width:760px){.navlinks{display:none}}
 
-  .hero{position:relative;min-height:70dvh;display:grid;place-items:center;
-    perspective:1400px;padding:150px 0 40px;}
-  .stage{position:relative;transform-style:preserve-3d;width:100%;display:grid;
-    grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
-  @media(max-width:880px){.stage{grid-template-columns:1fr;text-align:center}}
-  .eyebrow,.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;
+  section{padding:100px 0}
+
+  /* ============ TOUR HERO — typographic + wayfinding, no floating badge ============ */
+  .tour-hero{position:relative;min-height:62dvh;display:flex;align-items:center;
+    padding:150px 0 60px;overflow:hidden}
+  .tour-hero .wrap{position:relative;z-index:1}
+  .tour-hero::before{content:"";position:absolute;inset:0;z-index:0;
+    background:
+      radial-gradient(ellipse 60% 55% at 82% 8%, rgba(212,168,83,.20), transparent 60%),
+      radial-gradient(ellipse 50% 50% at 6% 90%, rgba(232,86,127,.14), transparent 60%);}
+  .th-kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;
     letter-spacing:.14em;text-transform:uppercase;color:var(--burgundy);
-    background:rgba(139,26,43,.08);padding:7px 14px;border-radius:999px;margin-bottom:22px}
-  .hero h1{font-size:clamp(2.4rem,5.4vw,4.2rem);line-height:1.06;color:var(--ink)}
-  .hero h1 span{color:var(--burgundy)}
-  .hero p{margin:22px 0 0;color:var(--muted);font-size:1.12rem;max-width:48ch}
-  @media(max-width:880px){.hero p{margin-inline:auto}}
+    background:rgba(139,26,43,.08);padding:7px 14px;border-radius:999px;margin-bottom:24px}
+  .tour-hero h1{font-size:clamp(2.5rem,5.6vw,4.3rem);line-height:1.06;max-width:16ch;color:var(--ink)}
+  .tour-hero h1 em{font-style:italic;color:var(--burgundy)}
+  .tour-hero p{margin:22px 0 0;color:var(--muted);font-size:1.14rem;max-width:52ch}
 
-  .scene{position:relative;height:340px;transform-style:preserve-3d}
-  .float{position:absolute;border-radius:50%;display:grid;place-items:center;
-    box-shadow:0 30px 60px -18px rgba(var(--shadow),.45);will-change:transform}
-  .badge-main{inset-block-start:50%;inset-inline-start:50%;width:220px;height:220px;
-    margin:-110px 0 0 -110px;background:#fff;padding:14px;
-    transform:translateZ(60px);animation:bob 7s ease-in-out infinite}
-  .badge-main img{width:100%;height:100%;border-radius:50%;object-fit:cover}
-  .chip{width:88px;height:88px;font-size:13px;font-weight:700;color:#fff;text-align:center;line-height:1.15}
-  .c1{background:linear-gradient(140deg,var(--coral),#ff9466);inset-block-start:4%;inset-inline-end:8%;transform:translateZ(120px);animation:bob 5s ease-in-out infinite}
-  .c2{background:linear-gradient(140deg,var(--pink),#f59ab6);inset-block-end:8%;inset-inline-start:2%;transform:translateZ(95px);animation:bob 6.4s ease-in-out infinite .6s}
-  @keyframes bob{0%,100%{translate:0 0}50%{translate:0 -16px}}
+  /* route / wayfinding strip — the page's own visual signature */
+  .route{display:flex;align-items:center;margin-top:52px;max-width:620px}
+  .route-stop{display:flex;flex-direction:column;gap:6px;flex:none;position:relative}
+  .route-dot{width:14px;height:14px;border-radius:50%;background:var(--burgundy);
+    box-shadow:0 0 0 5px rgba(139,26,43,.12);transition:transform .2s,box-shadow .2s}
+  .route-stop:nth-child(3) .route-dot{background:var(--gold);box-shadow:0 0 0 5px rgba(212,168,83,.18)}
+  .route-stop a{display:flex;flex-direction:column;gap:8px}
+  .route-stop a:hover .route-dot{transform:scale(1.25)}
+  .route-name{font-family:'Playfair Display';font-weight:700;font-size:1.05rem;color:var(--ink)}
+  .route-city{font-size:.78rem;color:var(--muted)}
+  .route-line{flex:1 1 auto;height:2px;margin:0 18px;position:relative;top:-16px;
+    background:repeating-linear-gradient(90deg,rgba(139,26,43,.28) 0 6px,transparent 6px 12px)}
+  .route-line::after{content:"";position:absolute;inset-block-start:-3px;width:8px;height:8px;border-radius:50%;
+    background:var(--coral);animation:travel 4.5s ease-in-out infinite}
+  @keyframes travel{0%,100%{inset-inline-start:0}50%{inset-inline-start:calc(100% - 8px)}}
+  @media(max-width:620px){.route{flex-wrap:wrap;row-gap:22px;column-gap:36px}.route-line{flex-basis:100%;order:3;margin:6px 0 0}}
 
-  section{padding:96px 0}
+  /* ============ SPOTLIGHT — two full-bleed, color-inverted tour stops ============ */
+  .spotlight{position:relative;overflow:hidden}
+  .spotlight-inner{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:center}
+  .spotlight.flip .spotlight-inner{grid-template-columns:.8fr 1.2fr}
+  .spotlight.flip .sr-info{order:2}
+  .spotlight.flip .sr-video{order:1}
+  @media(max-width:900px){
+    .spotlight-inner,.spotlight.flip .spotlight-inner{grid-template-columns:1fr}
+    .spotlight.flip .sr-info,.spotlight.flip .sr-video{order:0}
+  }
 
+  .spotlight.light{background:linear-gradient(180deg,var(--cream-2),var(--cream) 65%)}
+  .spotlight.dark{background:linear-gradient(135deg,var(--burgundy-d),#4a0e17 75%);color:#fff}
+
+  .stop-numeral{position:absolute;font-family:'Playfair Display';font-weight:800;font-size:min(22vw,15rem);
+    line-height:1;pointer-events:none;user-select:none;z-index:0;inset-block-start:-2.2rem}
+  .spotlight.light .stop-numeral{color:rgba(139,26,43,.06);inset-inline-end:-1rem}
+  .spotlight.dark .stop-numeral{color:rgba(255,255,255,.05);inset-inline-start:-1rem}
+
+  .sr-video{position:relative;z-index:1;border-radius:24px;overflow:hidden;background:#000;
+    box-shadow:0 30px 70px -30px rgba(var(--shadow),.6);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+  .spotlight.dark .sr-video{box-shadow:0 30px 70px -26px rgba(0,0,0,.7),0 0 0 1px rgba(212,168,83,.25)}
+  .sr-video video{width:100%;height:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#111}
+  .video-play-btn{position:absolute;inset:0;margin:auto;width:82px;height:82px;border-radius:50%;
+    background:rgba(255,255,255,.94);border:0;display:grid;place-items:center;cursor:pointer;
+    box-shadow:0 14px 34px rgba(0,0,0,.4);transition:transform .2s,background .2s}
+  .video-play-btn:hover{transform:scale(1.08);background:#fff}
+  .video-play-btn:active{transform:scale(.96)}
+  .video-play-btn svg{fill:var(--burgundy);margin-inline-start:4px}
+  .vid-caption{margin-top:14px;font-size:.82rem;color:var(--muted);position:relative;z-index:1}
+  .spotlight.dark .vid-caption{color:rgba(255,255,255,.65)}
+
+  .sr-info{position:relative;z-index:1}
+  .sr-info .tag{display:inline-block;padding:5px 14px;border-radius:8px;
+    font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
+  .spotlight.light .sr-info .tag{background:var(--gold);color:var(--ink)}
+  .spotlight.dark .sr-info .tag{background:rgba(255,255,255,.14);color:var(--gold);border:1px solid rgba(212,168,83,.4)}
+  .sr-info h2{font-size:clamp(1.9rem,3.6vw,2.6rem);margin-bottom:16px}
+  .spotlight.dark .sr-info h2{color:#fff}
+  .sr-info p.desc{font-size:1.02rem;max-width:42ch;margin-bottom:8px}
+  .spotlight.light .sr-info p.desc{color:var(--muted)}
+  .spotlight.dark .sr-info p.desc{color:rgba(255,255,255,.78)}
+
+  .meta-list{margin:26px 0 30px;border-block-start:1px solid rgba(139,26,43,.14)}
+  .spotlight.dark .meta-list{border-block-start-color:rgba(255,255,255,.16)}
+  .meta-row{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
+    padding:13px 0;border-block-end:1px solid rgba(139,26,43,.14)}
+  .spotlight.dark .meta-row{border-block-end-color:rgba(255,255,255,.16)}
+  .meta-row .k{font-size:.76rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);flex:none}
+  .spotlight.dark .meta-row .k{color:rgba(255,255,255,.55)}
+  .meta-row .v{font-weight:600;text-align:end}
+  .meta-row .v a:hover{text-decoration:underline}
+
+  .sr-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .sr-call{font-size:.9rem;font-weight:600;color:var(--burgundy)}
+  .spotlight.dark .sr-call{color:var(--gold)}
+  .sr-call:hover{text-decoration:underline}
+
+  /* ============ APP CTA — shared conversion band ============ */
   .appcta{background:linear-gradient(135deg,var(--burgundy),var(--burgundy-d));color:#fff;border-radius:36px;
-    margin:0 24px 90px;max-width:1180px;margin-inline:auto;padding:60px;position:relative;overflow:hidden;perspective:1000px}
+    margin:0 24px;max-width:1180px;margin-inline:auto;padding:60px;position:relative;overflow:hidden}
   .appcta::after{content:"";position:absolute;inset-block-start:-40%;inset-inline-end:-10%;width:420px;height:420px;
     background:radial-gradient(circle,rgba(212,168,83,.35),transparent 70%)}
-  .appcta .eyebrow,.appcta .kicker{background:rgba(255,255,255,.15);color:#fff}
+  .appcta .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;padding:7px 14px;border-radius:999px;margin-bottom:22px;
+    background:rgba(255,255,255,.15);color:#fff}
   .appcta .wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:30px;align-items:center;position:relative;z-index:1}
   @media(max-width:760px){.appcta .wrap{grid-template-columns:1fr;text-align:center}.appcta{padding:40px 26px}}
   .appcta h2{font-size:clamp(1.8rem,4vw,2.8rem);color:#fff}
   .appcta p{color:rgba(255,255,255,.85);margin:16px 0 26px}
   .store-row{display:flex;gap:14px;flex-wrap:wrap}
   @media(max-width:760px){.store-row{justify-content:center}}
-  .store-badge{display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.12);
-    border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:9px 16px;transition:.25s}
-  .store-badge:hover{background:#fff;transform:translateY(-3px)}
   .flagship-stats{display:flex;gap:30px;margin-top:28px;flex-wrap:wrap}
   @media(max-width:760px){.flagship-stats{justify-content:center}}
   .flagship-stats div{display:flex;flex-direction:column}
@@ -165,27 +236,7 @@
   .seal-lg img{width:100%;height:100%;border-radius:50%;object-fit:cover}
   @media(max-width:760px){.seal-lg{display:none}}
 
-  /* Showroom video feature blocks — tilt cards */
-  .sr-rooms{display:flex;flex-direction:column;gap:90px}
-  .sr-feature{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center;perspective:1200px}
-  .sr-feature.flip{grid-template-columns:.85fr 1.15fr}
-  .sr-feature.flip .sr-info{order:2}
-  .sr-feature.flip .sr-video{order:1}
-  @media(max-width:880px){.sr-feature,.sr-feature.flip{grid-template-columns:1fr}.sr-feature.flip .sr-info,.sr-feature.flip .sr-video{order:0}}
-  .sr-video{position:relative;border-radius:24px;overflow:hidden;background:#000;
-    box-shadow:0 30px 60px -30px rgba(var(--shadow),.55);transition:transform .2s ease}
-  .sr-video video{width:100%;height:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#111}
-  .video-play-btn{position:absolute;inset:0;margin:auto;width:78px;height:78px;border-radius:50%;
-    background:rgba(255,255,255,.92);border:0;display:grid;place-items:center;cursor:pointer;
-    box-shadow:0 12px 30px rgba(0,0,0,.35);transition:transform .2s,background .2s}
-  .video-play-btn:hover{transform:scale(1.08);background:#fff}
-  .video-play-btn svg{fill:var(--burgundy);margin-inline-start:4px}
-  .sr-info .tag{display:inline-block;background:var(--gold);color:var(--ink);padding:5px 14px;border-radius:8px;
-    font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
-  .sr-info h2{font-size:clamp(1.6rem,3.2vw,2.3rem);margin-bottom:14px}
-  .sr-info p{color:var(--muted);font-size:1rem;margin-bottom:16px;max-width:44ch}
-  .sr-area{display:inline-block;font-weight:700;color:var(--burgundy);font-family:'Playfair Display';margin-bottom:22px}
-
+  /* companion pill */
   .companion{position:fixed;inset-block-end:26px;inset-inline-end:26px;z-index:60;display:flex;align-items:center;gap:12px;
     background:#fff;padding:10px 20px 10px 10px;border-radius:999px;box-shadow:0 20px 40px -18px rgba(var(--shadow),.5);
     opacity:0;visibility:hidden;transform:translateY(16px);transition:opacity .35s ease,transform .35s ease,visibility .35s;}
@@ -230,47 +281,35 @@
   <a class="btn btn-primary" href="app.html">Download App</a>
 </nav>
 
-<header class="hero" id="hero">
-  <div class="wrap stage" id="stage">
-    <div class="reveal">
-      <span class="kicker">Visit us</span>
-      <h1>Our <span>Showrooms</span></h1>
-      <p>Two strategically located showrooms across Kuwait, each an immersive space to showcase the full World Sweets range.</p>
-    </div>
-    <div class="scene" id="scene">
-      <div class="float chip c1">550 m²<br><small>Shuwaikh</small></div>
-      <div class="float chip c2">650 m²<br><small>Fahaheel</small></div>
-      <div class="float badge-main"><img src="images/icons/logo.png" alt="World Sweets badge"></div>
+<header class="tour-hero" id="hero">
+  <div class="wrap">
+    <span class="th-kicker">Plan your visit</span>
+    <h1>A tour of Kuwait, <em>two stops</em> at a time.</h1>
+    <p>Walk the aisles from wherever you are, or plan a visit — from Kuwait City to the southern coast.</p>
+    <div class="route" role="navigation" aria-label="Jump to a showroom">
+      <div class="route-stop">
+        <a href="#shuwaikh">
+          <span class="route-dot" aria-hidden="true"></span>
+          <span class="route-name">Shuwaikh</span>
+          <span class="route-city">Kuwait City</span>
+        </a>
+      </div>
+      <div class="route-line" aria-hidden="true"></div>
+      <div class="route-stop">
+        <a href="#fahaheel">
+          <span class="route-dot" aria-hidden="true"></span>
+          <span class="route-name">Fahaheel</span>
+          <span class="route-city">Southern Kuwait</span>
+        </a>
+      </div>
     </div>
   </div>
 </header>
 
-<!-- Closing CTA -->
-<section id="app" class="appcta reveal">
-  <div class="wrap">
-    <div>
-      <span class="kicker">Sweet partnerships</span>
-      <h2>Bring World Sweets to your shelves — or your pocket.</h2>
-      <p>Download the World Sweets app to shop the full range across Kuwait, or get in touch to explore wholesale, catering, and retail partnerships.</p>
-      <div class="store-row">
-        <a class="btn btn-gold" href="app.html">Download the app</a>
-        <a class="btn btn-outline" href="contact.html" style="color:#fff;border-color:rgba(255,255,255,.4)">Contact us</a>
-      </div>
-      <div class="flagship-stats">
-        <div><b>40+</b><span>brands in-app</span></div>
-        <div><b>2</b><span>showrooms linked</span></div>
-        <div><b>165K+</b><span>community</span></div>
-      </div>
-    </div>
-    <div class="seal-lg"><img src="images/icons/logo.png" alt="World Sweets app icon"></div>
-  </div>
-</section>
-
-<!-- Showroom video blocks -->
-<section class="wrap sr-rooms">
-
-  <!-- Shuwaikh -->
-  <div class="sr-feature">
+<!-- Stop 01 — Shuwaikh -->
+<section id="shuwaikh" class="spotlight light">
+  <span class="stop-numeral" aria-hidden="true">01</span>
+  <div class="wrap spotlight-inner">
     <div class="sr-video reveal">
       <video poster="images/showrooms/shop-exterior.webp" preload="none" playsinline controls
              width="1280" height="720" src="videos/shuwaikh-showroom.mp4"></video>
@@ -279,25 +318,40 @@
       </button>
     </div>
     <div class="sr-info reveal">
-      <span class="tag">Kuwait City</span>
+      <span class="tag">Stop 01 · Kuwait City</span>
       <h2>Shuwaikh Showroom</h2>
-      <p>Our flagship destination for retail partners and shoppers, with over 550 m² of dedicated showcase space in the heart of Kuwait City.</p>
-      <span class="sr-area">Over 550 m²</span>
-      <div>
+      <p class="desc">Our flagship destination for retail partners and shoppers alike — a dedicated showcase space in the heart of the city.</p>
+      <p class="vid-caption">Tap the video to watch the walkthrough.</p>
+      <div class="meta-list">
+        <div class="meta-row"><span class="k">Address</span><span class="v">69 Street, Shuwaikh Industrial</span></div>
+        <div class="meta-row"><span class="k">Showroom area</span><span class="v">Over 550 m²</span></div>
+        <div class="meta-row"><span class="k">Hours</span><span class="v">Daily · 9:00 AM – 10:00 PM</span></div>
+      </div>
+      <div class="sr-cta">
         <a class="btn btn-outline" href="https://maps.app.goo.gl/JJyNGuVDmwmfUHDL9" target="_blank" rel="noopener">Open in Maps</a>
+        <a class="sr-call" href="tel:+96524920204">Call +965 2492 0204</a>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- Fahaheel -->
-  <div class="sr-feature flip">
+<!-- Stop 02 — Fahaheel -->
+<section id="fahaheel" class="spotlight dark flip">
+  <span class="stop-numeral" aria-hidden="true">02</span>
+  <div class="wrap spotlight-inner">
     <div class="sr-info reveal">
-      <span class="tag">Southern Kuwait</span>
+      <span class="tag">Stop 02 · Southern Kuwait</span>
       <h2>Fahaheel Showroom</h2>
-      <p>Serving the southern governorates with over 650 m² of showcase space and the full World Sweets range.</p>
-      <span class="sr-area">Over 650 m²</span>
-      <div>
-        <a class="btn btn-outline" href="https://maps.app.goo.gl/7aEmgM1BftRYwrcG6" target="_blank" rel="noopener">Open in Maps</a>
+      <p class="desc">Serving the southern governorates with our largest showcase space and the full World Sweets range on the coast.</p>
+      <p class="vid-caption">Tap the video to watch the walkthrough.</p>
+      <div class="meta-list">
+        <div class="meta-row"><span class="k">Location</span><span class="v">Fahaheel, Southern Kuwait</span></div>
+        <div class="meta-row"><span class="k">Showroom area</span><span class="v">Over 650 m²</span></div>
+        <div class="meta-row"><span class="k">Hours</span><span class="v">Daily · 9:00 AM – 10:00 PM</span></div>
+      </div>
+      <div class="sr-cta">
+        <a class="btn btn-outline on-dark" href="https://maps.app.goo.gl/7aEmgM1BftRYwrcG6" target="_blank" rel="noopener">Open in Maps</a>
+        <a class="sr-call" href="tel:+96524920204">Call +965 2492 0204</a>
       </div>
     </div>
     <div class="sr-video reveal">
@@ -308,7 +362,29 @@
       </button>
     </div>
   </div>
+</section>
 
+<!-- Closing conversion band -->
+<section class="wrap" style="padding-top:0">
+  <div id="app" class="appcta reveal">
+    <div class="wrap">
+      <div>
+        <span class="kicker">Can't make the drive?</span>
+        <h2>The full showroom, in your pocket.</h2>
+        <p>Everything on our shelves in Shuwaikh and Fahaheel is one tap away. Download the World Sweets app and get it delivered across Kuwait.</p>
+        <div class="store-row">
+          <a class="btn btn-gold" href="app.html">Download the app</a>
+          <a class="btn btn-outline on-dark" href="contact.html">Contact us</a>
+        </div>
+        <div class="flagship-stats">
+          <div><b>40+</b><span>brands in-app</span></div>
+          <div><b>2</b><span>showrooms linked</span></div>
+          <div><b>165K+</b><span>community</span></div>
+        </div>
+      </div>
+      <div class="seal-lg"><img src="images/icons/logo.png" alt="World Sweets app icon"></div>
+    </div>
+  </div>
 </section>
 
 <footer id="footer">
@@ -341,19 +417,21 @@
 </a>
 
 <script>
+  // scroll reveal
   const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
   const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 
-  const scene=document.getElementById('scene');
-  if(scene&&!reduce){
-    window.addEventListener('pointermove',e=>{
-      const x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);
-      scene.style.transform=`rotateY(${x*14}deg) rotateX(${-y*14}deg)`;
-      scene.style.transition='transform .2s ease-out';
+  // subtle premium tilt on the showroom video frames only
+  if(!reduce)document.querySelectorAll('.sr-video').forEach(frame=>{
+    frame.addEventListener('pointermove',e=>{
+      const r=frame.getBoundingClientRect();
+      const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      frame.style.transform=`perspective(1000px) rotateY(${x*5}deg) rotateX(${-y*5}deg)`;
     });
-  }
+    frame.addEventListener('pointerleave',()=>frame.style.transform='');
+  });
 
   // click-to-play showroom videos — preserved behavior (never autoplays)
   document.querySelectorAll('.video-play-btn').forEach(function (btn) {
@@ -371,6 +449,7 @@
     video.addEventListener('ended', function () { btn.hidden = false; });
   });
 
+  // sticky "Get the app" companion pill — show after hero, hide once appcta is in view
   const companion=document.getElementById('app-companion');
   const heroEl=document.getElementById('hero');
   const appctaEl=document.getElementById('app');

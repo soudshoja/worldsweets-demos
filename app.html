@@ -71,7 +71,7 @@
   .wrap{max-width:1180px;margin-inline:auto;padding-inline:24px}
   a{color:inherit;text-decoration:none}
 
-  /* NAV */
+  /* NAV (site-wide, unchanged) */
   nav{position:fixed;inset-block-start:0;inset-inline:0;z-index:50;
     display:flex;align-items:center;justify-content:space-between;
     padding:16px 32px;backdrop-filter:blur(12px);
@@ -85,123 +85,138 @@
   .btn-primary{background:var(--burgundy);color:#fff;box-shadow:0 10px 24px rgba(139,26,43,.35)}
   .btn-primary:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 16px 32px rgba(139,26,43,.45)}
   .btn-primary:active{transform:translateY(1px) scale(.98)}
-  .btn-outline{border:1.5px solid rgba(139,26,43,.25);color:var(--burgundy)}
-  .btn-outline:hover{background:rgba(139,26,43,.06);transform:translateY(-2px)}
-  .btn-gold{background:var(--gold);color:var(--ink);box-shadow:0 10px 24px rgba(212,168,83,.35)}
-  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 16px 32px rgba(212,168,83,.45)}
   @media(max-width:760px){.navlinks{display:none}}
 
-  /* HERO */
-  .hero{position:relative;min-height:88dvh;display:grid;place-items:center;
-    perspective:1400px;padding:150px 0 60px;}
-  .stage{position:relative;transform-style:preserve-3d;width:100%;display:grid;
-    grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
-  @media(max-width:880px){.stage{grid-template-columns:1fr;text-align:center}}
-  .eyebrow,.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;
+  /* This page's own CTA language: coral/pink energy instead of burgundy-formal,
+     to feel distinct from the rest of the site while reusing the same tokens. */
+  .app-page .btn-primary{background:linear-gradient(135deg,var(--coral),#ff8659);box-shadow:0 12px 26px rgba(255,107,53,.4)}
+  .app-page .btn-primary:hover{box-shadow:0 18px 34px rgba(255,107,53,.5)}
+  .btn-outline{border:1.5px solid rgba(139,26,43,.25);color:var(--burgundy)}
+  .btn-outline:hover{background:rgba(139,26,43,.06);transform:translateY(-2px)}
+
+  .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;
     letter-spacing:.14em;text-transform:uppercase;color:var(--burgundy);
-    background:rgba(139,26,43,.08);padding:7px 14px;border-radius:999px;margin-bottom:22px}
-  .hero h1{font-size:clamp(2.4rem,5.4vw,4.2rem);line-height:1.06;color:var(--ink)}
-  .hero p,.lead{margin:22px 0 30px;color:var(--muted);font-size:1.12rem;max-width:48ch}
-  @media(max-width:880px){.hero p,.lead{margin-inline:auto}}
-  .cta-row{display:flex;gap:14px;flex-wrap:wrap}
-  @media(max-width:880px){.cta-row{justify-content:center}}
-
-  /* floating 3D scene around the phone */
-  .scene{position:relative;height:400px;transform-style:preserve-3d;display:grid;place-items:center}
-  .float{position:absolute;border-radius:50%;display:grid;place-items:center;
-    box-shadow:0 30px 60px -18px rgba(var(--shadow),.45);will-change:transform}
-  .chip{width:92px;height:92px;font-size:13px;font-weight:700;color:#fff;text-align:center;line-height:1.15}
-  .c1{background:linear-gradient(140deg,var(--coral),#ff9466);inset-block-start:0;inset-inline-end:10%;transform:translateZ(120px);animation:bob 5s ease-in-out infinite}
-  .c2{background:linear-gradient(140deg,var(--pink),#f59ab6);inset-block-end:6%;inset-inline-start:4%;transform:translateZ(95px);animation:bob 6.4s ease-in-out infinite .6s}
-  @keyframes bob{0%,100%{translate:0 0}50%{translate:0 -16px}}
-
-  /* Phone frame + QR (real app visuals) */
-  .phone-frame{position:relative;width:210px;height:420px;background:#0e0e18;border-radius:34px;padding:10px;
-    box-shadow:0 40px 70px -20px rgba(0,0,0,.6);transform:rotateY(-14deg) rotateX(4deg);transform-style:preserve-3d;
-    transition:transform .2s ease-out}
-  .phone-screen{width:100%;height:100%;border-radius:26px;background:linear-gradient(160deg,var(--pink),var(--coral));
-    display:grid;place-items:center;overflow:hidden}
-  .phone-screen img{width:84px;height:84px;border-radius:50%;box-shadow:0 10px 30px rgba(0,0,0,.4)}
-  .qr-card{text-align:center;margin-top:28px;padding:20px 26px;background:#fff;border-radius:18px;
-    display:inline-block;box-shadow:0 20px 40px -24px rgba(var(--shadow),.5)}
-  .qr-card img{width:110px;height:110px;margin-bottom:10px;display:block;border-radius:8px}
-  .qr-caption{font-size:.85rem;color:var(--muted);font-weight:600}
+    background:rgba(139,26,43,.08);padding:7px 14px;border-radius:999px;margin-bottom:20px}
 
   section{padding:96px 0}
-  .sec-head{max-width:640px;margin-bottom:54px}
+  .sec-head{max-width:640px;margin-bottom:50px}
   .sec-head.center{margin-inline:auto;text-align:center}
   .sec-head p{color:var(--muted);margin-top:14px;font-size:1.05rem}
   .sec-head h2{font-size:clamp(2rem,4vw,3rem);color:var(--ink)}
 
-  /* PILLAR tilt cards (features) */
-  .pillars,.benefits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px;perspective:1200px}
-  .card{position:relative;background:#fff;border-radius:24px;padding:34px 30px;
-    transform-style:preserve-3d;transition:transform .2s ease,box-shadow .3s;
-    box-shadow:0 24px 50px -30px rgba(var(--shadow),.55);overflow:hidden}
-  .card::before{content:"";position:absolute;inset:0;background:linear-gradient(150deg,rgba(212,168,83,.10),transparent 55%);opacity:0;transition:opacity .3s}
-  .card:hover::before{opacity:1}
-  .ico{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;margin-bottom:20px;
-    transform:translateZ(40px);box-shadow:0 12px 24px -8px rgba(var(--shadow),.4);
-    background:linear-gradient(140deg,var(--burgundy),#b33148)}
-  .ico svg{width:30px;height:30px;stroke:#fff;stroke-width:2;fill:none}
-  .card h3{font-size:1.3rem;margin-bottom:10px;transform:translateZ(28px)}
-  .card p{color:var(--muted);font-size:.97rem;transform:translateZ(18px)}
+  /* ============ HERO — phone + QR cluster is the headline visual ============ */
+  .hero{position:relative;min-height:94dvh;display:grid;place-items:center;
+    perspective:1400px;padding:132px 0 60px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
+  @media(max-width:940px){.hero-grid{grid-template-columns:1fr;text-align:center}}
 
-  /* Social proof cards */
-  .social-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
-  .scard{background:#fff;border-radius:20px;padding:30px 26px;text-align:center;
-    box-shadow:0 20px 40px -26px rgba(var(--shadow),.5);transition:transform .25s,box-shadow .25s}
-  .scard:hover{transform:translateY(-6px);box-shadow:0 30px 50px -24px rgba(var(--shadow),.6)}
-  .sicon{width:56px;height:56px;border-radius:50%;background:var(--cream-2);display:grid;place-items:center;margin:0 auto 16px}
-  .scard h3{font-size:1.1rem;margin-bottom:4px}
-  .scard .handle{color:var(--muted);font-size:.85rem;margin-bottom:12px}
-  .scard .count{font-weight:700;color:var(--burgundy);font-size:.85rem}
+  .hero h1{font-size:clamp(2.5rem,5.6vw,4.3rem);line-height:1.05;color:var(--ink)}
+  .hero h1 em{font-style:italic;color:var(--coral)}
+  .lead{margin:22px 0 30px;color:var(--muted);font-size:1.12rem;max-width:46ch}
+  @media(max-width:940px){.lead{margin-inline:auto}}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap}
+  @media(max-width:940px){.cta-row{justify-content:center}}
 
-  /* APP CTA 3D phone band */
+  .hero-stats{display:flex;gap:40px;margin-top:40px;flex-wrap:wrap}
+  @media(max-width:940px){.hero-stats{justify-content:center}}
+  .hstat{display:flex;flex-direction:column}
+  .hn{font-family:'Playfair Display';font-weight:800;font-size:2.1rem;color:var(--burgundy);line-height:1}
+  .hl{font-size:.82rem;color:var(--muted);margin-top:4px;font-weight:500}
+
+  /* phone cluster: phone tilted, QR card overlapping its base, badges below */
+  .hero-phone-cluster{position:relative;display:grid;justify-items:center;transform-style:preserve-3d}
+  .phone-frame{position:relative;width:222px;height:444px;background:#0e0e18;border-radius:36px;padding:10px;
+    box-shadow:0 44px 80px -22px rgba(0,0,0,.55);transform:rotateY(-16deg) rotateX(5deg);transform-style:preserve-3d;
+    transition:transform .2s ease-out}
+  .phone-frame::before{content:"";position:absolute;inset-inline:0;inset-block-start:10px;height:22px;
+    margin-inline:auto;width:90px;background:#0e0e18;border-radius:0 0 14px 14px}
+  .phone-screen{width:100%;height:100%;border-radius:28px;display:grid;place-items:center;overflow:hidden;
+    background:linear-gradient(160deg,var(--pink),var(--coral));transition:background .5s ease}
+  .phone-screen img{width:86px;height:86px;border-radius:50%;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+  .phone-screen svg{width:64px;height:64px;stroke:#fff;stroke-width:1.6;fill:none;filter:drop-shadow(0 8px 16px rgba(0,0,0,.25))}
+
+  .qr-float{position:absolute;inset-block-end:14px;inset-inline-start:-6%;background:#fff;border-radius:18px;
+    padding:14px 16px 12px;text-align:center;box-shadow:0 20px 40px -22px rgba(var(--shadow),.55);
+    transform:translateZ(70px) rotate(-6deg);transition:transform .25s ease}
+  .qr-float:hover{transform:translateZ(70px) rotate(-2deg) translateY(-3px)}
+  .qr-float img{width:82px;height:82px;display:block;border-radius:6px;margin-bottom:6px}
+  .qr-float span{font-size:.68rem;font-weight:700;color:var(--muted);display:block}
+  @media(max-width:940px){.qr-float{inset-inline-start:50%;transform:translate(-50%,0) rotate(0);inset-block-end:-18px}
+    .qr-float:hover{transform:translate(-50%,-3px) rotate(0)}}
+  @media(max-width:480px){.qr-float{display:none}}
+
+  .store-row{display:flex;gap:14px;flex-wrap:wrap}
+  .store-row-hero{margin-top:52px;justify-content:center}
+  @media(max-width:940px){.store-row{justify-content:center}}
+  .store-badge{display:inline-flex;align-items:center;justify-content:center;background:#fff;
+    border:1px solid rgba(139,26,43,.14);border-radius:14px;padding:9px 16px;transition:.25s;
+    box-shadow:0 14px 30px -20px rgba(var(--shadow),.5)}
+  .store-badge:hover{transform:translateY(-3px);box-shadow:0 18px 34px -18px rgba(var(--shadow),.6)}
+  .store-badge img{display:block;height:28px;width:auto}
+
+  /* ============ WALKTHROUGH — sticky phone + scroll-revealed feature steps ============ */
+  .walkthrough{background:linear-gradient(180deg,transparent,var(--cream-2) 12%,var(--cream-2) 88%,transparent)}
+  .walk-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px}
+  @media(max-width:880px){.walk-grid{grid-template-columns:1fr}}
+
+  .walk-phone-col{position:sticky;top:112px;height:fit-content;display:flex;flex-direction:column;align-items:center;gap:24px}
+  @media(max-width:880px){.walk-phone-col{position:static;margin-bottom:36px}}
+  .walk-phone{width:196px;height:392px;transform:rotate(0deg)}
+  .walk-phone .phone-screen{background:linear-gradient(160deg,var(--burgundy),#b33148)}
+
+  .progress-dots{display:flex;gap:10px}
+  .dot{width:8px;height:8px;border-radius:50%;background:rgba(139,26,43,.2);transition:.35s}
+  .dot.active{background:var(--burgundy);width:26px;border-radius:5px}
+
+  .walk-steps{display:flex;flex-direction:column}
+  .step{min-height:66vh;display:flex;flex-direction:column;justify-content:center;
+    opacity:.35;transform:translateX(14px);transition:opacity .5s ease,transform .5s ease;max-width:52ch}
+  .step.active{opacity:1;transform:none}
+  .step-no{font-family:'Playfair Display';font-weight:800;font-size:1.1rem;color:var(--gold);display:block;margin-bottom:14px}
+  .step h3{font-size:1.7rem;margin-bottom:14px;color:var(--ink)}
+  .step p{color:var(--muted);font-size:1.02rem}
+  .step:last-child{min-height:56vh}
+
+  /* ============ BENTO social proof — asymmetric, not identical cards ============ */
+  .bento-social{display:grid;grid-template-columns:1.3fr .9fr;gap:22px}
+  @media(max-width:760px){.bento-social{grid-template-columns:1fr}}
+  .bento-stack{display:flex;flex-direction:column;gap:22px}
+  .bcard{position:relative;background:#fff;border-radius:24px;padding:34px;overflow:hidden;
+    box-shadow:0 24px 50px -30px rgba(var(--shadow),.55);transition:transform .2s ease,box-shadow .3s;
+    transform-style:preserve-3d;display:flex;flex-direction:column;justify-content:flex-end}
+  .bcard::before{content:"";position:absolute;inset:0;background:linear-gradient(150deg,rgba(212,168,83,.12),transparent 55%);opacity:0;transition:opacity .3s}
+  .bcard:hover::before{opacity:1}
+  .bcard-lg{min-height:320px;justify-content:center}
+  .bento-stack .bcard{min-height:149px}
+  .bcard .bicon{width:52px;height:52px;border-radius:14px;background:var(--cream-2);display:grid;place-items:center;margin-bottom:16px;transform:translateZ(30px)}
+  .bcard-lg .bicon{width:64px;height:64px;border-radius:16px}
+  .bcard h3{font-size:1.3rem;margin-bottom:6px;transform:translateZ(20px)}
+  .bcard .handle{color:var(--muted);font-size:.9rem;transform:translateZ(20px)}
+  .bcard .count{position:absolute;inset-block-start:28px;inset-inline-end:30px;font-weight:700;color:var(--burgundy);
+    font-size:.82rem;background:rgba(139,26,43,.08);padding:5px 12px;border-radius:999px}
+
+  /* ============ FINAL CTA band ============ */
   .appcta{background:linear-gradient(135deg,var(--burgundy),var(--burgundy-d));color:#fff;border-radius:36px;
-    margin:0 24px 90px;max-width:1180px;margin-inline:auto;padding:60px;position:relative;overflow:hidden;perspective:1000px}
+    margin:0 24px 90px;max-width:1180px;margin-inline:auto;padding:64px;position:relative;overflow:hidden}
   .appcta::after{content:"";position:absolute;inset-block-start:-40%;inset-inline-end:-10%;width:420px;height:420px;
     background:radial-gradient(circle,rgba(212,168,83,.35),transparent 70%)}
-  .appcta .eyebrow,.appcta .kicker{background:rgba(255,255,255,.15);color:#fff}
-  .appcta .wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:30px;align-items:center;position:relative;z-index:1}
-  @media(max-width:760px){.appcta .wrap{grid-template-columns:1fr;text-align:center}.appcta{padding:40px 26px}}
+  .appcta .kicker{background:rgba(255,255,255,.15);color:#fff}
+  .final-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:center;position:relative;z-index:1}
+  @media(max-width:760px){.final-grid{grid-template-columns:1fr;text-align:center}.appcta{padding:44px 26px}}
   .appcta h2{font-size:clamp(1.8rem,4vw,2.8rem);color:#fff}
   .appcta p{color:rgba(255,255,255,.85);margin:16px 0 26px}
-  .store-row{display:flex;gap:14px;flex-wrap:wrap}
-  @media(max-width:760px){.store-row{justify-content:center}}
-  .store-badge{display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.12);
-    border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:9px 16px;transition:.25s}
-  .store-badge:hover{background:#fff;transform:translateY(-3px)}
-  .store-badge img{display:block;height:30px;width:auto}
-  .flagship-stats{display:flex;gap:30px;margin-top:28px;flex-wrap:wrap}
-  @media(max-width:760px){.flagship-stats{justify-content:center}}
-  .flagship-stats div{display:flex;flex-direction:column}
-  .flagship-stats b{font-family:'Playfair Display';font-size:1.5rem}
-  .flagship-stats span{font-size:.8rem;color:rgba(255,255,255,.75)}
-  .seal-lg{justify-self:center;width:190px;height:190px;border-radius:50%;background:#fff;padding:20px;
+  .appcta .store-badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);box-shadow:none}
+  .appcta .store-badge:hover{background:#fff}
+  .whatsapp-link{display:inline-flex;align-items:center;gap:8px;margin-top:26px;font-weight:600;font-size:.92rem;color:#fff;opacity:.9}
+  .whatsapp-link:hover{opacity:1;text-decoration:underline}
+  @media(max-width:760px){.whatsapp-link{justify-content:center}}
+  .final-qr{justify-self:center;background:#fff;border-radius:22px;padding:22px 24px;text-align:center;
     box-shadow:0 40px 70px -20px rgba(0,0,0,.5)}
-  .seal-lg img{width:100%;height:100%;border-radius:50%;object-fit:cover}
-  @media(max-width:760px){.seal-lg{display:none}}
+  .final-qr img{width:150px;height:150px;border-radius:10px;display:block;margin-bottom:10px}
+  .final-qr span{font-size:.8rem;font-weight:700;color:var(--muted)}
+  @media(max-width:760px){.final-qr{margin-inline:auto}}
 
-  /* WhatsApp help band */
-  .help-band{text-align:center;padding:40px;background:#fff;border-radius:24px;
-    box-shadow:0 20px 44px -30px rgba(var(--shadow),.5)}
-  .help-band h3{font-size:1.4rem;margin-bottom:12px}
-  .help-band p{color:var(--muted);margin-bottom:22px}
-
-  /* sticky "get the app" companion pill */
-  .companion{position:fixed;inset-block-end:26px;inset-inline-end:26px;z-index:60;display:flex;align-items:center;gap:12px;
-    background:#fff;padding:10px 20px 10px 10px;border-radius:999px;box-shadow:0 20px 40px -18px rgba(var(--shadow),.5);
-    opacity:0;visibility:hidden;transform:translateY(16px);transition:opacity .35s ease,transform .35s ease,visibility .35s;}
-  .companion.show{opacity:1;visibility:visible;transform:none}
-  .companion:hover{transform:translateY(-3px)}
-  .companion img{width:38px;height:38px;border-radius:50%;box-shadow:0 6px 14px rgba(139,26,43,.28)}
-  .companion .txt{display:flex;flex-direction:column;line-height:1.2}
-  .companion .txt b{font-size:.85rem;color:var(--ink)}
-  .companion .txt span{font-size:.72rem;color:var(--muted)}
-  @media(max-width:520px){.companion .txt span{display:none}}
-
-  /* FOOTER */
+  /* FOOTER (site-wide, unchanged) */
   footer{padding:56px 24px 30px;color:var(--muted);font-size:14px;border-top:1px solid rgba(139,26,43,.1)}
   .footer-grid{display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:flex-start;padding-bottom:28px}
   .f-brand .brand{margin-bottom:12px}
@@ -219,10 +234,10 @@
 
   .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
   .reveal.in{opacity:1;transform:none}
-  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.step{opacity:1;transform:none}}
 </style>
 </head>
-<body>
+<body class="app-page">
 <nav>
   <a class="brand" href="index.html"><img src="images/icons/logo.png" alt="World Sweets logo">World Sweets</a>
   <div class="navlinks">
@@ -232,37 +247,121 @@
     <a href="app.html" aria-current="page">App</a>
     <a href="contact.html">Contact</a>
   </div>
-  <a class="btn btn-primary" href="app.html">Download App</a>
+  <a class="btn btn-primary" href="#download">Download App</a>
 </nav>
 
 <header class="hero" id="hero">
-  <div class="wrap stage" id="stage">
+  <div class="wrap hero-grid">
     <div class="reveal">
       <span class="kicker">The World Sweets app</span>
-      <h1>Kuwait's finest confectionery, in your pocket.</h1>
-      <p class="lead">Browse our full catalogue, follow new arrivals, and have your favourites delivered across Kuwait. Download the World Sweets app to shop easier and stay close to what's sweet.</p>
-      <div class="cta-row" style="margin-bottom:28px">
+      <h1>Your favourite sweets, <em>one tap</em> away.</h1>
+      <p class="lead">Browse our full catalogue, follow new arrivals, and have your favourites delivered anywhere in Kuwait. The World Sweets app puts four decades of confectionery expertise in your pocket.</p>
+      <div class="cta-row">
         <a class="btn btn-primary" href="#download">Download now</a>
-        <a class="btn btn-outline" href="showrooms.html">Visit showrooms</a>
+        <a class="btn btn-outline" href="#walkthrough">See what's inside</a>
       </div>
-      <div class="qr-card">
-        <img src="images/icons/app-qr.png" alt="World Sweets app QR code">
-        <div class="qr-caption">Scan to download</div>
+      <div class="hero-stats">
+        <div class="hstat"><span class="hn" data-count="40" data-suffix="+">0</span><span class="hl">brands in-app</span></div>
+        <div class="hstat"><span class="hn" data-count="165" data-suffix="K+">0</span><span class="hl">strong community</span></div>
+        <div class="hstat"><span class="hn" data-count="2" data-suffix="">0</span><span class="hl">showrooms linked</span></div>
       </div>
     </div>
-    <div class="scene" id="scene">
-      <div class="float chip c1">40+<br><small>brands</small></div>
-      <div class="float chip c2">165K+<br><small>community</small></div>
-      <div class="phone-frame"><div class="phone-screen"><img src="images/icons/logo.png" alt="World Sweets app icon"></div></div>
+    <div class="hero-phone-cluster reveal">
+      <div class="phone-frame" id="hero-phone">
+        <div class="phone-screen"><img src="images/icons/logo.png" alt="World Sweets app icon"></div>
+      </div>
+      <div class="qr-float">
+        <img src="images/icons/app-qr.png" alt="World Sweets app QR code">
+        <span>Scan to download</span>
+      </div>
     </div>
   </div>
 </header>
 
-<!-- download CTA -->
-<section class="appcta reveal" id="download">
+<!-- scrollytelling feature walkthrough — the phone stays pinned while features reveal -->
+<section class="walkthrough" id="walkthrough">
   <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Inside the app</span>
+      <h2>Everything you need, one app away.</h2>
+      <p>Scroll to see what's waiting for you the moment you open World Sweets.</p>
+    </div>
+    <div class="walk-grid">
+      <div class="walk-phone-col">
+        <div class="phone-frame walk-phone" id="walk-phone">
+          <div class="phone-screen" id="walk-screen">
+            <svg id="walk-icon" viewBox="0 0 24 24"><path d="M4 4h6v6H4V4zM14 4h6v6h-6V4zM4 14h6v6H4v-6zM14 14h6v6h-6v-6z"/></svg>
+          </div>
+        </div>
+        <div class="progress-dots" id="progress-dots">
+          <span class="dot active" data-step="0" aria-hidden="true"></span>
+          <span class="dot" data-step="1" aria-hidden="true"></span>
+          <span class="dot" data-step="2" aria-hidden="true"></span>
+          <span class="dot" data-step="3" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div class="walk-steps" id="walk-steps">
+        <div class="step active" data-step="0">
+          <span class="step-no">01</span>
+          <h3>Browse the catalogue</h3>
+          <p>Explore our complete range of premium confectionery brands and products, all in one place — the same 40+ brands you'd find across our showroom floors.</p>
+        </div>
+        <div class="step" data-step="1">
+          <span class="step-no">02</span>
+          <h3>Follow new arrivals</h3>
+          <p>Get notified about fresh products, exclusive offers, and limited-time deals the moment they land, straight to your device.</p>
+        </div>
+        <div class="step" data-step="2">
+          <span class="step-no">03</span>
+          <h3>Fast delivery</h3>
+          <p>Order delivery anywhere in Kuwait through Talabat or Tawseel, or reserve items for pickup at either flagship showroom.</p>
+        </div>
+        <div class="step" data-step="3">
+          <span class="step-no">04</span>
+          <h3>Easy ordering</h3>
+          <p>Simple checkout, secure payment, and live order tracking — shopping with World Sweets, made effortless from tap to doorstep.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- social proof — asymmetric bento, not a repeated card row -->
+<section class="wrap">
+  <div class="sec-head center reveal">
+    <span class="kicker">Stay connected</span>
+    <h2>165,000+ sweet lovers, and growing.</h2>
+    <p>Follow World Sweets for new arrivals, promotions, and a daily dose of everything sweet.</p>
+  </div>
+  <div class="bento-social">
+    <a class="bcard bcard-lg reveal" href="https://www.instagram.com/worldsweetskuwait" target="_blank" rel="noopener">
+      <span class="count">Follow</span>
+      <div class="bicon"><img src="images/social/instagram.svg" alt="" width="30" height="30"></div>
+      <h3>Instagram</h3>
+      <p class="handle">@worldsweetskuwait — daily arrivals, showroom looks, and behind-the-scenes.</p>
+    </a>
+    <div class="bento-stack">
+      <a class="bcard reveal" href="https://www.tiktok.com/@worldsweets" target="_blank" rel="noopener">
+        <span class="count">Follow</span>
+        <div class="bicon"><img src="images/social/tiktok.svg" alt="" width="26" height="26"></div>
+        <h3>TikTok</h3>
+        <p class="handle">@worldsweets</p>
+      </a>
+      <a class="bcard reveal" href="https://youtube.com/@worldsweets1986" target="_blank" rel="noopener">
+        <span class="count">Subscribe</span>
+        <div class="bicon"><img src="images/social/youtube.svg" alt="" width="26" height="26"></div>
+        <h3>YouTube</h3>
+        <p class="handle">@worldsweets1986</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- final download CTA, with WhatsApp support folded in -->
+<section class="appcta reveal" id="download">
+  <div class="final-grid">
     <div>
-      <span class="kicker">Ready to download?</span>
+      <span class="kicker">Ready when you are</span>
       <h2>Get the World Sweets app today.</h2>
       <p>Join 165,000+ sweet lovers shopping smarter. Download now and explore Kuwait's finest confectionery at your fingertips.</p>
       <div class="store-row">
@@ -270,81 +369,12 @@
         <a class="store-badge" href="#" aria-label="Download on the App Store"><img src="images/badges/app-store.svg" alt="Download on the App Store"></a>
         <a class="store-badge" href="#" aria-label="Get it on Google Play"><img src="images/badges/google-play.png" alt="Get it on Google Play"></a>
       </div>
-      <div class="flagship-stats">
-        <div><b>40+</b><span>brands in-app</span></div>
-        <div><b>2</b><span>showrooms linked</span></div>
-        <div><b>165K+</b><span>community</span></div>
-      </div>
+      <a class="whatsapp-link" href="https://wa.me/96524920204" target="_blank" rel="noopener">Questions about the app? Chat with us on WhatsApp →</a>
     </div>
-    <div class="seal-lg"><img src="images/icons/logo.png" alt="World Sweets app icon"></div>
-  </div>
-</section>
-
-<!-- app features -->
-<section class="wrap">
-  <div class="sec-head center reveal">
-    <span class="kicker">Why download the app</span>
-    <h2>Everything you need, one app away.</h2>
-  </div>
-  <div class="benefits-grid">
-    <div class="card reveal">
-      <div class="ico"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg></div>
-      <h3>Browse the Catalogue</h3>
-      <p>Explore our complete range of premium confectionery brands and products, all in one place.</p>
+    <div class="final-qr">
+      <img src="images/icons/app-qr.png" alt="World Sweets app QR code">
+      <span>Scan with your camera</span>
     </div>
-    <div class="card reveal">
-      <div class="ico"><svg viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.5 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3.03.29-4.5 1.64-1.47-1.35-2.74-1.64-4.5-1.64A5.5 5.5 0 0 0 2 8.5c0 2 1.51 4.04 3 5.5m7 3L8 22m0 0l-1.5 1.5M8 22v4m8-4l1.5 1.5M16 22v4"/></svg></div>
-      <h3>Follow New Arrivals</h3>
-      <p>Get notified about fresh products, exclusive offers, and limited-time deals straight to your device.</p>
-    </div>
-    <div class="card reveal">
-      <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m1 15h-2v-2h2v2m0-4h-2V7h2v6z"/></svg></div>
-      <h3>Fast Delivery</h3>
-      <p>Order delivery across Kuwait through Talabat, Tawseel, or pick up at our flagship showrooms.</p>
-    </div>
-    <div class="card reveal">
-      <div class="ico"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg></div>
-      <h3>Easy Ordering</h3>
-      <p>Simple checkout, secure payment, and order tracking to make shopping with World Sweets seamless.</p>
-    </div>
-  </div>
-</section>
-
-<!-- social proof -->
-<section class="wrap">
-  <div class="sec-head center reveal">
-    <span class="kicker">Stay connected</span>
-    <h2>165,000+ sweet lovers, and growing.</h2>
-    <p>Follow World Sweets for new arrivals, promotions, and a daily dose of everything sweet.</p>
-  </div>
-  <div class="social-grid">
-    <a class="scard reveal" href="https://www.instagram.com/worldsweetskuwait" target="_blank" rel="noopener">
-      <div class="sicon"><img src="images/social/instagram.svg" alt="" width="30" height="30"></div>
-      <h3>Instagram</h3>
-      <p class="handle">@worldsweetskuwait</p>
-      <span class="count">Follow</span>
-    </a>
-    <a class="scard reveal" href="https://www.tiktok.com/@worldsweets" target="_blank" rel="noopener">
-      <div class="sicon"><img src="images/social/tiktok.svg" alt="" width="30" height="30"></div>
-      <h3>TikTok</h3>
-      <p class="handle">@worldsweets</p>
-      <span class="count">Follow</span>
-    </a>
-    <a class="scard reveal" href="https://youtube.com/@worldsweets1986" target="_blank" rel="noopener">
-      <div class="sicon"><img src="images/social/youtube.svg" alt="" width="30" height="30"></div>
-      <h3>YouTube</h3>
-      <p class="handle">@worldsweets1986</p>
-      <span class="count">Subscribe</span>
-    </a>
-  </div>
-</section>
-
-<!-- WhatsApp help -->
-<section class="wrap" style="padding-top:0">
-  <div class="help-band reveal">
-    <h3>Questions about the app?</h3>
-    <p>Our team is here to help. Reach out on WhatsApp for instant support.</p>
-    <a class="btn btn-primary" href="https://wa.me/96524920204" target="_blank" rel="noopener">Chat on WhatsApp</a>
   </div>
 </section>
 
@@ -372,48 +402,77 @@
   </div>
 </footer>
 
-<a class="companion" id="app-companion" href="app.html" aria-label="Get the World Sweets app">
-  <img src="images/icons/logo.png" alt="">
-  <span class="txt"><b>Get the app</b><span>Browse in-app</span></span>
-</a>
-
 <script>
+  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  // scroll reveal
   const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-
-  const scene=document.getElementById('scene');
-  if(scene&&!reduce){
+  // hero phone pointer tilt
+  const heroPhone=document.getElementById('hero-phone');
+  if(heroPhone&&!reduce){
     window.addEventListener('pointermove',e=>{
       const x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);
-      scene.style.transform=`rotateY(${x*14}deg) rotateX(${-y*14}deg)`;
-      scene.style.transition='transform .2s ease-out';
+      heroPhone.style.transform=`rotateY(${-16+x*10}deg) rotateX(${5-y*10}deg)`;
     });
   }
 
-  if(!reduce)document.querySelectorAll('.card, .scard').forEach(card=>{
+  // stat count-up, fires once when hero stats scroll into view
+  const counters=document.querySelectorAll('.hn');
+  if(counters.length){
+    const countIO=new IntersectionObserver((es)=>es.forEach(e=>{
+      if(!e.isIntersecting)return;
+      const el=e.target,target=+el.dataset.count,suffix=el.dataset.suffix||'';
+      if(reduce){el.textContent=target+suffix;countIO.unobserve(el);return}
+      const dur=1100,start=performance.now();
+      function tick(now){
+        const p=Math.min((now-start)/dur,1);
+        const eased=1-Math.pow(1-p,3);
+        el.textContent=Math.round(target*eased)+suffix;
+        if(p<1)requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      countIO.unobserve(el);
+    }),{threshold:.6});
+    counters.forEach(c=>countIO.observe(c));
+  }
+
+  // bento card tilt (reuses the site-wide tilt language on hover)
+  if(!reduce)document.querySelectorAll('.bcard').forEach(card=>{
     card.addEventListener('pointermove',e=>{
       const r=card.getBoundingClientRect();
       const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
-      card.style.transform=`rotateY(${x*10}deg) rotateX(${-y*10}deg) translateY(-4px)`;
+      card.style.transform=`rotateY(${x*6}deg) rotateX(${-y*6}deg) translateY(-4px)`;
     });
     card.addEventListener('pointerleave',()=>card.style.transform='');
   });
 
-  const companion=document.getElementById('app-companion');
-  const heroEl=document.getElementById('hero');
-  const appctaEl=document.getElementById('download');
-  function updateCompanion(){
-    const heroRect=heroEl.getBoundingClientRect();
-    const appctaRect=appctaEl.getBoundingClientRect();
-    const pastHero=heroRect.bottom<0;
-    const appctaInView=appctaRect.top<innerHeight&&appctaRect.bottom>0;
-    companion.classList.toggle('show',pastHero&&!appctaInView);
+  // ===== scrollytelling walkthrough: sticky phone reacts to whichever step is centered =====
+  const steps=[...document.querySelectorAll('.step')];
+  const dots=[...document.querySelectorAll('.dot')];
+  const walkScreen=document.getElementById('walk-screen');
+  const walkIcon=document.getElementById('walk-icon');
+  const stepData=[
+    {grad:'linear-gradient(160deg,var(--burgundy),#b33148)',path:'M4 4h6v6H4V4zM14 4h6v6h-6V4zM4 14h6v6H4v-6zM14 14h6v6h-6v-6z'},
+    {grad:'linear-gradient(160deg,var(--gold),#eaca8c)',path:'M12 2a1 1 0 0 1 1 1v1.06A6 6 0 0 1 18 10v4l1.6 2.4a1 1 0 0 1-.83 1.6H5.23a1 1 0 0 1-.83-1.6L6 14v-4a6 6 0 0 1 5-5.94V3a1 1 0 0 1 1-1zM9.5 20a2.5 2.5 0 0 0 5 0h-5z'},
+    {grad:'linear-gradient(160deg,var(--coral),#ff9466)',path:'M2 7a1 1 0 0 1 1-1h8v10H3a1 1 0 0 1-1-1V7zM11 10h3.5l2.5 3v3h-2M6.5 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM16 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z'},
+    {grad:'linear-gradient(160deg,var(--pink),#f59ab6)',path:'M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z'}
+  ];
+  function activateStep(i){
+    steps.forEach((s,idx)=>s.classList.toggle('active',idx===i));
+    dots.forEach((d,idx)=>d.classList.toggle('active',idx===i));
+    if(walkScreen&&stepData[i]){
+      walkScreen.style.background=stepData[i].grad;
+      walkIcon.innerHTML=`<path d="${stepData[i].path}"/>`;
+    }
   }
-  window.addEventListener('scroll',updateCompanion,{passive:true});
-  window.addEventListener('resize',updateCompanion);
-  updateCompanion();
+  if(steps.length){
+    const stepIO=new IntersectionObserver((es)=>{
+      es.forEach(e=>{if(e.isIntersecting)activateStep(steps.indexOf(e.target))});
+    },{threshold:0,rootMargin:'-45% 0px -45% 0px'});
+    steps.forEach(s=>stepIO.observe(s));
+  }
 </script>
 </body>
 </html>

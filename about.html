@@ -91,122 +91,165 @@
   .btn-primary:active{transform:translateY(1px) scale(.98)}
   .btn-outline{border:1.5px solid rgba(139,26,43,.25);color:var(--burgundy)}
   .btn-outline:hover{background:rgba(139,26,43,.06);transform:translateY(-2px)}
+  .btn-outline:active,.btn-primary:active,.btn-gold:active{transform:translateY(1px) scale(.98)}
   .btn-gold{background:var(--gold);color:var(--ink);box-shadow:0 10px 24px rgba(212,168,83,.35)}
   .btn-gold:hover{transform:translateY(-2px);box-shadow:0 16px 32px rgba(212,168,83,.45)}
   @media(max-width:760px){.navlinks{display:none}}
 
-  /* HERO with 3D parallax stage */
-  .hero{position:relative;min-height:88dvh;display:grid;place-items:center;
-    perspective:1400px;padding:150px 0 60px;}
-  .stage{position:relative;transform-style:preserve-3d;width:100%;display:grid;
-    grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
-  @media(max-width:880px){.stage{grid-template-columns:1fr;text-align:center}}
-  .eyebrow,.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;
-    letter-spacing:.14em;text-transform:uppercase;color:var(--burgundy);
-    background:rgba(139,26,43,.08);padding:7px 14px;border-radius:999px;margin-bottom:22px}
-  .eyebrow b{color:var(--gold)}
-  .hero h1{font-size:clamp(2.4rem,5.4vw,4.2rem);line-height:1.06;color:var(--ink)}
-  .hero h1 span,.hero h1 em{font-style:italic;color:var(--burgundy)}
-  .hero p{margin:22px 0 30px;color:var(--muted);font-size:1.12rem;max-width:48ch}
-  @media(max-width:880px){.hero p{margin-inline:auto}}
-  .cta-row{display:flex;gap:14px;flex-wrap:wrap}
-  @media(max-width:880px){.cta-row{justify-content:center}}
-
-  /* floating 3D badge scene */
-  .scene{position:relative;height:400px;transform-style:preserve-3d}
-  .float{position:absolute;border-radius:50%;display:grid;place-items:center;
-    box-shadow:0 30px 60px -18px rgba(var(--shadow),.45);will-change:transform}
-  .badge-main{inset-block-start:50%;inset-inline-start:50%;width:260px;height:260px;
-    margin:-130px 0 0 -130px;background:#fff;padding:14px;
-    transform:translateZ(60px);animation:bob 7s ease-in-out infinite}
-  .badge-main img{width:100%;height:100%;border-radius:50%;object-fit:cover}
-  .chip{width:96px;height:96px;font-size:13px;font-weight:700;color:#fff;text-align:center;line-height:1.15}
-  .c1{background:linear-gradient(140deg,var(--coral),#ff9466);inset-block-start:2%;inset-inline-end:6%;transform:translateZ(120px);animation:bob 5s ease-in-out infinite}
-  .c2{background:linear-gradient(140deg,var(--pink),#f59ab6);inset-block-end:6%;inset-inline-start:0;transform:translateZ(95px);animation:bob 6.4s ease-in-out infinite .6s}
-  .c3{background:linear-gradient(140deg,var(--gold),#eaca8c);width:78px;height:78px;font-size:12px;inset-block-end:18%;inset-inline-end:2%;transform:translateZ(150px);animation:bob 5.8s ease-in-out infinite 1s}
-  @keyframes bob{0%,100%{translate:0 0}50%{translate:0 -16px}}
-
-  /* STATS extruded blocks (also used for heritage metrics) */
-  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;
-    margin-top:30px;perspective:1000px}
-  .stat{background:#fff;border-radius:20px;padding:30px 26px;
-    box-shadow:0 1px 0 rgba(139,26,43,.05),0 22px 40px -24px rgba(var(--shadow),.5);
-    transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;
-    border-block-start:4px solid var(--gold)}
-  .stat:hover{transform:translateY(-6px) rotateX(7deg);box-shadow:0 36px 60px -28px rgba(var(--shadow),.6)}
-  .stat .n{font-family:'Playfair Display';font-weight:800;font-size:2.7rem;color:var(--burgundy);line-height:1}
-  .stat .l{color:var(--muted);font-size:.92rem;margin-top:8px;font-weight:500}
-
   section{padding:96px 0}
-  .sec-head{max-width:640px;margin-bottom:54px}
-  .sec-head.center{margin-inline:auto;text-align:center}
+  .sec-head{max-width:640px;margin-bottom:50px}
   .sec-head p{color:var(--muted);margin-top:14px;font-size:1.05rem}
   .sec-head h2{font-size:clamp(2rem,4vw,3rem);color:var(--ink)}
+  .label{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--burgundy);
+    background:rgba(139,26,43,.08);padding:7px 14px;border-radius:999px;margin-bottom:22px}
+  .kicker-light{background:rgba(255,255,255,.16);color:#fff}
+  .kicker b{color:var(--gold)}
 
-  /* PILLAR tilt cards (purpose/dedication/commitment, core values, strengths) */
-  .pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px;perspective:1200px}
-  .card{position:relative;background:#fff;border-radius:24px;padding:34px 30px;
-    transform-style:preserve-3d;transition:transform .2s ease,box-shadow .3s;
-    box-shadow:0 24px 50px -30px rgba(var(--shadow),.55);overflow:hidden}
-  .card::before{content:"";position:absolute;inset:0;background:linear-gradient(150deg,rgba(212,168,83,.10),transparent 55%);opacity:0;transition:opacity .3s}
-  .card:hover::before{opacity:1}
-  .ico{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;margin-bottom:20px;
-    transform:translateZ(40px);box-shadow:0 12px 24px -8px rgba(var(--shadow),.4)}
-  .ico svg{width:30px;height:30px;stroke:#fff;stroke-width:2;fill:none}
-  .card h3{font-size:1.3rem;margin-bottom:10px;transform:translateZ(28px);display:flex;align-items:center;gap:10px}
-  .card p{color:var(--muted);font-size:.97rem;transform:translateZ(18px)}
-  .dot{width:9px;height:9px;border-radius:50%;background:var(--gold);display:inline-block;flex:none}
+  /* ============ HERITAGE HERO — full-bleed editorial ============ */
+  .heritage-hero{position:relative;min-height:96dvh;display:flex;align-items:flex-end;
+    overflow:hidden;padding:150px 0 76px}
+  .hh-bg{position:absolute;inset:0;z-index:0}
+  .hh-bg img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.08);will-change:transform}
+  .hh-scrim{position:absolute;inset:0;z-index:0;
+    background:linear-gradient(180deg, rgba(26,26,46,.18) 0%, rgba(26,26,46,.5) 45%, rgba(26,26,46,.9) 100%)}
+  .hh-year{position:absolute;z-index:1;inset-block-start:6%;inset-inline-end:3%;
+    font-family:'Playfair Display';font-weight:800;font-size:clamp(6rem,20vw,16rem);
+    color:rgba(255,255,255,.09);line-height:1;letter-spacing:-.02em;pointer-events:none;will-change:transform}
+  .heritage-hero .wrap{position:relative;z-index:2;color:#fff;max-width:760px}
+  .heritage-hero h1{font-size:clamp(2.4rem,5.6vw,4.3rem);line-height:1.06;color:#fff}
+  .heritage-hero h1 em{font-style:italic;color:var(--gold)}
+  .heritage-hero p{margin:22px 0 30px;color:rgba(255,255,255,.86);font-size:1.14rem;max-width:52ch}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap}
 
-  /* Our story — media + text */
-  .about-split{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  /* ============ MILESTONE STRIP ============ */
+  .milestones-wrap{padding:74px 0 40px}
+  .milestones{position:relative;display:flex;justify-content:space-between;gap:16px}
+  .ms-line{position:absolute;inset-block-start:9px;inset-inline:16px;height:2px;
+    background:linear-gradient(90deg,transparent,var(--gold),var(--gold),transparent);
+    transform:scaleX(0);transform-origin:left center;transition:transform 1.2s cubic-bezier(.2,.8,.2,1) .1s}
+  .milestones.in .ms-line{transform:scaleX(1)}
+  .ms-node{position:relative;flex:1;text-align:center;padding-top:34px}
+  .ms-dot{position:absolute;inset-block-start:0;inset-inline-start:50%;transform:translateX(-50%);
+    width:18px;height:18px;border-radius:50%;background:var(--burgundy);border:4px solid var(--cream);
+    box-shadow:0 0 0 2px rgba(139,26,43,.25)}
+  .ms-node b{display:block;font-family:'Playfair Display';font-weight:800;font-size:2.1rem;color:var(--burgundy);line-height:1}
+  .ms-node span{display:block;color:var(--muted);font-size:.85rem;margin-top:8px;max-width:15ch;margin-inline:auto}
+  @media(max-width:760px){
+    .milestones{flex-direction:column;gap:32px;padding-left:8px}
+    .ms-line{inset-block-start:0;inset-block-end:0;inset-inline-start:8px;inset-inline-end:auto;width:2px;height:auto;
+      background:linear-gradient(180deg,transparent,var(--gold),var(--gold),transparent);
+      transform:scaleY(0);transform-origin:top center}
+    .milestones.in .ms-line{transform:scaleY(1)}
+    .ms-node{text-align:left;padding-top:0;padding-left:32px}
+    .ms-dot{inset-block-start:2px;inset-inline-start:-4px;transform:none}
+    .ms-node span{margin-inline:0;max-width:none}
+  }
+
+  /* ============ OUR STORY — asymmetric split ============ */
+  .about-split{display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:center}
   @media(max-width:880px){.about-split{grid-template-columns:1fr}}
-  .about-media{position:relative;border-radius:24px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(var(--shadow),.5)}
-  .about-media img{width:100%;height:420px;object-fit:cover;display:block}
+  .about-media{position:relative;border-radius:16px 64px 16px 16px;overflow:hidden;
+    box-shadow:0 30px 60px -30px rgba(var(--shadow),.5)}
+  .about-media img{width:100%;height:440px;object-fit:cover;display:block}
   .stamp{position:absolute;inset-block-end:20px;inset-inline-start:20px;background:var(--burgundy);color:#fff;
     padding:8px 18px;border-radius:999px;font-size:.8rem;font-weight:700;box-shadow:0 10px 24px rgba(0,0,0,.25)}
+  .about-text .label{margin-bottom:10px}
+  .about-text h2{font-size:clamp(1.9rem,3.6vw,2.7rem);margin-bottom:18px}
+  .about-text p{color:var(--muted);font-size:1.04rem}
   .vals{display:flex;gap:28px;margin-top:26px;flex-wrap:wrap}
   .val b{display:block;color:var(--burgundy);font-family:'Playfair Display';font-size:1.05rem}
   .val span{color:var(--muted);font-size:.85rem}
 
-  /* Mission / Vision */
-  .mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;perspective:1200px}
-  @media(max-width:760px){.mv-grid{grid-template-columns:1fr}}
-  .mv{background:#fff;border-radius:24px;padding:38px 34px;box-shadow:0 24px 50px -30px rgba(var(--shadow),.5);
-    transition:transform .2s ease,box-shadow .3s}
-  .mv:hover{transform:translateY(-6px)}
-  .rule{width:46px;height:3px;background:var(--gold);border-radius:2px;margin-bottom:18px}
-  .mv h3{font-size:1.4rem;margin-bottom:12px}
-  .mv p{color:var(--muted);font-size:1rem}
+  /* ============ MISSION / VISION — pull quotes ============ */
+  .mv-quote{display:flex;flex-direction:column;gap:56px;max-width:920px}
+  .mv-item{position:relative;padding-inline-start:34px}
+  .mv-item::before{content:"";position:absolute;inset-inline-start:0;inset-block-start:6px;inset-block-end:6px;
+    width:3px;background:var(--gold);border-radius:2px}
+  .mv-item.alt{align-self:flex-end;text-align:right;padding-inline-start:0;padding-inline-end:34px}
+  .mv-item.alt::before{inset-inline-start:auto;inset-inline-end:0}
+  .mv-item p.pull{font-family:'Playfair Display';font-style:italic;font-weight:600;
+    font-size:clamp(1.35rem,2.6vw,2rem);line-height:1.35;color:var(--ink)}
+  .mv-item .mv-label{display:block;margin-top:16px;font-size:.82rem;font-weight:700;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--burgundy)}
+  @media(max-width:640px){.mv-item.alt{align-self:flex-start;text-align:left;padding-inline-start:34px;padding-inline-end:0}
+    .mv-item.alt::before{inset-inline-start:0;inset-inline-end:auto}}
 
-  /* Core values section band */
+  /* ============ PURPOSE / DEDICATION / COMMITMENT — editorial rows ============ */
+  .purpose-rows{display:flex;flex-direction:column}
+  .prow{display:flex;align-items:center;gap:36px;padding:30px 0;border-block-end:1px solid rgba(139,26,43,.09)}
+  .purpose-rows .prow:first-of-type{border-block-start:1px solid rgba(139,26,43,.09)}
+  .prow.reverse{flex-direction:row-reverse;text-align:right}
+  .pr-icon{width:70px;height:70px;border-radius:20px;flex:none;display:grid;place-items:center;
+    box-shadow:0 12px 24px -8px rgba(var(--shadow),.4);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+  .prow:hover .pr-icon{transform:scale(1.08) rotate(-4deg)}
+  .prow.reverse:hover .pr-icon{transform:scale(1.08) rotate(4deg)}
+  .pr-icon svg{width:30px;height:30px;stroke:#fff;stroke-width:2;fill:none}
+  .pr-text h3{font-size:1.5rem;margin-bottom:8px}
+  .pr-text p{color:var(--muted);font-size:1rem;max-width:64ch}
+  @media(max-width:640px){.prow,.prow.reverse{flex-direction:row;text-align:left;gap:22px}}
+
+  /* ============ CORE VALUES — ribbon band ============ */
   .values{background:linear-gradient(180deg,var(--cream),var(--cream-2))}
+  .values-ribbon{display:flex;align-items:flex-start}
+  .vr-item{flex:1;padding:0 32px}
+  .vr-item:first-child{padding-inline-start:0}
+  .vr-item:last-child{padding-inline-end:0}
+  .vr-divider{width:1px;align-self:stretch;background:rgba(139,26,43,.15)}
+  .vr-item h3{font-size:1.7rem;margin-bottom:12px;color:var(--burgundy)}
+  .vr-item p{color:var(--muted);font-size:.98rem}
+  @media(max-width:760px){
+    .values-ribbon{flex-direction:column;gap:28px}
+    .vr-item{padding-inline:0!important}
+    .vr-divider{width:100%;height:1px}
+  }
 
-  /* APP CTA — seal variant (used on pages without the phone mockup) */
-  .appcta{background:linear-gradient(135deg,var(--burgundy),var(--burgundy-d));color:#fff;border-radius:36px;
-    margin:0 24px 90px;max-width:1180px;margin-inline:auto;padding:60px;position:relative;overflow:hidden;perspective:1000px}
-  .appcta::after{content:"";position:absolute;inset-block-start:-40%;inset-inline-end:-10%;width:420px;height:420px;
-    background:radial-gradient(circle,rgba(212,168,83,.35),transparent 70%)}
-  .appcta .eyebrow,.appcta .kicker{background:rgba(255,255,255,.15);color:#fff}
-  .appcta .eyebrow b{color:var(--gold)}
-  .appcta-grid,.appcta .wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:30px;align-items:center;position:relative;z-index:1}
-  @media(max-width:760px){.appcta-grid,.appcta .wrap{grid-template-columns:1fr;text-align:center}.appcta{padding:40px 26px}}
-  .appcta h2{font-size:clamp(1.8rem,4vw,2.8rem);color:#fff}
-  .appcta p{color:rgba(255,255,255,.85);margin:16px 0 26px}
-  .store-row{display:flex;gap:14px;flex-wrap:wrap}
-  @media(max-width:760px){.store-row{justify-content:center}}
-  .store-badge{display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.12);
-    border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:9px 16px;transition:.25s}
-  .store-badge:hover{background:#fff;transform:translateY(-3px)}
-  .store-badge img{display:block;height:30px;width:auto}
-  .flagship-stats{display:flex;gap:30px;margin-top:28px;flex-wrap:wrap}
-  @media(max-width:760px){.flagship-stats{justify-content:center}}
-  .flagship-stats div{display:flex;flex-direction:column}
-  .flagship-stats b{font-family:'Playfair Display';font-size:1.5rem}
-  .flagship-stats span{font-size:.8rem;color:rgba(255,255,255,.75)}
-  .seal-lg{justify-self:center;width:190px;height:190px;border-radius:50%;background:#fff;padding:20px;
-    box-shadow:0 40px 70px -20px rgba(0,0,0,.5)}
-  .seal-lg img{width:100%;height:100%;border-radius:50%;object-fit:cover}
-  @media(max-width:760px){.seal-lg{display:none}}
+  /* ============ STRENGTHS — asymmetric bento ============ */
+  .strength-bento{display:grid;grid-template-columns:1.3fr 1fr 1fr;grid-template-rows:auto auto;
+    grid-template-areas:"a b c" "a d d";gap:22px;perspective:1200px}
+  .card{position:relative;background:#fff;border-radius:24px;padding:32px 28px;
+    transform-style:preserve-3d;transition:transform .2s ease,box-shadow .3s;
+    box-shadow:0 24px 50px -30px rgba(var(--shadow),.55);overflow:hidden}
+  .card::before{content:"";position:absolute;inset:0;background:linear-gradient(150deg,rgba(212,168,83,.10),transparent 55%);opacity:0;transition:opacity .3s}
+  .card:hover::before{opacity:1}
+  .sb-a{grid-area:a;display:flex;flex-direction:column;justify-content:center}
+  .sb-b{grid-area:b}
+  .sb-c{grid-area:c}
+  .sb-d{grid-area:d;display:flex;align-items:center;gap:20px}
+  .sb-d h3,.sb-d p{margin:0}
+  .sb-d .dot{margin-top:2px}
+  .ico{width:60px;height:60px;border-radius:16px;display:grid;place-items:center;margin-bottom:20px;
+    transform:translateZ(30px);box-shadow:0 12px 24px -8px rgba(var(--shadow),.4)}
+  .ico svg{width:28px;height:28px;stroke:#fff;stroke-width:2;fill:none}
+  .card h3{font-size:1.3rem;margin-bottom:10px;transform:translateZ(20px);display:flex;align-items:center;gap:10px}
+  .sb-a h3{font-size:1.55rem}
+  .card p{color:var(--muted);font-size:.97rem;transform:translateZ(12px)}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--gold);display:inline-block;flex:none}
+  @media(max-width:760px){.strength-bento{grid-template-columns:1fr;grid-template-areas:"a" "b" "c" "d"}}
+
+  /* ============ CLOSING CTA — centered heritage seal ============ */
+  .heritage-cta{background:linear-gradient(135deg,var(--burgundy),var(--burgundy-d));color:#fff;border-radius:36px;
+    margin:0 24px 90px;max-width:1180px;margin-inline:auto;padding:78px 60px;position:relative;overflow:hidden}
+  .heritage-cta::after{content:"";position:absolute;inset-block-start:-30%;inset-inline-start:50%;transform:translateX(-50%);
+    width:560px;height:420px;background:radial-gradient(circle,rgba(212,168,83,.3),transparent 70%)}
+  .hc-inner{position:relative;z-index:1;max-width:660px;margin-inline:auto;text-align:center;
+    display:flex;flex-direction:column;align-items:center}
+  .hc-seal{width:104px;height:104px;border-radius:50%;background:#fff;padding:16px;margin-bottom:24px;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,.5)}
+  .hc-seal img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+  .heritage-cta h2{font-size:clamp(1.8rem,4vw,2.6rem);color:#fff}
+  .heritage-cta p{color:rgba(255,255,255,.85);margin:16px 0 30px;max-width:54ch}
+  .hc-buttons{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+  .hc-outline{color:#fff;border-color:rgba(255,255,255,.4)}
+  .hc-outline:hover{background:rgba(255,255,255,.12)}
+  .hc-stats{display:flex;align-items:center;gap:26px;margin-top:42px;flex-wrap:wrap;justify-content:center}
+  .hc-stat{display:flex;flex-direction:column}
+  .hc-stat b{font-family:'Playfair Display';font-size:1.6rem}
+  .hc-stat span{font-size:.8rem;color:rgba(255,255,255,.72)}
+  .hc-divider{width:1px;height:34px;background:rgba(255,255,255,.25)}
+  @media(max-width:760px){.heritage-cta{padding:54px 28px}}
+  @media(max-width:520px){.hc-divider{display:none}}
 
   /* sticky "get the app" companion pill */
   .companion{position:fixed;inset-block-end:26px;inset-inline-end:26px;z-index:60;display:flex;align-items:center;gap:12px;
@@ -237,9 +280,17 @@
   .powered img{width:16px;height:16px;border-radius:4px}
   .powered strong{color:var(--burgundy)}
 
-  /* reveal */
+  /* reveal + stagger */
   .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
   .reveal.in{opacity:1;transform:none}
+  .prow:nth-child(2){transition-delay:.05s}
+  .prow:nth-child(3){transition-delay:.1s}
+  .vr-item:nth-child(3){transition-delay:.08s}
+  .vr-item:nth-child(5){transition-delay:.16s}
+  .sb-b{transition-delay:.06s}
+  .sb-c{transition-delay:.12s}
+  .sb-d{transition-delay:.18s}
+  .mv-item.alt{transition-delay:.1s}
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
@@ -256,44 +307,42 @@
   <a class="btn btn-primary" href="app.html">Download App</a>
 </nav>
 
-<header class="hero" id="hero">
-  <div class="wrap stage" id="stage">
-    <div>
-      <span class="kicker">About the company</span>
-      <h1>Kuwait's trusted name in <em>fine confectionery</em>, since 1986.</h1>
-      <p>World Sweets is one of Kuwait's leading confectionery distributors — a family business grown into a nationwide distribution network serving every market segment.</p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="app.html">Download the app</a>
-        <a class="btn btn-outline" href="contact.html">Get in touch</a>
-      </div>
-    </div>
-    <div class="scene" id="scene">
-      <div class="float chip c1">1986<br><small>founded</small></div>
-      <div class="float chip c2">150+<br><small>team</small></div>
-      <div class="float chip c3">40+<br>years</div>
-      <div class="float badge-main"><img src="images/icons/logo.png" alt="World Sweets badge"></div>
+<!-- HERO — full-bleed editorial with watermark year -->
+<header class="heritage-hero" id="hero">
+  <div class="hh-bg"><img src="images/showrooms/shop-exterior.webp" alt="World Sweets showroom exterior in Kuwait" id="hh-img"></div>
+  <div class="hh-scrim"></div>
+  <span class="hh-year" id="hh-year" aria-hidden="true">1986</span>
+  <div class="wrap">
+    <span class="kicker kicker-light">About the company</span>
+    <h1>Kuwait's trusted name in <em>fine confectionery</em>, since 1986.</h1>
+    <p>World Sweets is one of Kuwait's leading confectionery distributors — a family business grown into a nationwide distribution network serving every market segment.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="app.html">Download the app</a>
+      <a class="btn btn-outline" href="contact.html" style="color:#fff;border-color:rgba(255,255,255,.45)">Get in touch</a>
     </div>
   </div>
 </header>
 
-<section class="wrap" style="padding-top:0">
-  <div class="stats reveal">
-    <div class="stat"><div class="n">1986</div><div class="l">Family business founded</div></div>
-    <div class="stat"><div class="n">40+</div><div class="l">Years of distribution</div></div>
-    <div class="stat"><div class="n">150+</div><div class="l">Skilled professionals</div></div>
-    <div class="stat"><div class="n">2</div><div class="l">Flagship showrooms</div></div>
+<!-- MILESTONE STRIP -->
+<section class="wrap milestones-wrap">
+  <div class="milestones reveal" id="milestones">
+    <div class="ms-line"></div>
+    <div class="ms-node"><span class="ms-dot"></span><b>1986</b><span>Founded as a family business</span></div>
+    <div class="ms-node"><span class="ms-dot"></span><b>40+</b><span>Years distributing across Kuwait</span></div>
+    <div class="ms-node"><span class="ms-dot"></span><b>150+</b><span>Skilled professionals today</span></div>
+    <div class="ms-node"><span class="ms-dot"></span><b>2</b><span>Flagship showrooms nationwide</span></div>
   </div>
 </section>
 
-<!-- Our Story / Heritage -->
+<!-- OUR STORY / HERITAGE -->
 <section class="wrap">
   <div class="about-split">
     <div class="about-media reveal">
       <img src="images/showrooms/shop-exterior.webp" alt="World Sweets showroom exterior in Kuwait" loading="lazy">
       <span class="stamp">Established 1986</span>
     </div>
-    <div class="reveal">
-      <span class="kicker">Our story</span>
+    <div class="about-text reveal">
+      <span class="label">Our story</span>
       <h2>Four decades of distributing joy across Kuwait.</h2>
       <p>Founded in 1986 as a family-run business, World Sweets has evolved into one of Kuwait's leading confectionery distributors. With decades of experience and a deep-rooted passion for sweets, we have built a strong portfolio of well-established brands and products. Today, we proudly serve all market segments across Kuwait, powered by a dedicated team of over 150 skilled professionals.</p>
       <div class="vals">
@@ -304,111 +353,96 @@
   </div>
 </section>
 
-<!-- Mission & Vision -->
+<!-- MISSION & VISION — pull quotes -->
 <section class="wrap">
-  <div class="sec-head reveal">
-    <span class="kicker">Purpose</span>
-    <h2>What drives World Sweets.</h2>
-  </div>
-  <div class="mv-grid">
-    <div class="mv reveal">
-      <div class="rule"></div>
-      <h3>Our Mission</h3>
-      <p>To bring joy to every customer by delivering premium-quality confectionery products from around the world, offering exceptional value and unforgettable sweet experiences.</p>
+  <div class="mv-quote">
+    <div class="mv-item reveal">
+      <p class="pull">To bring joy to every customer by delivering premium-quality confectionery products from around the world, offering exceptional value and unforgettable sweet experiences.</p>
+      <span class="mv-label">Our Mission</span>
     </div>
-    <div class="mv reveal">
-      <div class="rule"></div>
-      <h3>Our Vision</h3>
-      <p>To inspire happiness and connection across communities, becoming the leading choice for confectionery excellence in Kuwait and beyond.</p>
+    <div class="mv-item alt reveal">
+      <p class="pull">To inspire happiness and connection across communities, becoming the leading choice for confectionery excellence in Kuwait and beyond.</p>
+      <span class="mv-label">Our Vision</span>
     </div>
   </div>
 </section>
 
-<!-- Purpose · Dedication · Commitment -->
+<!-- PURPOSE · DEDICATION · COMMITMENT — editorial rows -->
 <section class="wrap">
   <div class="sec-head reveal">
-    <span class="kicker">Why we exist</span>
+    <span class="label">Why we exist</span>
     <h2>Purpose, dedication, and commitment.</h2>
   </div>
-  <div class="pillars">
-    <div class="card reveal">
-      <div class="ico" style="background:linear-gradient(140deg,var(--burgundy),#b33148)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg></div>
-      <h3>Our Purpose</h3>
-      <p>To strengthen and expand our leadership in the confectionery distribution industry by delivering high-quality products, fostering strong relationships, and driving sustainable profitability.</p>
+  <div class="purpose-rows">
+    <div class="prow reveal">
+      <div class="pr-icon" style="background:linear-gradient(140deg,var(--burgundy),#b33148)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg></div>
+      <div class="pr-text"><h3>Our Purpose</h3><p>To strengthen and expand our leadership in the confectionery distribution industry by delivering high-quality products, fostering strong relationships, and driving sustainable profitability.</p></div>
     </div>
-    <div class="card reveal">
-      <div class="ico" style="background:linear-gradient(140deg,var(--gold),#e0bd76)"><svg viewBox="0 0 24 24"><path d="M3 12l4-4 5 2 4-3 5 3M3 12v6h18v-6"/></svg></div>
-      <h3>Dedication</h3>
-      <p>We are dedicated to serving the market through our organized system of distribution and marketing of sweets and confectioneries across Kuwait.</p>
+    <div class="prow reverse reveal">
+      <div class="pr-icon" style="background:linear-gradient(140deg,var(--gold),#e0bd76)"><svg viewBox="0 0 24 24"><path d="M3 12l4-4 5 2 4-3 5 3M3 12v6h18v-6"/></svg></div>
+      <div class="pr-text"><h3>Dedication</h3><p>We are dedicated to serving the market through our organized system of distribution and marketing of sweets and confectioneries across Kuwait.</p></div>
     </div>
-    <div class="card reveal">
-      <div class="ico" style="background:linear-gradient(140deg,var(--pink),#f07ca0)"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5L12 3z"/></svg></div>
-      <h3>Our Commitment</h3>
-      <p>Driven by a passion for excellence, we are committed to delivering exceptional experiences through reliable distribution, strategic innovation, and outstanding customer service.</p>
+    <div class="prow reveal">
+      <div class="pr-icon" style="background:linear-gradient(140deg,var(--pink),#f07ca0)"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5L12 3z"/></svg></div>
+      <div class="pr-text"><h3>Our Commitment</h3><p>Driven by a passion for excellence, we are committed to delivering exceptional experiences through reliable distribution, strategic innovation, and outstanding customer service.</p></div>
     </div>
   </div>
 </section>
 
-<!-- Core Values -->
+<!-- CORE VALUES — ribbon -->
 <section class="values">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="kicker">Core values</span>
+      <span class="label">Core values</span>
       <h2>The principles behind every partnership.</h2>
     </div>
-    <div class="pillars">
-      <div class="card reveal">
-        <div class="ico" style="background:linear-gradient(140deg,var(--burgundy),#b33148)"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z"/></svg></div>
-        <h3>Trust</h3>
-        <p>We prioritize strong, transparent relationships with customers and suppliers alike.</p>
-      </div>
-      <div class="card reveal">
-        <div class="ico" style="background:linear-gradient(140deg,var(--gold),#e0bd76)"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
-        <h3>Progress</h3>
-        <p>We embrace innovation and forward-thinking strategies that keep us ahead of the market.</p>
-      </div>
-      <div class="card reveal">
-        <div class="ico" style="background:linear-gradient(140deg,var(--pink),#f07ca0)"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M12 3l7 4v5c0 5-3 8-7 9-4-1-7-4-7-9V7l7-4z"/></svg></div>
-        <h3>Integrity</h3>
-        <p>We uphold the highest standards of professionalism and ethical conduct in all we do.</p>
-      </div>
+    <div class="values-ribbon reveal">
+      <div class="vr-item"><h3>Trust</h3><p>We prioritize strong, transparent relationships with customers and suppliers alike.</p></div>
+      <div class="vr-divider"></div>
+      <div class="vr-item"><h3>Progress</h3><p>We embrace innovation and forward-thinking strategies that keep us ahead of the market.</p></div>
+      <div class="vr-divider"></div>
+      <div class="vr-item"><h3>Integrity</h3><p>We uphold the highest standards of professionalism and ethical conduct in all we do.</p></div>
     </div>
   </div>
 </section>
 
-<!-- Our Strengths -->
+<!-- STRENGTHS — asymmetric bento -->
 <section class="wrap">
   <div class="sec-head reveal">
-    <span class="kicker">Why partner with us</span>
+    <span class="label">Why partner with us</span>
     <h2>Strengths that keep us ahead.</h2>
     <p>We invest in long-term brand development, disciplined cost management, and a product range that keeps pace with a fast-moving confectionery market.</p>
   </div>
-  <div class="pillars">
-    <div class="card reveal"><h3><span class="dot"></span>Strong Partnerships</h3><p>Long-lasting relationships built on trust, transparency, and mutual growth.</p></div>
-    <div class="card reveal"><h3><span class="dot"></span>Innovative Approach</h3><p>Forward-thinking strategies that keep us ahead in a dynamic confectionery market.</p></div>
-    <div class="card reveal"><h3><span class="dot"></span>Exceptional Service</h3><p>Clear communication and dedicated support that make every client experience seamless.</p></div>
-    <div class="card reveal"><h3><span class="dot"></span>Brand Development</h3><p>Long-term investment in brands, cost control, and a continually improving range.</p></div>
+  <div class="strength-bento">
+    <div class="card sb-a reveal">
+      <div class="ico" style="background:linear-gradient(140deg,var(--burgundy),#b33148)"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z"/></svg></div>
+      <h3>Strong Partnerships</h3>
+      <p>Long-lasting relationships built on trust, transparency, and mutual growth.</p>
+    </div>
+    <div class="card sb-b reveal"><h3><span class="dot"></span>Innovative Approach</h3><p>Forward-thinking strategies that keep us ahead in a dynamic confectionery market.</p></div>
+    <div class="card sb-c reveal"><h3><span class="dot"></span>Exceptional Service</h3><p>Clear communication and dedicated support that make every client experience seamless.</p></div>
+    <div class="card sb-d reveal"><span class="dot"></span><div><h3 style="margin-bottom:6px">Brand Development</h3><p>Long-term investment in brands, cost control, and a continually improving range.</p></div></div>
   </div>
 </section>
 
-<!-- Closing CTA -->
-<section id="app" class="appcta reveal">
-  <div class="wrap">
-    <div>
-      <span class="kicker">Sweet partnerships</span>
-      <h2>Bring World Sweets to your shelves — or your pocket.</h2>
-      <p>Download the World Sweets app to shop the full range across Kuwait, or get in touch to explore wholesale, catering, and retail partnerships.</p>
-      <div class="store-row">
-        <a class="btn btn-gold" href="app.html">Download the app</a>
-        <a class="btn btn-outline" href="contact.html" style="color:#fff;border-color:rgba(255,255,255,.4)">Contact us</a>
-      </div>
-      <div class="flagship-stats">
-        <div><b>40+</b><span>brands in-app</span></div>
-        <div><b>2</b><span>showrooms linked</span></div>
-        <div><b>165K+</b><span>community</span></div>
-      </div>
+<!-- CLOSING CTA -->
+<section id="app" class="heritage-cta reveal">
+  <div class="wrap hc-inner">
+    <div class="hc-seal"><img src="images/icons/logo.png" alt="World Sweets app icon"></div>
+    <span class="kicker kicker-light">Sweet partnerships</span>
+    <h2>Bring World Sweets to your shelves, or your pocket.</h2>
+    <p>Download the World Sweets app to shop the full range across Kuwait, or get in touch to explore wholesale, catering, and retail partnerships.</p>
+    <div class="hc-buttons">
+      <a class="btn btn-gold" href="app.html">Download the app</a>
+      <a class="btn btn-outline hc-outline" href="contact.html">Contact us</a>
     </div>
-    <div class="seal-lg"><img src="images/icons/logo.png" alt="World Sweets app icon"></div>
+    <div class="hc-stats">
+      <div class="hc-stat"><b>40+</b><span>brands in-app</span></div>
+      <div class="hc-divider"></div>
+      <div class="hc-stat"><b>2</b><span>showrooms linked</span></div>
+      <div class="hc-divider"></div>
+      <div class="hc-stat"><b>165K+</b><span>community</span></div>
+    </div>
   </div>
 </section>
 
@@ -448,22 +482,23 @@
 
   const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 
-  // hero parallax tilt (pointer)
-  const scene=document.getElementById('scene');
-  if(scene&&!reduce){
-    window.addEventListener('pointermove',e=>{
-      const x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);
-      scene.style.transform=`rotateY(${x*14}deg) rotateX(${-y*14}deg)`;
-      scene.style.transition='transform .2s ease-out';
-    });
+  // hero parallax — background photo drifts slower than scroll, watermark year drifts opposite
+  const hhImg=document.getElementById('hh-img');
+  const hhYear=document.getElementById('hh-year');
+  if((hhImg||hhYear)&&!reduce){
+    window.addEventListener('scroll',()=>{
+      const y=window.scrollY;
+      if(hhImg)hhImg.style.transform=`scale(1.08) translateY(${Math.min(y*0.12,60)}px)`;
+      if(hhYear)hhYear.style.transform=`translateY(${Math.min(y*-0.05,0)}px)`;
+    },{passive:true});
   }
 
-  // 3D tilt for cards
-  if(!reduce)document.querySelectorAll('.card, .mv').forEach(card=>{
+  // 3D tilt for strength cards
+  if(!reduce)document.querySelectorAll('.card').forEach(card=>{
     card.addEventListener('pointermove',e=>{
       const r=card.getBoundingClientRect();
       const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
-      card.style.transform=`rotateY(${x*10}deg) rotateX(${-y*10}deg) translateY(-4px)`;
+      card.style.transform=`rotateY(${x*8}deg) rotateX(${-y*8}deg) translateY(-4px)`;
     });
     card.addEventListener('pointerleave',()=>card.style.transform='');
   });

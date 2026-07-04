@@ -163,36 +163,47 @@
     padding:11px 22px;border-radius:999px;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s;}
   .btn-primary{background:var(--burgundy);color:#fff;box-shadow:0 10px 24px rgba(139,26,43,.35)}
   .btn-primary:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 16px 32px rgba(139,26,43,.45)}
+  .btn-primary:active{transform:translateY(1px) scale(.98)}
   .btn-outline{border:1.5px solid rgba(139,26,43,.25);color:var(--burgundy)}
   .btn-outline:hover{background:rgba(139,26,43,.06);transform:translateY(-2px)}
+  .btn-outline:active{transform:translateY(1px)}
   .btn-gold{background:var(--gold);color:var(--ink);box-shadow:0 10px 24px rgba(212,168,83,.35)}
+  .btn-gold:hover{transform:translateY(-2px) scale(1.02)}
   @media(max-width:760px){.navlinks{display:none}}
 
-  .hero{position:relative;min-height:80dvh;display:grid;place-items:center;
-    perspective:1400px;padding:150px 0 50px;}
+  /* ============ HERO — asymmetric, route-diagram companion instead of orbiting badge ============ */
+  .hero{position:relative;min-height:86dvh;display:grid;place-items:center;
+    perspective:1400px;padding:150px 0 60px;}
   .stage{position:relative;transform-style:preserve-3d;width:100%;display:grid;
-    grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+    grid-template-columns:1.15fr .85fr;gap:52px;align-items:center}
   @media(max-width:880px){.stage{grid-template-columns:1fr;text-align:center}}
-  .eyebrow,.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;
-    letter-spacing:.14em;text-transform:uppercase;color:var(--burgundy);
-    background:rgba(139,26,43,.08);padding:7px 14px;border-radius:999px;margin-bottom:22px}
-  .hero h1{font-size:clamp(2.4rem,5.4vw,4.2rem);line-height:1.06;color:var(--ink)}
-  .hero p{margin:22px 0 30px;color:var(--muted);font-size:1.12rem;max-width:50ch}
+  .eyebrow,.tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--burgundy)}
+  .eyebrow{background:rgba(139,26,43,.08);padding:7px 14px;border-radius:999px;margin-bottom:22px}
+  .tag{margin-bottom:16px}
+  .hero h1{font-size:clamp(2.4rem,5.2vw,4rem);line-height:1.08;color:var(--ink)}
+  .hero h1 em{font-style:italic;color:var(--burgundy)}
+  .hero p{margin:22px 0 30px;color:var(--muted);font-size:1.1rem;max-width:50ch}
   @media(max-width:880px){.hero p{margin-inline:auto}}
   .cta-row{display:flex;gap:14px;flex-wrap:wrap}
   @media(max-width:880px){.cta-row{justify-content:center}}
 
-  .scene{position:relative;height:380px;transform-style:preserve-3d}
-  .float{position:absolute;border-radius:50%;display:grid;place-items:center;
-    box-shadow:0 30px 60px -18px rgba(var(--shadow),.45);will-change:transform}
-  .badge-main{inset-block-start:50%;inset-inline-start:50%;width:240px;height:240px;
-    margin:-120px 0 0 -120px;background:#fff;padding:14px;
-    transform:translateZ(60px);animation:bob 7s ease-in-out infinite}
-  .badge-main img{width:100%;height:100%;border-radius:50%;object-fit:cover}
-  .chip{width:92px;height:92px;font-size:13px;font-weight:700;color:#fff;text-align:center;line-height:1.15}
-  .c1{background:linear-gradient(140deg,var(--coral),#ff9466);inset-block-start:3%;inset-inline-end:6%;transform:translateZ(120px);animation:bob 5s ease-in-out infinite}
-  .c2{background:linear-gradient(140deg,var(--pink),#f59ab6);inset-block-end:8%;inset-inline-start:0;transform:translateZ(95px);animation:bob 6.4s ease-in-out infinite .6s}
-  @keyframes bob{0%,100%{translate:0 0}50%{translate:0 -16px}}
+  /* the route diagram: five channels as a connected supply line */
+  .scene{position:relative;min-height:360px;transform-style:preserve-3d;display:flex;align-items:center}
+  .route{position:relative;width:100%;max-width:360px;display:flex;flex-direction:column;gap:20px}
+  @media(max-width:880px){.route{margin-inline:auto}}
+  .route-line{position:absolute;inset-inline-start:20px;inset-block-start:6px;inset-block-end:6px;width:2px;
+    background-image:linear-gradient(rgba(139,26,43,.4) 55%, transparent 0);background-size:2px 11px;background-repeat:repeat-y}
+  .route-pulse{position:absolute;inset-inline-start:15px;width:10px;height:10px;border-radius:50%;
+    background:var(--coral);box-shadow:0 0 0 5px rgba(255,107,53,.22);animation:pulseMove 7s ease-in-out infinite;z-index:2}
+  @keyframes pulseMove{0%,100%{inset-block-start:2%}50%{inset-block-start:90%}}
+  .route-node{position:relative;z-index:1;display:flex;align-items:center;gap:16px;will-change:transform}
+  .route-dot{width:40px;height:40px;border-radius:50%;color:#fff;font-family:'Playfair Display';font-weight:800;
+    display:grid;place-items:center;flex-shrink:0;font-size:1rem;box-shadow:0 10px 22px -8px rgba(var(--shadow),.5)}
+  .route-card{display:flex;flex-direction:column;line-height:1.25;background:#fff;padding:12px 18px;border-radius:16px;
+    box-shadow:0 20px 40px -26px rgba(var(--shadow),.5);flex:1}
+  .route-card b{font-family:'Playfair Display';font-size:1rem;color:var(--ink)}
+  .route-card span{font-size:.78rem;color:var(--muted)}
 
   section{padding:96px 0}
   .sec-head{max-width:640px;margin-bottom:54px}
@@ -200,11 +211,62 @@
   .sec-head p{color:var(--muted);margin-top:14px;font-size:1.05rem}
   .sec-head h2{font-size:clamp(2rem,4vw,3rem);color:var(--ink)}
 
+  /* ============ CHANNELS — asymmetric bento, sized by weight not uniform tiles ============ */
+  .bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(150px,auto);gap:22px;perspective:1200px}
+  .card{position:relative;background:#fff;border-radius:24px;padding:32px 30px;
+    transform-style:preserve-3d;transition:transform .2s ease,box-shadow .3s;
+    box-shadow:0 24px 50px -30px rgba(var(--shadow),.55);overflow:hidden;display:flex;flex-direction:column}
+  .card::before{content:"";position:absolute;inset:0;background:linear-gradient(150deg,rgba(212,168,83,.10),transparent 55%);opacity:0;transition:opacity .3s}
+  .card:hover::before{opacity:1}
+  .ico{width:60px;height:60px;border-radius:16px;display:grid;place-items:center;margin-bottom:18px;
+    transform:translateZ(40px);box-shadow:0 12px 24px -8px rgba(var(--shadow),.4)}
+  .ico svg{width:28px;height:28px;stroke:#fff;stroke-width:2;fill:none}
+  .card h3{font-size:1.25rem;margin-bottom:10px;transform:translateZ(28px)}
+  .card p{color:var(--muted);font-size:.95rem;transform:translateZ(18px)}
+  .card .btn{margin-top:20px;transform:translateZ(20px);align-self:flex-start}
+  .card-meta{display:flex;gap:20px;margin-top:16px;flex-wrap:wrap;transform:translateZ(18px)}
+  .card-meta div{display:flex;flex-direction:column}
+  .card-meta b{font-family:'Playfair Display';font-size:1.2rem;color:var(--burgundy)}
+  .card-meta span{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+  .b-showroom{grid-column:span 4;grid-row:span 2}
+  .b-showroom h3,.b-ecommerce h3{font-size:1.55rem}
+  .b-ecommerce{grid-column:span 2;grid-row:span 2}
+  .b-wholesale{grid-column:span 2}
+  .b-catering{grid-column:span 2}
+  .b-more{grid-column:span 2;background:rgba(139,26,43,.045);border:1.5px dashed rgba(139,26,43,.25);box-shadow:none}
+  .b-more:hover::before{opacity:0}
+  @media(max-width:880px){
+    .bento{grid-template-columns:1fr}
+    .b-showroom,.b-ecommerce,.b-wholesale,.b-catering,.b-more{grid-column:auto;grid-row:auto}
+  }
+
+  /* ============ BRANDS marquee ============ */
+  .brands{background:linear-gradient(180deg,var(--cream),var(--cream-2));overflow:hidden}
+  .marquee{display:flex;gap:60px;animation:scroll 32s linear infinite;width:max-content;align-items:center;padding:10px 0}
+  .marquee img{height:46px;width:auto;object-fit:contain;filter:grayscale(.2);opacity:.85;transition:.3s}
+  .marquee img:hover{filter:none;opacity:1;transform:scale(1.08)}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  /* ============ FAQ — real accordion ============ */
+  .faq-list{max-width:760px;margin-inline:auto;display:flex;flex-direction:column;gap:16px}
+  .faq-item{background:#fff;border-radius:20px;box-shadow:0 20px 44px -32px rgba(var(--shadow),.5);overflow:hidden}
+  .faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:18px;
+    padding:24px 28px;background:none;border:0;cursor:pointer;text-align:left;
+    font-family:'Playfair Display';font-size:1.08rem;color:var(--ink)}
+  .faq-q .chev{width:20px;height:20px;stroke:var(--burgundy);stroke-width:2.4;fill:none;flex-shrink:0;transition:transform .3s ease}
+  .faq-item[data-open="true"] .chev{transform:rotate(180deg)}
+  .faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s cubic-bezier(.2,.8,.2,1)}
+  .faq-item[data-open="true"] .faq-a{grid-template-rows:1fr}
+  .faq-a-inner{overflow:hidden}
+  .faq-a-inner p{color:var(--muted);font-size:.95rem;line-height:1.65;padding:0 28px 26px}
+
+  /* ============ closing CTA ============ */
   .appcta{background:linear-gradient(135deg,var(--burgundy),var(--burgundy-d));color:#fff;border-radius:36px;
     margin:0 24px 90px;max-width:1180px;margin-inline:auto;padding:60px;position:relative;overflow:hidden;perspective:1000px}
   .appcta::after{content:"";position:absolute;inset-block-start:-40%;inset-inline-end:-10%;width:420px;height:420px;
     background:radial-gradient(circle,rgba(212,168,83,.35),transparent 70%)}
-  .appcta .eyebrow,.appcta .kicker{background:rgba(255,255,255,.15);color:#fff}
+  .appcta .eyebrow{background:rgba(255,255,255,.15);color:#fff}
   .appcta .wrap{position:relative;z-index:1}
   .appcta h2{font-size:clamp(1.8rem,4vw,2.8rem);color:#fff}
   .appcta p{color:rgba(255,255,255,.85);margin:16px 0 26px;max-width:60ch}
@@ -213,40 +275,12 @@
   .flagship-stats b{font-family:'Playfair Display';font-size:1.5rem}
   .flagship-stats span{font-size:.8rem;color:rgba(255,255,255,.75)}
 
-  /* channel tilt cards */
-  .pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:26px;perspective:1200px}
-  .card{position:relative;background:#fff;border-radius:24px;padding:34px 30px;
-    transform-style:preserve-3d;transition:transform .2s ease,box-shadow .3s;
-    box-shadow:0 24px 50px -30px rgba(var(--shadow),.55);overflow:hidden;display:flex;flex-direction:column}
-  .card::before{content:"";position:absolute;inset:0;background:linear-gradient(150deg,rgba(212,168,83,.10),transparent 55%);opacity:0;transition:opacity .3s}
-  .card:hover::before{opacity:1}
-  .ico{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;margin-bottom:20px;
-    transform:translateZ(40px);box-shadow:0 12px 24px -8px rgba(var(--shadow),.4);
-    background:linear-gradient(140deg,var(--burgundy),#b33148)}
-  .ico svg{width:30px;height:30px;stroke:#fff;stroke-width:2;fill:none}
-  .card h3{font-size:1.3rem;margin-bottom:10px;transform:translateZ(28px)}
-  .card p{color:var(--muted);font-size:.97rem;transform:translateZ(18px);flex:1}
-  .card .btn{margin-top:20px;transform:translateZ(20px);align-self:flex-start}
-
-  /* brands marquee */
-  .brands{background:linear-gradient(180deg,var(--cream),var(--cream-2));overflow:hidden}
-  .marquee{display:flex;gap:60px;animation:scroll 32s linear infinite;width:max-content;align-items:center;padding:10px 0}
-  .marquee img{height:46px;width:auto;object-fit:contain;filter:grayscale(.2);opacity:.85;transition:.3s}
-  .marquee img:hover{filter:none;opacity:1;transform:scale(1.08)}
-  @keyframes scroll{to{transform:translateX(-50%)}}
-
-  /* FAQ */
-  .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-  @media(max-width:760px){.faq-grid{grid-template-columns:1fr}}
-  .faq-item{background:#fff;border-radius:20px;padding:34px 30px;box-shadow:0 20px 44px -32px rgba(var(--shadow),.5)}
-  .faq-item h3{font-size:1.2rem;margin-bottom:12px}
-  .faq-item p{color:var(--muted);font-size:.95rem;line-height:1.65}
-
   .companion{position:fixed;inset-block-end:26px;inset-inline-end:26px;z-index:60;display:flex;align-items:center;gap:12px;
     background:#fff;padding:10px 20px 10px 10px;border-radius:999px;box-shadow:0 20px 40px -18px rgba(var(--shadow),.5);
     opacity:0;visibility:hidden;transform:translateY(16px);transition:opacity .35s ease,transform .35s ease,visibility .35s;}
   .companion.show{opacity:1;visibility:visible;transform:none}
   .companion:hover{transform:translateY(-3px)}
+  .companion.show:hover{transform:translateY(-3px)}
   .companion img{width:38px;height:38px;border-radius:50%;box-shadow:0 6px 14px rgba(139,26,43,.28)}
   .companion .txt{display:flex;flex-direction:column;line-height:1.2}
   .companion .txt b{font-size:.85rem;color:var(--ink)}
@@ -289,69 +323,86 @@
 <header class="hero" id="hero">
   <div class="wrap stage" id="stage">
     <div class="reveal">
-      <span class="kicker">How we reach the market</span>
-      <h1>Five distribution channels, one trusted partner.</h1>
-      <p>World Sweets puts confectionery in every hand across Kuwait through showrooms, e-commerce, catering, wholesale, and flexible partnerships — delivering trusted quality since 1986.</p>
+      <span class="eyebrow">How we reach the market</span>
+      <h1>Five paths in. <em>One trusted partner.</em></h1>
+      <p>From showroom shelf to delivery app, World Sweets moves confectionery across Kuwait through five distinct channels — each built on the same standard of quality since 1986.</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="https://wa.me/96524920204" target="_blank" rel="noopener">Partner with us</a>
         <a class="btn btn-outline" href="contact.html">Get in touch</a>
       </div>
     </div>
     <div class="scene" id="scene">
-      <div class="float chip c1">5<br><small>channels</small></div>
-      <div class="float chip c2">40+<br><small>brands</small></div>
-      <div class="float badge-main"><img src="images/icons/logo.png" alt="World Sweets badge"></div>
+      <div class="route">
+        <div class="route-line"></div>
+        <div class="route-pulse"></div>
+        <div class="route-node" style="transform:translateZ(15px)">
+          <span class="route-dot" style="background:linear-gradient(140deg,var(--burgundy),#b33148)">1</span>
+          <span class="route-card"><b>Showroom</b><span>Flagship retail</span></span>
+        </div>
+        <div class="route-node" style="transform:translateZ(35px)">
+          <span class="route-dot" style="background:linear-gradient(140deg,var(--coral),#ff9466)">2</span>
+          <span class="route-card"><b>E-Commerce</b><span>App &amp; delivery</span></span>
+        </div>
+        <div class="route-node" style="transform:translateZ(55px)">
+          <span class="route-dot" style="background:linear-gradient(140deg,var(--gold),#e0bd76)">3</span>
+          <span class="route-card"><b>Wholesale</b><span>Modern trade</span></span>
+        </div>
+        <div class="route-node" style="transform:translateZ(75px)">
+          <span class="route-dot" style="background:linear-gradient(140deg,var(--pink),#f07ca0)">4</span>
+          <span class="route-card"><b>Catering</b><span>Events &amp; corporate</span></span>
+        </div>
+        <div class="route-node" style="transform:translateZ(95px)">
+          <span class="route-dot" style="background:linear-gradient(140deg,#5b5560,#8b8590)">5</span>
+          <span class="route-card"><b>+ More</b><span>Flexible partnerships</span></span>
+        </div>
+      </div>
     </div>
   </div>
 </header>
 
-<!-- closing CTA -->
-<section id="app" class="appcta reveal">
-  <div class="wrap">
-    <span class="kicker">Ready to partner?</span>
-    <h2>Become a World Sweets partner</h2>
-    <p>Whether you're a retailer, catering company, e-commerce platform, or looking for flexible distribution options, World Sweets is ready to work with you. Let's grow together.</p>
-    <div class="cta-row">
-      <a class="btn btn-gold" href="contact.html">Contact us today</a>
-      <a class="btn btn-outline" href="https://wa.me/96524920204" target="_blank" rel="noopener" style="color:#fff;border-color:rgba(255,255,255,.4)">Message on WhatsApp</a>
-    </div>
-    <div class="flagship-stats">
-      <div><b>40+</b><span>brands in-app</span></div>
-      <div><b>2</b><span>showrooms linked</span></div>
-      <div><b>165K+</b><span>community</span></div>
-    </div>
+<!-- five channels — asymmetric bento, weighted by scale of business -->
+<section class="wrap" id="channels">
+  <div class="sec-head reveal">
+    <span class="tag">Five paths to market</span>
+    <h2>However you reach us, the quality is the same.</h2>
+    <p>Two channels carry the bulk of our volume — showroom and e-commerce. Three more extend our reach into wholesale, catering, and custom partnerships.</p>
   </div>
-</section>
-
-<!-- five channels -->
-<section class="wrap">
-  <div class="pillars">
-    <div class="card reveal">
-      <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 9l1-5h16l1 5M4 9h16v11H4zM9 20v-6h6v6"/></svg></div>
+  <div class="bento">
+    <div class="card b-showroom reveal">
+      <div class="ico" style="background:linear-gradient(140deg,var(--burgundy),#b33148)"><svg viewBox="0 0 24 24"><path d="M3 9l1-5h16l1 5M4 9h16v11H4zM9 20v-6h6v6"/></svg></div>
       <h3>Showroom</h3>
       <p>Walk-in purchases through two strategically located showrooms, each with over 550 m² of showcase space for retail partners and shoppers.</p>
+      <div class="card-meta">
+        <div><b>550 m²</b><span>Shuwaikh</span></div>
+        <div><b>650 m²</b><span>Fahaheel</span></div>
+      </div>
       <a class="btn btn-outline" href="showrooms.html">Visit our showrooms</a>
     </div>
-    <div class="card reveal">
-      <div class="ico"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M11 18h2"/></svg></div>
+    <div class="card b-ecommerce reveal">
+      <div class="ico" style="background:linear-gradient(140deg,var(--coral),#ff9466)"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M11 18h2"/></svg></div>
       <h3>E-Commerce</h3>
       <p>Direct delivery via the World Sweets app and partnerships with leading platforms including Talabat and Tawseel for convenient ordering across Kuwait.</p>
+      <div class="card-meta">
+        <div><b>App</b><span>Direct</span></div>
+        <div><b>Talabat</b><span>Partner</span></div>
+        <div><b>Tawseel</b><span>Partner</span></div>
+      </div>
       <a class="btn btn-outline" href="app.html">Download the app</a>
     </div>
-    <div class="card reveal">
-      <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 20h16M6 20V9a6 6 0 0 1 12 0v11M9 6V4M15 6V4"/></svg></div>
-      <h3>Catering</h3>
-      <p>Premium sweets and custom-made products tailored for catering companies, corporate events, and audiences seeking exceptional confectionery experiences.</p>
-      <a class="btn btn-outline" href="https://wa.me/96524920204" target="_blank" rel="noopener">Order now</a>
-    </div>
-    <div class="card reveal">
-      <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 7h18l-2 13H5L3 7zM8 7V5a4 4 0 0 1 8 0v2"/></svg></div>
+    <div class="card b-wholesale reveal">
+      <div class="ico" style="background:linear-gradient(140deg,var(--gold),#e0bd76)"><svg viewBox="0 0 24 24"><path d="M3 7h18l-2 13H5L3 7zM8 7V5a4 4 0 0 1 8 0v2"/></svg></div>
       <h3>Wholesale &amp; Modern Trade</h3>
       <p>Supplying retailers, supermarkets, and hypermarkets across Kuwait, backed by promotional campaigns, flyer support, and in-house repacking services.</p>
       <a class="btn btn-outline" href="https://wa.me/96524920204" target="_blank" rel="noopener">Partner with us</a>
     </div>
-    <div class="card reveal">
-      <div class="ico"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></div>
+    <div class="card b-catering reveal">
+      <div class="ico" style="background:linear-gradient(140deg,var(--pink),#f07ca0)"><svg viewBox="0 0 24 24"><path d="M4 20h16M6 20V9a6 6 0 0 1 12 0v11M9 6V4M15 6V4"/></svg></div>
+      <h3>Catering</h3>
+      <p>Premium sweets and custom-made products tailored for catering companies, corporate events, and audiences seeking exceptional confectionery experiences.</p>
+      <a class="btn btn-outline" href="https://wa.me/96524920204" target="_blank" rel="noopener">Order now</a>
+    </div>
+    <div class="card b-more reveal">
+      <div class="ico" style="background:linear-gradient(140deg,#5b5560,#8b8590)"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></div>
       <h3>&amp; Many More</h3>
       <p>Flexible channels and partnerships that adapt to the unique needs and growth of Kuwait's dynamic confectionery market.</p>
       <a class="btn btn-outline" href="contact.html">Explore options</a>
@@ -362,50 +413,64 @@
 <!-- brands portfolio -->
 <section class="brands">
   <div class="wrap sec-head center reveal">
-    <span class="kicker">Our partners</span>
     <h2>Brands we proudly distribute</h2>
     <p>Leading confectionery brands trust World Sweets to reach Kuwait's market through reliable, premium distribution channels.</p>
   </div>
-  <div class="marquee" id="brand-marquee">
-    <img src="images/brands/choki.webp" alt="Choki Choki" loading="lazy">
-    <img src="images/brands/kopiko.webp" alt="Kopiko" loading="lazy">
-    <img src="images/brands/yupi.png" alt="Yupi" loading="lazy">
-    <img src="images/brands/red-band.webp" alt="Red Band" loading="lazy">
-    <img src="images/brands/elvan.png" alt="Elvan" loading="lazy">
-    <img src="images/brands/fortuin.png" alt="Fortuin" loading="lazy">
-    <img src="images/brands/coffee-joy.png" alt="Coffee Joy" loading="lazy">
-    <img src="images/brands/pepero.jpg" alt="Pepero" loading="lazy">
-    <img src="images/brands/oly.png" alt="Oly" loading="lazy">
-    <img src="images/brands/avt.png" alt="AVT" loading="lazy">
-    <img src="images/brands/rollana.jpg" alt="Rollana" loading="lazy">
-    <img src="images/brands/sadia.jpg" alt="Sadia" loading="lazy">
-    <img src="images/brands/sourpunk.png" alt="Sour Punk" loading="lazy">
-    <img src="images/brands/eg.jpg" alt="E and G" loading="lazy">
+  <div class="marquee" id="brand-marquee"></div>
+</section>
+
+<!-- FAQ — real accordion -->
+<section class="wrap">
+  <div class="sec-head center reveal">
+    <h2>Distribution FAQs</h2>
+    <p>Answers to the questions partners ask most.</p>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item reveal" data-open="true">
+      <button class="faq-q" aria-expanded="true">
+        <span>Does World Sweets supply supermarkets and hypermarkets?</span>
+        <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner"><p>Yes. Our Wholesale &amp; Modern Trade channel supplies retailers, supermarkets, and hypermarkets across Kuwait. We provide promotional support, flyer campaigns, and in-house repacking services to maximize your shelf presence.</p></div></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" aria-expanded="false">
+        <span>Can I order World Sweets products for catering and events?</span>
+        <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner"><p>Absolutely. Our Catering channel offers premium sweets and custom-made products tailored specifically for catering companies, corporate events, and their audiences. Contact us to discuss your custom arrangements.</p></div></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" aria-expanded="false">
+        <span>Which delivery platforms does World Sweets use?</span>
+        <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner"><p>We deliver via the World Sweets app (our own platform) and partner with major delivery services including Talabat and Tawseel for convenient e-commerce ordering across Kuwait with fast, reliable delivery.</p></div></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" aria-expanded="false">
+        <span>Where are the World Sweets showrooms located?</span>
+        <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner"><p>We operate two flagship showrooms: the Shuwaikh showroom in Kuwait City (550 m²) and the Fahaheel showroom in Southern Kuwait (650 m²). Both are open daily from 9:00 AM to 10:00 PM. Visit us to browse our full range.</p></div></div>
+    </div>
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="wrap">
-  <div class="sec-head center reveal">
-    <span class="kicker">Questions?</span>
-    <h2>Distribution FAQs</h2>
-  </div>
-  <div class="faq-grid">
-    <div class="faq-item reveal">
-      <h3>Does World Sweets supply supermarkets and hypermarkets?</h3>
-      <p>Yes. Our Wholesale &amp; Modern Trade channel supplies retailers, supermarkets, and hypermarkets across Kuwait. We provide promotional support, flyer campaigns, and in-house repacking services to maximize your shelf presence.</p>
+<!-- closing CTA -->
+<section id="app" class="appcta reveal">
+  <div class="wrap">
+    <span class="eyebrow">Ready to partner?</span>
+    <h2>Become a World Sweets partner</h2>
+    <p>Whether you're a retailer, catering company, e-commerce platform, or looking for flexible distribution options, World Sweets is ready to work with you. Let's grow together.</p>
+    <div class="cta-row">
+      <a class="btn btn-gold" href="contact.html">Contact us today</a>
+      <a class="btn btn-outline" href="https://wa.me/96524920204" target="_blank" rel="noopener" style="color:#fff;border-color:rgba(255,255,255,.4)">Message on WhatsApp</a>
     </div>
-    <div class="faq-item reveal">
-      <h3>Can I order World Sweets products for catering and events?</h3>
-      <p>Absolutely. Our Catering channel offers premium sweets and custom-made products tailored specifically for catering companies, corporate events, and their audiences. Contact us to discuss your custom arrangements.</p>
-    </div>
-    <div class="faq-item reveal">
-      <h3>Which delivery platforms does World Sweets use?</h3>
-      <p>We deliver via the World Sweets app (our own platform) and partner with major delivery services including Talabat and Tawseel for convenient e-commerce ordering across Kuwait with fast, reliable delivery.</p>
-    </div>
-    <div class="faq-item reveal">
-      <h3>Where are the World Sweets showrooms located?</h3>
-      <p>We operate two flagship showrooms: the Shuwaikh showroom in Kuwait City (550 m²) and the Fahaheel showroom in Southern Kuwait (650 m²). Both are open daily from 9:00 AM to 10:00 PM. Visit us to browse our full range.</p>
+    <div class="flagship-stats">
+      <div><b>40+</b><span>brands in-app</span></div>
+      <div><b>2</b><span>showrooms linked</span></div>
+      <div><b>165K+</b><span>community</span></div>
     </div>
   </div>
 </section>
@@ -440,29 +505,69 @@
 </a>
 
 <script>
+  // brand marquee — real 14-brand list, duplicated for a seamless loop
+  const brands=[
+    {slug:'choki',ext:'webp',alt:'Choki Choki'},
+    {slug:'kopiko',ext:'webp',alt:'Kopiko'},
+    {slug:'yupi',ext:'png',alt:'Yupi'},
+    {slug:'red-band',ext:'webp',alt:'Red Band'},
+    {slug:'elvan',ext:'png',alt:'Elvan'},
+    {slug:'fortuin',ext:'png',alt:'Fortuin'},
+    {slug:'coffee-joy',ext:'png',alt:'Coffee Joy'},
+    {slug:'pepero',ext:'jpg',alt:'Pepero'},
+    {slug:'oly',ext:'png',alt:'Oly'},
+    {slug:'avt',ext:'png',alt:'AVT'},
+    {slug:'rollana',ext:'jpg',alt:'Rollana'},
+    {slug:'sadia',ext:'jpg',alt:'Sadia'},
+    {slug:'sourpunk',ext:'png',alt:'Sour Punk'},
+    {slug:'eg',ext:'jpg',alt:'E and G'}
+  ];
+  const marqueeEl=document.getElementById('brand-marquee');
+  marqueeEl.innerHTML=[...brands,...brands].map(b=>`<img src="images/brands/${b.slug}.${b.ext}" alt="${b.alt}" loading="lazy">`).join('');
+
+  // scroll reveal
   const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
   const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 
+  // hero parallax tilt (pointer) on the route diagram
   const scene=document.getElementById('scene');
   if(scene&&!reduce){
     window.addEventListener('pointermove',e=>{
       const x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);
-      scene.style.transform=`rotateY(${x*14}deg) rotateX(${-y*14}deg)`;
+      scene.style.transform=`rotateY(${x*10}deg) rotateX(${-y*10}deg)`;
       scene.style.transition='transform .2s ease-out';
     });
   }
 
+  // 3D tilt for the bento channel cards
   if(!reduce)document.querySelectorAll('.card').forEach(card=>{
     card.addEventListener('pointermove',e=>{
       const r=card.getBoundingClientRect();
       const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
-      card.style.transform=`rotateY(${x*10}deg) rotateX(${-y*10}deg) translateY(-4px)`;
+      card.style.transform=`rotateY(${x*8}deg) rotateX(${-y*8}deg) translateY(-4px)`;
     });
     card.addEventListener('pointerleave',()=>card.style.transform='');
   });
 
+  // FAQ accordion — single-open, real expand/collapse
+  document.querySelectorAll('.faq-q').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const item=btn.closest('.faq-item');
+      const isOpen=item.getAttribute('data-open')==='true';
+      document.querySelectorAll('.faq-item').forEach(i=>{
+        i.setAttribute('data-open','false');
+        i.querySelector('.faq-q').setAttribute('aria-expanded','false');
+      });
+      if(!isOpen){
+        item.setAttribute('data-open','true');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+
+  // sticky "Get the app" companion pill — show after hero, hide once closing CTA is in view
   const companion=document.getElementById('app-companion');
   const heroEl=document.getElementById('hero');
   const appctaEl=document.getElementById('app');
