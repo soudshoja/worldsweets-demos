@@ -158,11 +158,9 @@
   .spotlight{position:relative;overflow:hidden}
   .spotlight-inner{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:center}
   .spotlight.flip .spotlight-inner{grid-template-columns:.8fr 1.2fr}
-  .spotlight.flip .sr-info{order:2}
-  .spotlight.flip .sr-video{order:1}
   @media(max-width:900px){
     .spotlight-inner,.spotlight.flip .spotlight-inner{grid-template-columns:1fr}
-    .spotlight.flip .sr-info,.spotlight.flip .sr-video{order:0}
+    .spotlight.flip .sr-video{order:-1}
   }
 
   .spotlight.light{background:linear-gradient(180deg,var(--cream-2),var(--cream) 65%)}
