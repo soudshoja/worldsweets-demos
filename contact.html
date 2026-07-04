@@ -25,7 +25,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site.css">
 <script type="application/ld+json">
 [
   {
@@ -59,272 +58,217 @@
 ]
 </script>
 <style>
-/* Contact form styles */
-.contact-form-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group label {
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: var(--navy-2);
-  font-size: 0.95rem;
-}
-
-.form-group input,
-.form-group textarea {
-  padding: 14px 16px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--burgundy);
-  box-shadow: 0 0 0 3px rgba(139, 26, 43, 0.1);
-}
-
-.form-group textarea {
-  resize: vertical;
-  min-height: 140px;
-}
-
-.form-submit {
-  display: flex;
-  gap: 12px;
-}
-
-.form-submit .btn {
-  flex: 1;
-  text-align: center;
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Locations grid — each branch is its own box with its own map */
-.locations-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 32px;
-}
-@media (max-width: 980px) { .locations-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 680px) { .locations-grid { grid-template-columns: 1fr; } }
-
-.location-card {
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.location-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 40px -24px rgba(22,33,62,0.45);
-}
-
-.location-card .lc-map { aspect-ratio: 16 / 10; background: var(--cream); }
-.location-card .lc-map iframe { width: 100%; height: 100%; border: 0; display: block; }
-
-.location-card .lc-body { padding: 24px; display: flex; flex-direction: column; flex: 1; }
-
-.location-card h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
-  color: var(--navy-2);
-  margin-bottom: 6px;
-}
-
-.location-card .tag {
-  align-self: flex-start;
-  background: var(--gold);
-  color: var(--navy-2);
-  padding: 4px 12px;
-  border-radius: 8px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-
-.location-card .lc-addr { color: var(--muted); font-size: 0.95rem; margin-bottom: 14px; }
-
-.location-card .lc-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 18px;
-  font-size: 0.9rem;
-  color: var(--ink);
-}
-
-.location-card .lc-meta strong { font-weight: 700; color: var(--navy-2); margin-inline-end: 6px; }
-
-.location-card a.btn { margin-top: auto; width: 100%; justify-content: center; }
-
-/* 2-column contact layout */
-.contact-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  margin-top: 32px;
-  align-items: start;
-}
-
-@media (max-width: 768px) {
-  .contact-layout {
-    grid-template-columns: 1fr;
-    gap: 32px;
+  :root{
+    --cream:#FFF8F0; --cream-2:#FDEFE2;
+    --burgundy:#8B1A2B; --burgundy-d:#6E1322;
+    --gold:#D4A853; --pink:#E8567F; --coral:#FF6B35;
+    --ink:#1A1A2E; --muted:#5b5560;
+    --shadow:30 26 22;
   }
-}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',sans-serif;background:var(--cream);color:var(--ink);
+    overflow-x:hidden;line-height:1.6;
+    background-image:
+      radial-gradient(circle at 12% 8%, rgba(232,86,127,.10), transparent 38%),
+      radial-gradient(circle at 88% 22%, rgba(212,168,83,.14), transparent 40%);
+  }
+  h1,h2,h3{font-family:'Playfair Display',serif;letter-spacing:-.01em}
+  .wrap{max-width:1180px;margin-inline:auto;padding-inline:24px}
+  a{color:inherit;text-decoration:none}
 
-/* Responsive contact info */
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
+  /* NAV */
+  nav{position:fixed;inset-block-start:0;inset-inline:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 32px;backdrop-filter:blur(12px);
+    background:rgba(255,248,240,.7);border-bottom:1px solid rgba(139,26,43,.10);}
+  .brand{display:flex;align-items:center;gap:12px;font-family:'Playfair Display';font-weight:800;color:var(--burgundy)}
+  .brand img{width:42px;height:42px;border-radius:50%;box-shadow:0 6px 18px rgba(139,26,43,.28)}
+  .navlinks{display:flex;gap:30px;font-size:14px;font-weight:500;color:var(--muted)}
+  .navlinks a:hover,.navlinks a[aria-current]{color:var(--burgundy)}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;
+    padding:11px 22px;border-radius:999px;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s;}
+  .btn-primary{background:var(--burgundy);color:#fff;box-shadow:0 10px 24px rgba(139,26,43,.35)}
+  .btn-primary:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 16px 32px rgba(139,26,43,.45)}
+  .btn-outline{border:1.5px solid rgba(139,26,43,.25);color:var(--burgundy)}
+  .btn-outline:hover{background:rgba(139,26,43,.06);transform:translateY(-2px)}
+  .btn-gold{background:var(--gold);color:var(--ink);box-shadow:0 10px 24px rgba(212,168,83,.35)}
+  @media(max-width:760px){.navlinks{display:none}}
 
-/* Maps section */
-.maps-wrapper {
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-  margin-top: 32px;
-}
+  /* HERO */
+  .hero{position:relative;min-height:76dvh;display:grid;place-items:center;
+    perspective:1400px;padding:150px 0 50px;}
+  .stage{position:relative;transform-style:preserve-3d;width:100%;display:grid;
+    grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+  @media(max-width:880px){.stage{grid-template-columns:1fr;text-align:center}}
+  .eyebrow,.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--burgundy);
+    background:rgba(139,26,43,.08);padding:7px 14px;border-radius:999px;margin-bottom:22px}
+  .hero h1{font-size:clamp(2.4rem,5.4vw,4.2rem);line-height:1.06;color:var(--ink)}
+  .hero p,.lead{margin:22px 0 0;color:var(--muted);font-size:1.12rem;max-width:48ch}
+  @media(max-width:880px){.hero p,.lead{margin-inline:auto}}
 
-.maps-wrapper iframe {
-  width: 100%;
-  height: 400px;
-  border: none;
-}
+  .scene{position:relative;height:360px;transform-style:preserve-3d}
+  .float{position:absolute;border-radius:50%;display:grid;place-items:center;
+    box-shadow:0 30px 60px -18px rgba(var(--shadow),.45);will-change:transform}
+  .badge-main{inset-block-start:50%;inset-inline-start:50%;width:230px;height:230px;
+    margin:-115px 0 0 -115px;background:#fff;padding:14px;
+    transform:translateZ(60px);animation:bob 7s ease-in-out infinite}
+  .badge-main img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+  .chip{width:88px;height:88px;font-size:12.5px;font-weight:700;color:#fff;text-align:center;line-height:1.15}
+  .c1{background:linear-gradient(140deg,var(--coral),#ff9466);inset-block-start:4%;inset-inline-end:8%;transform:translateZ(120px);animation:bob 5s ease-in-out infinite}
+  .c2{background:linear-gradient(140deg,var(--pink),#f59ab6);inset-block-end:8%;inset-inline-start:2%;transform:translateZ(95px);animation:bob 6.4s ease-in-out infinite .6s}
+  @keyframes bob{0%,100%{translate:0 0}50%{translate:0 -16px}}
 
-/* Social links in contact */
-.contact-social {
-  display: flex;
-  gap: 16px;
-  margin-top: 24px;
-}
+  section{padding:96px 0}
+  .sec-head{max-width:640px;margin-bottom:40px}
+  .sec-head p{color:var(--muted);margin-top:14px;font-size:1.05rem}
+  .sec-head h2{font-size:clamp(2rem,4vw,3rem);color:var(--ink)}
 
-.contact-social a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--cream-2);
-  border: 2px solid var(--line);
-  transition: all 0.2s;
-}
+  /* APP CTA */
+  .appcta{background:linear-gradient(135deg,var(--burgundy),var(--burgundy-d));color:#fff;border-radius:36px;
+    margin:0 24px 90px;max-width:1180px;margin-inline:auto;padding:60px;position:relative;overflow:hidden;perspective:1000px}
+  .appcta::after{content:"";position:absolute;inset-block-start:-40%;inset-inline-end:-10%;width:420px;height:420px;
+    background:radial-gradient(circle,rgba(212,168,83,.35),transparent 70%)}
+  .appcta .eyebrow,.appcta .kicker{background:rgba(255,255,255,.15);color:#fff}
+  .appcta .wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:30px;align-items:center;position:relative;z-index:1}
+  @media(max-width:760px){.appcta .wrap{grid-template-columns:1fr;text-align:center}.appcta{padding:40px 26px}}
+  .appcta h2{font-size:clamp(1.8rem,4vw,2.8rem);color:#fff}
+  .appcta p{color:rgba(255,255,255,.85);margin:16px 0 26px}
+  .store-row{display:flex;gap:14px;flex-wrap:wrap}
+  @media(max-width:760px){.store-row{justify-content:center}}
+  .store-badge{display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:9px 16px;transition:.25s}
+  .store-badge:hover{background:#fff;transform:translateY(-3px)}
+  .store-badge img{display:block;height:30px;width:auto}
+  .flagship-stats{display:flex;gap:30px;margin-top:28px;flex-wrap:wrap}
+  @media(max-width:760px){.flagship-stats{justify-content:center}}
+  .flagship-stats div{display:flex;flex-direction:column}
+  .flagship-stats b{font-family:'Playfair Display';font-size:1.5rem}
+  .flagship-stats span{font-size:.8rem;color:rgba(255,255,255,.75)}
+  .seal-lg{justify-self:center;width:190px;height:190px;border-radius:50%;background:#fff;padding:20px;
+    box-shadow:0 40px 70px -20px rgba(0,0,0,.5)}
+  .seal-lg img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+  @media(max-width:760px){.seal-lg{display:none}}
 
-.contact-social a:hover {
-  background: var(--burgundy);
-  border-color: var(--burgundy);
-}
+  /* Contact layout: info + form */
+  .contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+  @media(max-width:880px){.contact-layout{grid-template-columns:1fr}}
+  .contact-info{display:flex;flex-direction:column;gap:20px}
+  .ci{display:flex;gap:16px;align-items:flex-start;background:#fff;padding:18px 20px;border-radius:16px;
+    box-shadow:0 16px 34px -26px rgba(var(--shadow),.5)}
+  .ci-ix{width:42px;height:42px;border-radius:12px;background:var(--cream-2);display:grid;place-items:center;flex:none}
+  .ci-ix svg{width:20px;height:20px;stroke:var(--burgundy);stroke-width:2;fill:none}
+  .ci-l{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:2px}
+  .ci-v{font-weight:600}
+  .ci-v a:hover{color:var(--burgundy)}
+  .contact-social{display:flex;gap:14px;margin-top:8px}
+  .contact-social a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;
+    border-radius:50%;background:#fff;box-shadow:0 12px 26px -20px rgba(var(--shadow),.5);transition:.2s}
+  .contact-social a:hover{background:var(--burgundy);transform:translateY(-3px)}
+  .contact-social img{width:20px;height:20px}
+  .contact-social a:hover img{filter:brightness(0) invert(1)}
 
-.contact-social img {
-  width: 20px;
-  height: 20px;
-  display: block;
-}
+  .contact-form-wrapper{background:#fff;border-radius:24px;padding:36px 34px;box-shadow:0 24px 50px -30px rgba(var(--shadow),.55)}
+  .contact-form-wrapper h2{font-size:1.7rem;margin-bottom:22px}
+  .form-group{display:flex;flex-direction:column;margin-bottom:18px}
+  .form-group label{font-weight:600;margin-bottom:8px;font-size:.9rem}
+  .form-group input,.form-group textarea{padding:13px 16px;border:1px solid rgba(139,26,43,.15);border-radius:10px;
+    font-family:'Inter',sans-serif;font-size:1rem;transition:border-color .2s,box-shadow .2s;background:var(--cream)}
+  .form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--burgundy);
+    box-shadow:0 0 0 3px rgba(139,26,43,.1)}
+  .form-group textarea{resize:vertical;min-height:130px}
+  .form-submit .btn{width:100%;justify-content:center;min-height:46px}
 
-.contact-social a:hover img {
-  filter: brightness(0) invert(1);
-}
+  /* Locations grid */
+  .locations-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media(max-width:980px){.locations-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:680px){.locations-grid{grid-template-columns:1fr}}
+  .location-card{background:#fff;border-radius:24px;overflow:hidden;display:flex;flex-direction:column;
+    box-shadow:0 24px 50px -32px rgba(var(--shadow),.5);transition:transform .25s,box-shadow .25s}
+  .location-card:hover{transform:translateY(-6px);box-shadow:0 34px 60px -28px rgba(var(--shadow),.6)}
+  .lc-map{aspect-ratio:16/10;background:var(--cream-2)}
+  .lc-map iframe{width:100%;height:100%;border:0;display:block}
+  .lc-body{padding:24px;display:flex;flex-direction:column;flex:1}
+  .lc-body h3{font-size:1.25rem;margin-bottom:6px}
+  .tag{align-self:flex-start;background:var(--gold);color:var(--ink);padding:4px 12px;border-radius:8px;
+    font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+  .lc-addr{color:var(--muted);font-size:.94rem;margin-bottom:14px}
+  .lc-meta{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;font-size:.88rem}
+  .lc-meta strong{margin-inline-end:6px}
+  .location-card .btn{margin-top:auto;width:100%;justify-content:center}
+
+  /* companion pill */
+  .companion{position:fixed;inset-block-end:26px;inset-inline-end:26px;z-index:60;display:flex;align-items:center;gap:12px;
+    background:#fff;padding:10px 20px 10px 10px;border-radius:999px;box-shadow:0 20px 40px -18px rgba(var(--shadow),.5);
+    opacity:0;visibility:hidden;transform:translateY(16px);transition:opacity .35s ease,transform .35s ease,visibility .35s;}
+  .companion.show{opacity:1;visibility:visible;transform:none}
+  .companion:hover{transform:translateY(-3px)}
+  .companion img{width:38px;height:38px;border-radius:50%;box-shadow:0 6px 14px rgba(139,26,43,.28)}
+  .companion .txt{display:flex;flex-direction:column;line-height:1.2}
+  .companion .txt b{font-size:.85rem;color:var(--ink)}
+  .companion .txt span{font-size:.72rem;color:var(--muted)}
+  @media(max-width:520px){.companion .txt span{display:none}}
+
+  footer{padding:56px 24px 30px;color:var(--muted);font-size:14px;border-top:1px solid rgba(139,26,43,.1)}
+  .footer-grid{display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:flex-start;padding-bottom:28px}
+  .f-brand .brand{margin-bottom:12px}
+  .f-brand p{font-size:.85rem;max-width:32ch}
+  .f-contact{display:flex;flex-direction:column;gap:8px;font-size:.85rem}
+  .f-contact a:hover{color:var(--burgundy)}
+  .f-social{display:flex;gap:16px;align-items:center}
+  .f-social img{opacity:.65;transition:.25s}
+  .f-social a:hover img{opacity:1;transform:translateY(-2px)}
+  .f-bottom{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;
+    border-top:1px solid rgba(139,26,43,.08);padding-top:20px;font-size:.8rem}
+  .powered{display:inline-flex;align-items:center;gap:6px;color:var(--muted)}
+  .powered img{width:16px;height:16px;border-radius:4px}
+  .powered strong{color:var(--burgundy)}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
-
-<!-- top bar -->
-<div class="topbar">
-  <div class="wrap">
-    <span>Kuwait · Established 1986</span>
-    <div class="tb-contact" style="display:flex;gap:18px;align-items:center">
-      <a href="tel:+96524920204">+965 2492 0204</a>
-      <span>·</span>
-      <a href="mailto:info@worldsweets.com">info@worldsweets.com</a>
-    </div>
+<nav>
+  <a class="brand" href="index.html"><img src="images/icons/logo.png" alt="World Sweets logo">World Sweets</a>
+  <div class="navlinks">
+    <a href="about.html">About</a>
+    <a href="distribution.html">Distribution</a>
+    <a href="showrooms.html">Showrooms</a>
+    <a href="app.html">App</a>
+    <a href="contact.html" aria-current="page">Contact</a>
   </div>
-</div>
-
-<!-- nav -->
-<nav class="site">
-  <div class="wrap">
-    <a class="brand" href="index.html" aria-label="World Sweets home">
-      <img src="images/icons/logo.png" alt="World Sweets logo" width="46" height="46">
-      <span><b>World Sweets</b><small>General Trading · Kuwait</small></span>
-    </a>
-    <div class="navlinks">
-      <a href="about.html">About</a>
-      <a href="distribution.html">Distribution</a>
-      <a href="showrooms.html">Showrooms</a>
-      <a href="app.html">App</a>
-      <a href="contact.html" aria-current="page">Contact</a>
-    </div>
-    <div class="nav-cta">
-      <a class="btn btn-primary" href="app.html">Download App</a>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
+  <a class="btn btn-primary" href="app.html">Download App</a>
 </nav>
 
-<!-- mobile menu -->
-<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
-  <div class="mobile-menu-head">
-    <span class="brand"><b>World Sweets</b><small>Kuwait</small></span>
-    <button class="mm-close" id="mm-close" aria-label="Close menu">&times;</button>
-  </div>
-  <a class="mm-link" href="about.html">About</a>
-  <a class="mm-link" href="distribution.html">Distribution</a>
-  <a class="mm-link" href="showrooms.html">Showrooms</a>
-  <a class="mm-link" href="app.html">App</a>
-  <a class="mm-link" href="contact.html" aria-current="page">Contact</a>
-  <a class="btn btn-gold" href="app.html">Download the app</a>
-</div>
-
-<main>
-
-<!-- hero -->
-<header class="hero page-hero" id="hero">
-  <div class="wrap">
+<header class="hero" id="hero">
+  <div class="wrap stage" id="stage">
     <div class="reveal">
       <span class="kicker">Get in touch</span>
       <h1>Let's talk sweets.</h1>
       <p class="lead">Whether you're a retailer, caterer, or simply a fan of fine confectionery, we're here to help. Reach out via phone, email, WhatsApp, or visit one of our showrooms across Kuwait.</p>
     </div>
+    <div class="scene" id="scene">
+      <div class="float chip c1">9AM–10PM<br><small>daily</small></div>
+      <div class="float chip c2">2<br><small>showrooms</small></div>
+      <div class="float badge-main"><img src="images/icons/logo.png" alt="World Sweets badge"></div>
+    </div>
   </div>
 </header>
 
 <!-- app promo -->
-<section class="appcta flagship">
+<section id="app" class="appcta reveal">
   <div class="wrap">
-    <div class="reveal">
+    <div>
       <span class="kicker">The World Sweets app</span>
       <h2>Shop anytime, anywhere.</h2>
       <p>Can't visit a showroom? Browse our full catalogue from your phone, track your order, and enjoy fast delivery across Kuwait. Download the World Sweets app today.</p>
       <div class="store-row">
-        <a class="store-badge app-store-link" href="app.html" aria-label="Download on the App Store"><img src="images/badges/app-store.svg" alt="Download on the App Store" width="135" height="48"></a>
-        <a class="store-badge app-store-link" href="app.html" aria-label="Get it on Google Play"><img src="images/badges/google-play.png" alt="Get it on Google Play" width="124" height="48"></a>
+        <a class="store-badge" href="app.html" aria-label="Download on the App Store"><img src="images/badges/app-store.svg" alt="Download on the App Store"></a>
+        <a class="store-badge" href="app.html" aria-label="Get it on Google Play"><img src="images/badges/google-play.png" alt="Get it on Google Play"></a>
       </div>
       <div class="flagship-stats">
         <div><b>40+</b><span>brands in-app</span></div>
@@ -332,15 +276,14 @@
         <div><b>165K+</b><span>community</span></div>
       </div>
     </div>
-    <div class="seal-lg reveal"><img src="images/icons/logo.png" alt="World Sweets app icon"></div>
+    <div class="seal-lg"><img src="images/icons/logo.png" alt="World Sweets app icon"></div>
   </div>
 </section>
 
-<!-- contact section -->
+<!-- contact info + form -->
 <section class="wrap">
   <div class="contact-layout">
-    <!-- Left: Contact Info -->
-    <div>
+    <div class="reveal">
       <div class="contact-info">
         <div class="ci">
           <div class="ci-ix"><svg viewBox="0 0 24 24"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
@@ -363,71 +306,54 @@
           <div><div class="ci-l">Working hours</div><div class="ci-v">Daily · 9:00 AM – 10:00 PM</div></div>
         </div>
       </div>
-
-      <!-- Social Links -->
-      <div style="margin-top: 32px">
-        <h3 style="font-size: 1.1rem; color: var(--navy-2); margin-bottom: 16px;">Follow us</h3>
+      <div style="margin-top:28px">
+        <h3 style="font-size:1.1rem;margin-bottom:14px">Follow us</h3>
         <div class="contact-social">
-          <a href="https://www.instagram.com/worldsweetskuwait" target="_blank" rel="noopener" aria-label="Instagram">
-            <img src="images/social/instagram.svg" alt="Instagram">
-          </a>
-          <a href="https://www.tiktok.com/@worldsweets" target="_blank" rel="noopener" aria-label="TikTok">
-            <img src="images/social/tiktok.svg" alt="TikTok">
-          </a>
-          <a href="https://youtube.com/@worldsweets1986" target="_blank" rel="noopener" aria-label="YouTube">
-            <img src="images/social/youtube.svg" alt="YouTube">
-          </a>
+          <a href="https://www.instagram.com/worldsweetskuwait" target="_blank" rel="noopener" aria-label="Instagram"><img src="images/social/instagram.svg" alt="Instagram"></a>
+          <a href="https://www.tiktok.com/@worldsweets" target="_blank" rel="noopener" aria-label="TikTok"><img src="images/social/tiktok.svg" alt="TikTok"></a>
+          <a href="https://youtube.com/@worldsweets1986" target="_blank" rel="noopener" aria-label="YouTube"><img src="images/social/youtube.svg" alt="YouTube"></a>
         </div>
       </div>
     </div>
 
-    <!-- Right: Contact Form -->
-    <div>
-      <div class="contact-form-wrapper">
-        <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--navy-2); margin-bottom: 24px;">Send us a message</h2>
-        <form action="https://api.web3forms.com/submit" method="POST">
-          <!-- Web3Forms access key: TODO replace with the real Web3Forms key -->
-          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+    <div class="contact-form-wrapper reveal">
+      <h2>Send us a message</h2>
+      <form action="https://api.web3forms.com/submit" method="POST">
+        <!-- Web3Forms access key: TODO replace with the real Web3Forms key -->
+        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
 
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
-          </div>
-
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-          </div>
-
-          <div class="form-group">
-            <label for="phone">Phone</label>
-            <input type="tel" id="phone" name="phone">
-          </div>
-
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" required></textarea>
-          </div>
-
-          <div class="form-submit">
-            <button type="submit" class="btn btn-primary">Send message</button>
-          </div>
-        </form>
-      </div>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone">
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <div class="form-submit">
+          <button type="submit" class="btn btn-primary">Send message</button>
+        </div>
+      </form>
     </div>
   </div>
 </section>
 
-<!-- locations section -->
+<!-- locations -->
 <section class="wrap">
   <div class="sec-head reveal">
     <span class="kicker">Visit us</span>
     <h2>Three ways to reach World Sweets.</h2>
     <p>Our head office and two flagship showrooms — each with its own location on the map.</p>
   </div>
-
   <div class="locations-grid">
-    <!-- Head Office -->
     <div class="location-card reveal">
       <div class="lc-map"><iframe src="https://www.google.com/maps?q=Shuwaikh+Industrial+Kuwait&output=embed" title="World Sweets head office — Shuwaikh Industrial" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
       <div class="lc-body">
@@ -441,8 +367,6 @@
         <a class="btn btn-outline" href="https://maps.app.goo.gl/JJyNGuVDmwmfUHDL9" target="_blank" rel="noopener">Open in Maps</a>
       </div>
     </div>
-
-    <!-- Shuwaikh Showroom -->
     <div class="location-card reveal">
       <div class="lc-map"><iframe src="https://www.google.com/maps?q=World+Sweets+Shuwaikh+Kuwait&output=embed" title="World Sweets Shuwaikh showroom" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
       <div class="lc-body">
@@ -456,8 +380,6 @@
         <a class="btn btn-outline" href="https://maps.app.goo.gl/JJyNGuVDmwmfUHDL9" target="_blank" rel="noopener">Open in Maps</a>
       </div>
     </div>
-
-    <!-- Fahaheel Showroom -->
     <div class="location-card reveal">
       <div class="lc-map"><iframe src="https://www.google.com/maps?q=World+Sweets+Fahaheel+Kuwait&output=embed" title="World Sweets Fahaheel showroom" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
       <div class="lc-body">
@@ -474,107 +396,72 @@
   </div>
 </section>
 
-</main>
-
-<!-- footer -->
-<footer class="site">
-  <div class="wrap">
-    <div class="ftop">
-      <div class="fcol">
-        <a class="brand" href="index.html"><img src="images/icons/logo.png" alt="World Sweets" width="46" height="46"><span><b>World Sweets</b><small>Kuwait</small></span></a>
-        <p class="fblurb">Kuwait's leading confectionery distributor since 1986. Premium global brands, two flagship showrooms, and delivery across Kuwait.</p>
-        <div class="store-row">
-          <a class="store-badge" href="app.html" aria-label="Download on the App Store"><img src="images/badges/app-store.svg" alt="Download on the App Store" width="124" height="42"></a>
-          <a class="store-badge" href="app.html" aria-label="Get it on Google Play"><img src="images/badges/google-play.png" alt="Get it on Google Play" width="114" height="42"></a>
-        </div>
-        <div class="fsocial">
-          <a href="https://www.instagram.com/worldsweetskuwait" target="_blank" rel="noopener" aria-label="Instagram"><img src="images/social/instagram.svg" alt="" width="20" height="20"></a>
-          <a href="https://www.tiktok.com/@worldsweets" target="_blank" rel="noopener" aria-label="TikTok"><img src="images/social/tiktok.svg" alt="" width="20" height="20"></a>
-          <a href="https://youtube.com/@worldsweets1986" target="_blank" rel="noopener" aria-label="YouTube"><img src="images/social/youtube.svg" alt="" width="20" height="20"></a>
-          <a class="wa" href="https://wa.me/96524920204" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="images/social/whatsapp.svg" alt="" width="20" height="20"></a>
-        </div>
-      </div>
-      <div class="fcol">
-        <h4>Company</h4>
-        <a href="about.html">About us</a>
-        <a href="distribution.html">Distribution</a>
-        <a href="showrooms.html">Showrooms</a>
-        <a href="app.html">Mobile app</a>
-        <a href="contact.html">Contact</a>
-      </div>
-      <div class="fcol">
-        <h4>Our showrooms</h4>
-        <p><strong style="color:#fff">Shuwaikh</strong><br>550 m² · Kuwait City<br><span style="font-size:12.5px">Tel: to be confirmed</span></p>
-        <a href="https://maps.app.goo.gl/JJyNGuVDmwmfUHDL9" target="_blank" rel="noopener">Open in Maps →</a>
-        <p style="margin-top:14px"><strong style="color:#fff">Fahaheel</strong><br>650 m² · Southern Kuwait<br><span style="font-size:12.5px">Tel: to be confirmed</span></p>
-        <a href="https://maps.app.goo.gl/7aEmgM1BftRYwrcG6" target="_blank" rel="noopener">Open in Maps →</a>
-      </div>
-      <div class="fcol">
-        <h4>Head office</h4>
-        <p>69 Street, Shuwaikh Industrial, Kuwait</p>
-        <a href="tel:+96524920204">+965 2492 0204</a>
-        <a href="https://wa.me/96524920204" target="_blank" rel="noopener">WhatsApp us</a>
-        <a href="mailto:info@worldsweets.com">info@worldsweets.com</a>
-        <p style="margin-top:10px">Daily · 9:00 AM – 10:00 PM</p>
-      </div>
+<footer id="footer">
+  <div class="wrap footer-grid">
+    <div class="f-brand">
+      <a class="brand" href="index.html"><img src="images/icons/logo.png" alt="World Sweets logo">World Sweets</a>
+      <p>69 Street, Shuwaikh Industrial, Kuwait. Kuwait's leading confectionery distributor since 1986.</p>
     </div>
-    <div class="fbot">
-      <span>© 1986–2026 World Sweets General Trading Co. — Kuwait. All rights reserved.</span>
-      <a class="powered" href="https://resayil.io" target="_blank" rel="noopener">Powered by <img src="images/icons/resayil-icon.png" alt=""> <strong>Resayil.io</strong></a>
-      <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span>
+    <div class="f-contact">
+      <a href="tel:+96524920204">+965 2492 0204</a>
+      <a href="mailto:info@worldsweets.com">info@worldsweets.com</a>
+      <a href="https://wa.me/96524920204" target="_blank" rel="noopener">WhatsApp us</a>
     </div>
+    <div class="f-social">
+      <a href="https://www.instagram.com/worldsweetskuwait" target="_blank" rel="noopener" aria-label="Instagram"><img src="images/social/instagram.svg" alt="" width="20" height="20"></a>
+      <a href="https://www.tiktok.com/@worldsweets" target="_blank" rel="noopener" aria-label="TikTok"><img src="images/social/tiktok.svg" alt="" width="20" height="20"></a>
+      <a href="https://youtube.com/@worldsweets1986" target="_blank" rel="noopener" aria-label="YouTube"><img src="images/social/youtube.svg" alt="" width="20" height="20"></a>
+      <a href="https://wa.me/96524920204" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="images/social/whatsapp.svg" alt="" width="20" height="20"></a>
+    </div>
+  </div>
+  <div class="wrap f-bottom">
+    <span>© 1986–2026 World Sweets General Trading Co. — Kuwait. All rights reserved. · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span>
+    <a class="powered" href="https://resayil.io" target="_blank" rel="noopener">Powered by <img src="images/icons/resayil-icon.png" alt=""> <strong>Resayil.io</strong></a>
   </div>
 </footer>
 
-<!-- floating WhatsApp -->
-<a class="wa-float" id="whatsapp-float" href="https://wa.me/96524920204?text=Hi%20World%20Sweets%2C%20I%27d%20like%20to%20know%20more." target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
-  <img src="images/social/whatsapp-white.svg" alt="" width="32" height="32">
-</a>
-
-<!-- sticky app companion pill -->
 <a class="companion" id="app-companion" href="app.html" aria-label="Get the World Sweets app">
   <img src="images/icons/logo.png" alt="">
   <span class="txt"><b>Get the app</b><span>Browse in-app</span></span>
-  <span class="go">Open</span>
 </a>
 
-<!-- sticky mobile app bar -->
-<div class="app-bar" id="app-bar">
-  <img src="images/icons/logo.png" alt="World Sweets app">
-  <div class="ab-txt"><b>World Sweets app</b><span>Shop &amp; get delivery across Kuwait</span></div>
-  <a class="btn btn-gold" href="app.html">Get it</a>
-</div>
+<script>
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-<!-- escalating app popup -->
-<div class="popup hidden" id="app-popup" role="dialog" aria-modal="true" aria-labelledby="app-popup-title">
-  <div class="popup-backdrop" data-dismiss="app-popup"></div>
-  <div class="popup-card app-popup-content">
-    <button class="popup-close" id="app-popup-close" aria-label="Close">&times;</button>
-    <div class="pc-ix"><img src="images/icons/logo.png" alt="World Sweets app"></div>
-    <h3 id="app-popup-title">Shop easier on our app!</h3>
-    <p id="app-popup-desc">Browse our full catalogue, get exclusive offers, and enjoy fast delivery across Kuwait.</p>
-    <div class="store-row">
-      <a class="store-badge app-store-link" href="app.html" aria-label="Download on the App Store"><img src="images/badges/app-store.svg" alt="Download on the App Store" width="135" height="46"></a>
-      <a class="store-badge app-store-link" href="app.html" aria-label="Get it on Google Play"><img src="images/badges/google-play.png" alt="Get it on Google Play" width="124" height="46"></a>
-    </div>
-  </div>
-</div>
+  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 
-<!-- follow popup -->
-<div class="popup hidden" id="follow-popup" role="dialog" aria-modal="true" aria-label="Follow us" style="align-items:center">
-  <div class="popup-backdrop" data-dismiss="follow-popup"></div>
-  <div class="follow-card">
-    <button class="popup-close" id="follow-popup-close" aria-label="Close">&times;</button>
-    <h3>Join 165,000+ sweet lovers</h3>
-    <p>Follow World Sweets for new arrivals and promotions.</p>
-    <div class="follow-row">
-      <a href="https://www.instagram.com/worldsweetskuwait" target="_blank" rel="noopener" aria-label="Instagram"><img src="images/social/instagram.svg" alt="" width="24" height="24"></a>
-      <a href="https://www.tiktok.com/@worldsweets" target="_blank" rel="noopener" aria-label="TikTok"><img src="images/social/tiktok.svg" alt="" width="24" height="24"></a>
-      <a href="https://youtube.com/@worldsweets1986" target="_blank" rel="noopener" aria-label="YouTube"><img src="images/social/youtube.svg" alt="" width="24" height="24"></a>
-    </div>
-  </div>
-</div>
+  const scene=document.getElementById('scene');
+  if(scene&&!reduce){
+    window.addEventListener('pointermove',e=>{
+      const x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);
+      scene.style.transform=`rotateY(${x*14}deg) rotateX(${-y*14}deg)`;
+      scene.style.transition='transform .2s ease-out';
+    });
+  }
 
-<script src="js/site.js" defer></script>
+  if(!reduce)document.querySelectorAll('.location-card').forEach(card=>{
+    card.addEventListener('pointermove',e=>{
+      const r=card.getBoundingClientRect();
+      const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      card.style.transform=`rotateY(${x*6}deg) rotateX(${-y*6}deg) translateY(-4px)`;
+    });
+    card.addEventListener('pointerleave',()=>card.style.transform='');
+  });
+
+  const companion=document.getElementById('app-companion');
+  const heroEl=document.getElementById('hero');
+  const appctaEl=document.getElementById('app');
+  function updateCompanion(){
+    const heroRect=heroEl.getBoundingClientRect();
+    const appctaRect=appctaEl.getBoundingClientRect();
+    const pastHero=heroRect.bottom<0;
+    const appctaInView=appctaRect.top<innerHeight&&appctaRect.bottom>0;
+    companion.classList.toggle('show',pastHero&&!appctaInView);
+  }
+  window.addEventListener('scroll',updateCompanion,{passive:true});
+  window.addEventListener('resize',updateCompanion);
+  updateCompanion();
+</script>
 </body>
 </html>
