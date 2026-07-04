@@ -337,5 +337,28 @@
       video.addEventListener('ended', function () { btn.hidden = false; });
     });
 
+    // =============================================
+    // 11. Sticky "Get the app" companion pill
+    //     Shows once the hero scrolls away; hides while the (now higher-up)
+    //     .appcta band is on screen. Null-safe on pages without either.
+    // =============================================
+    var companion = document.getElementById('app-companion');
+    var heroForPill = document.getElementById('hero');
+    var appcta = document.querySelector('.appcta');
+    if (companion && heroForPill && appcta) {
+      var pastHero = false, appctaVisible = false;
+      function updateCompanion() {
+        companion.classList.toggle('show', pastHero && !appctaVisible);
+      }
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { pastHero = !e.isIntersecting; });
+        updateCompanion();
+      }, { threshold: 0 }).observe(heroForPill);
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { appctaVisible = e.isIntersecting; });
+        updateCompanion();
+      }, { threshold: 0.25 }).observe(appcta);
+    }
+
   }); /* end DOMContentLoaded */
 })();
