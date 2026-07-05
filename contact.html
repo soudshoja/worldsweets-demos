@@ -61,7 +61,7 @@
   :root{
     --cream:#FFF8F0; --cream-2:#FDEFE2;
     --burgundy:#8B1A2B; --burgundy-d:#6E1322;
-    --gold:#D4A853; --pink:#E8567F; --coral:#FF6B35;
+    --gold:#D4A853; --gold-deep:#9C6B1F; --pink:#E8567F; --pink-deep:#C43A5F; --coral:#FF6B35;
     --ink:#1A1A2E; --muted:#5b5560;
     --shadow:30 26 22;
   }
@@ -131,27 +131,69 @@
   .contact-hub{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start}
   @media(max-width:880px){.contact-hub{grid-template-columns:1fr}}
 
-  .loc-tabs{display:inline-flex;background:#fff;border-radius:999px;padding:6px;gap:4px;
-    box-shadow:0 16px 34px -26px rgba(var(--shadow),.5);margin-bottom:20px;max-width:100%;overflow-x:auto}
-  .loc-tab{border:0;background:transparent;padding:10px 18px;border-radius:999px;font-weight:600;
-    font-size:.86rem;color:var(--muted);cursor:pointer;transition:.25s;white-space:nowrap;font-family:inherit}
-  .loc-tab.active{background:var(--burgundy);color:#fff;box-shadow:0 10px 20px rgba(139,26,43,.3)}
-  .loc-tab:hover:not(.active){color:var(--burgundy)}
+  .loc-tabs{position:relative;display:inline-flex;background:#fff;border-radius:999px;padding:6px;gap:2px;
+    box-shadow:0 16px 34px -26px rgba(var(--shadow),.5);margin-bottom:22px;max-width:100%;overflow-x:auto}
+  .loc-thumb{position:absolute;left:0;top:6px;bottom:6px;width:0;border-radius:999px;background:var(--burgundy);
+    box-shadow:0 12px 24px -8px rgba(139,26,43,.4);
+    transition:transform .45s cubic-bezier(.16,1,.3,1),width .45s cubic-bezier(.16,1,.3,1),background-color .3s ease;
+    z-index:0;pointer-events:none}
+  .loc-tab{position:relative;z-index:1;display:inline-flex;align-items:center;gap:9px;border:0;background:transparent;
+    padding:8px 20px 8px 10px;border-radius:999px;font-weight:600;font-size:.86rem;color:var(--muted);cursor:pointer;
+    transition:color .3s ease;white-space:nowrap;font-family:inherit}
+  .loc-tab-ico{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;flex:none;
+    transition:background-color .3s ease}
+  .loc-tab-ico svg{width:14px;height:14px;stroke-width:2;fill:none;transition:stroke .3s ease}
+  .loc-tab[data-accent="burgundy"] .loc-tab-ico{background:rgba(139,26,43,.1)}
+  .loc-tab[data-accent="burgundy"] .loc-tab-ico svg{stroke:var(--burgundy)}
+  .loc-tab[data-accent="gold"] .loc-tab-ico{background:rgba(212,168,83,.24)}
+  .loc-tab[data-accent="gold"] .loc-tab-ico svg{stroke:var(--gold-deep)}
+  .loc-tab[data-accent="pink"] .loc-tab-ico{background:rgba(232,86,127,.16)}
+  .loc-tab[data-accent="pink"] .loc-tab-ico svg{stroke:var(--pink-deep)}
+  .loc-tab.active{color:#fff}
+  .loc-tab.active .loc-tab-ico{background:rgba(255,255,255,.25)}
+  .loc-tab.active .loc-tab-ico svg{stroke:#fff}
+  .loc-tab:hover:not(.active){color:var(--ink)}
+  .loc-tab:focus-visible{outline:2px solid var(--burgundy);outline-offset:3px;border-radius:999px}
 
   .loc-panel{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 24px 50px -32px rgba(var(--shadow),.5)}
   .loc-panel[hidden]{display:none}
-  .loc-panel:not([hidden]){animation:fadeIn .4s ease}
-  @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-  .lc-map{aspect-ratio:16/9;background:var(--cream-2)}
+  .loc-panel:not([hidden]){animation:panelIn .5s cubic-bezier(.16,1,.3,1)}
+  @keyframes panelIn{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:none}}
+  .lc-map{position:relative;aspect-ratio:16/9;background:var(--cream-2)}
   .lc-map iframe{width:100%;height:100%;border:0;display:block}
-  .loc-body{padding:26px 28px 28px}
-  .tag{display:inline-block;background:var(--gold);color:var(--ink);padding:4px 12px;border-radius:8px;
-    font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
-  .loc-body h3{font-size:1.3rem;margin-bottom:6px}
-  .lc-addr{color:var(--muted);font-size:.95rem;margin-bottom:14px}
-  .lc-meta{display:flex;flex-wrap:wrap;gap:8px 24px;margin-bottom:20px;font-size:.9rem}
-  .lc-meta strong{margin-inline-end:6px}
-  .lc-meta a:hover{color:var(--burgundy)}
+  .lc-badge{position:absolute;inset-block-start:14px;inset-inline-start:14px;display:inline-flex;align-items:center;gap:7px;
+    background:rgba(255,248,240,.92);backdrop-filter:blur(6px);padding:7px 14px 7px 7px;border-radius:999px;
+    box-shadow:0 10px 26px -12px rgba(var(--shadow),.55);font-size:.78rem;font-weight:700;color:var(--ink)}
+  .lc-badge .dot{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;flex:none}
+  .lc-badge .dot svg{width:12px;height:12px;stroke:#fff;stroke-width:2.2;fill:none}
+  .lc-badge[data-accent="burgundy"] .dot{background:var(--burgundy)}
+  .lc-badge[data-accent="gold"] .dot{background:var(--gold-deep)}
+  .lc-badge[data-accent="pink"] .dot{background:var(--pink-deep)}
+
+  .loc-body{padding:24px 26px 26px}
+  .loc-head-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:16px}
+  .loc-body h3{font-size:1.28rem}
+  .loc-tagpill{display:inline-block;padding:4px 12px;border-radius:8px;font-size:.68rem;font-weight:700;
+    letter-spacing:.07em;text-transform:uppercase;white-space:nowrap;flex:none}
+  .loc-tagpill[data-accent="burgundy"]{background:rgba(139,26,43,.09);color:var(--burgundy)}
+  .loc-tagpill[data-accent="gold"]{background:rgba(212,168,83,.24);color:var(--gold-deep)}
+  .loc-tagpill[data-accent="pink"]{background:rgba(232,86,127,.14);color:var(--pink-deep)}
+
+  .loc-info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px 18px;margin-bottom:22px}
+  .loc-info-item{display:flex;align-items:flex-start;gap:11px}
+  .loc-info-ico{width:34px;height:34px;border-radius:10px;background:var(--cream-2);display:grid;place-items:center;flex:none}
+  .loc-info-ico svg{width:16px;height:16px;stroke:var(--burgundy);stroke-width:2;fill:none}
+  .loc-info-label{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:2px}
+  .loc-info-item p{font-size:.92rem;color:var(--ink);font-weight:500;line-height:1.4}
+  .loc-info-item p a:hover{color:var(--burgundy)}
+  .loc-info-item.is-muted p{color:var(--muted);font-style:italic;font-weight:400}
+
+  .loc-cta[data-accent="burgundy"]{border-color:rgba(139,26,43,.3);color:var(--burgundy)}
+  .loc-cta[data-accent="burgundy"]:hover{background:rgba(139,26,43,.06)}
+  .loc-cta[data-accent="gold"]{border-color:rgba(156,107,31,.4);color:var(--gold-deep)}
+  .loc-cta[data-accent="gold"]:hover{background:rgba(212,168,83,.14)}
+  .loc-cta[data-accent="pink"]{border-color:rgba(196,58,95,.35);color:var(--pink-deep)}
+  .loc-cta[data-accent="pink"]:hover{background:rgba(232,86,127,.1)}
 
   /* form card */
   .contact-form-wrapper{background:#fff;border-radius:24px;padding:32px 30px;
@@ -262,50 +304,102 @@
   <div class="contact-hub">
     <div class="hub-locations reveal">
       <div class="loc-tabs" role="tablist" aria-label="Choose a World Sweets location">
-        <button class="loc-tab active" role="tab" aria-selected="true" aria-controls="loc-head" data-target="loc-head" type="button">Head Office</button>
-        <button class="loc-tab" role="tab" aria-selected="false" aria-controls="loc-shu" data-target="loc-shu" type="button">Shuwaikh</button>
-        <button class="loc-tab" role="tab" aria-selected="false" aria-controls="loc-fah" data-target="loc-fah" type="button">Fahaheel</button>
+        <div class="loc-thumb" aria-hidden="true"></div>
+        <button class="loc-tab active" data-accent="burgundy" role="tab" aria-selected="true" aria-controls="loc-head" data-target="loc-head" type="button">
+          <span class="loc-tab-ico"><svg viewBox="0 0 24 24"><path d="M4 21V6l8-4 8 4v15"/><path d="M9 21v-5h6v5"/><path d="M9 10h.01M15 10h.01M9 14h.01M15 14h.01"/></svg></span>
+          <span class="loc-tab-label">Head Office</span>
+        </button>
+        <button class="loc-tab" data-accent="gold" role="tab" aria-selected="false" aria-controls="loc-shu" data-target="loc-shu" type="button">
+          <span class="loc-tab-ico"><svg viewBox="0 0 24 24"><path d="M3 9l1-5h16l1 5"/><path d="M4 9v10a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9"/><path d="M9 20v-6h6v6"/></svg></span>
+          <span class="loc-tab-label">Shuwaikh</span>
+        </button>
+        <button class="loc-tab" data-accent="pink" role="tab" aria-selected="false" aria-controls="loc-fah" data-target="loc-fah" type="button">
+          <span class="loc-tab-ico"><svg viewBox="0 0 24 24"><path d="M6 7h12l1 13H5z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg></span>
+          <span class="loc-tab-label">Fahaheel</span>
+        </button>
       </div>
 
       <div class="loc-panel" id="loc-head" role="tabpanel">
-        <div class="lc-map"><iframe src="https://www.google.com/maps?q=Shuwaikh+Industrial+Kuwait&output=embed" title="World Sweets head office — Shuwaikh Industrial" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+        <div class="lc-map">
+          <iframe src="https://www.google.com/maps?q=Shuwaikh+Industrial+Kuwait&output=embed" title="World Sweets head office — Shuwaikh Industrial" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <span class="lc-badge" data-accent="burgundy"><span class="dot"><svg viewBox="0 0 24 24"><path d="M4 21V6l8-4 8 4v15"/><path d="M9 21v-5h6v5"/></svg></span>Head Office</span>
+        </div>
         <div class="loc-body">
-          <span class="tag">Head Office</span>
-          <h3>Shuwaikh Industrial</h3>
-          <p class="lc-addr">69 Street, Shuwaikh Industrial, Kuwait</p>
-          <div class="lc-meta">
-            <span><strong>Phone</strong><a href="tel:+96524920204">+965 2492 0204</a></span>
-            <span><strong>Hours</strong>Daily · 9:00 AM – 10:00 PM</span>
+          <div class="loc-head-row">
+            <h3>Shuwaikh Industrial</h3>
+            <span class="loc-tagpill" data-accent="burgundy">Admin HQ</span>
           </div>
-          <a class="btn btn-outline" href="https://maps.app.goo.gl/JJyNGuVDmwmfUHDL9" target="_blank" rel="noopener">Open in Maps</a>
+          <div class="loc-info-grid">
+            <div class="loc-info-item">
+              <span class="loc-info-ico"><svg viewBox="0 0 24 24"><path d="M12 22s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+              <div><span class="loc-info-label">Address</span><p>69 Street, Shuwaikh Industrial, Kuwait</p></div>
+            </div>
+            <div class="loc-info-item">
+              <span class="loc-info-ico"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span>
+              <div><span class="loc-info-label">Phone</span><p><a href="tel:+96524920204">+965 2492 0204</a></p></div>
+            </div>
+            <div class="loc-info-item">
+              <span class="loc-info-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+              <div><span class="loc-info-label">Hours</span><p>Daily · 9:00 AM – 10:00 PM</p></div>
+            </div>
+          </div>
+          <a class="btn btn-outline loc-cta" data-accent="burgundy" href="https://maps.app.goo.gl/JJyNGuVDmwmfUHDL9" target="_blank" rel="noopener">Open in Maps</a>
         </div>
       </div>
 
       <div class="loc-panel" id="loc-shu" role="tabpanel" hidden>
-        <div class="lc-map"><iframe src="https://www.google.com/maps?q=World+Sweets+Shuwaikh+Kuwait&output=embed" title="World Sweets Shuwaikh showroom" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+        <div class="lc-map">
+          <iframe src="https://www.google.com/maps?q=World+Sweets+Shuwaikh+Kuwait&output=embed" title="World Sweets Shuwaikh showroom" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <span class="lc-badge" data-accent="gold"><span class="dot"><svg viewBox="0 0 24 24"><path d="M3 9l1-5h16l1 5"/><path d="M4 9v10a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9"/></svg></span>Showroom</span>
+        </div>
         <div class="loc-body">
-          <span class="tag">Showroom</span>
-          <h3>Shuwaikh Showroom</h3>
-          <p class="lc-addr">550 m² · Kuwait City</p>
-          <div class="lc-meta">
-            <span><strong>Tel</strong>To be confirmed</span>
-            <span><strong>Hours</strong>Daily · 9:00 AM – 10:00 PM</span>
+          <div class="loc-head-row">
+            <h3>Shuwaikh Showroom</h3>
+            <span class="loc-tagpill" data-accent="gold">Showroom</span>
           </div>
-          <a class="btn btn-outline" href="https://maps.app.goo.gl/JJyNGuVDmwmfUHDL9" target="_blank" rel="noopener">Open in Maps</a>
+          <div class="loc-info-grid">
+            <div class="loc-info-item">
+              <span class="loc-info-ico"><svg viewBox="0 0 24 24"><path d="M12 22s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+              <div><span class="loc-info-label">Location</span><p>550 m² · Kuwait City</p></div>
+            </div>
+            <div class="loc-info-item is-muted">
+              <span class="loc-info-ico"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span>
+              <div><span class="loc-info-label">Phone</span><p>To be confirmed</p></div>
+            </div>
+            <div class="loc-info-item">
+              <span class="loc-info-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+              <div><span class="loc-info-label">Hours</span><p>Daily · 9:00 AM – 10:00 PM</p></div>
+            </div>
+          </div>
+          <a class="btn btn-outline loc-cta" data-accent="gold" href="https://maps.app.goo.gl/JJyNGuVDmwmfUHDL9" target="_blank" rel="noopener">Open in Maps</a>
         </div>
       </div>
 
       <div class="loc-panel" id="loc-fah" role="tabpanel" hidden>
-        <div class="lc-map"><iframe src="https://www.google.com/maps?q=World+Sweets+Fahaheel+Kuwait&output=embed" title="World Sweets Fahaheel showroom" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+        <div class="lc-map">
+          <iframe src="https://www.google.com/maps?q=World+Sweets+Fahaheel+Kuwait&output=embed" title="World Sweets Fahaheel showroom" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <span class="lc-badge" data-accent="pink"><span class="dot"><svg viewBox="0 0 24 24"><path d="M6 7h12l1 13H5z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg></span>Showroom</span>
+        </div>
         <div class="loc-body">
-          <span class="tag">Showroom</span>
-          <h3>Fahaheel Showroom</h3>
-          <p class="lc-addr">650 m² · Southern Kuwait</p>
-          <div class="lc-meta">
-            <span><strong>Tel</strong>To be confirmed</span>
-            <span><strong>Hours</strong>Daily · 9:00 AM – 10:00 PM</span>
+          <div class="loc-head-row">
+            <h3>Fahaheel Showroom</h3>
+            <span class="loc-tagpill" data-accent="pink">Showroom</span>
           </div>
-          <a class="btn btn-outline" href="https://maps.app.goo.gl/7aEmgM1BftRYwrcG6" target="_blank" rel="noopener">Open in Maps</a>
+          <div class="loc-info-grid">
+            <div class="loc-info-item">
+              <span class="loc-info-ico"><svg viewBox="0 0 24 24"><path d="M12 22s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+              <div><span class="loc-info-label">Location</span><p>650 m² · Southern Kuwait</p></div>
+            </div>
+            <div class="loc-info-item is-muted">
+              <span class="loc-info-ico"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span>
+              <div><span class="loc-info-label">Phone</span><p>To be confirmed</p></div>
+            </div>
+            <div class="loc-info-item">
+              <span class="loc-info-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+              <div><span class="loc-info-label">Hours</span><p>Daily · 9:00 AM – 10:00 PM</p></div>
+            </div>
+          </div>
+          <a class="btn btn-outline loc-cta" data-accent="pink" href="https://maps.app.goo.gl/7aEmgM1BftRYwrcG6" target="_blank" rel="noopener">Open in Maps</a>
         </div>
       </div>
     </div>
@@ -384,17 +478,28 @@
   const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-  // location tabs
+  // location tabs (+ sliding accent thumb)
   const tabs=document.querySelectorAll('.loc-tab');
   const panels=document.querySelectorAll('.loc-panel');
+  const thumb=document.querySelector('.loc-thumb');
+  const accentVar={burgundy:'var(--burgundy)',gold:'var(--gold-deep)',pink:'var(--pink-deep)'};
+  function moveThumb(tab){
+    if(!thumb||!tab)return;
+    thumb.style.width=tab.offsetWidth+'px';
+    thumb.style.transform=`translateX(${tab.offsetLeft}px)`;
+    thumb.style.background=accentVar[tab.dataset.accent]||accentVar.burgundy;
+  }
   tabs.forEach(tab=>{
     tab.addEventListener('click',()=>{
       tabs.forEach(t=>{t.classList.remove('active');t.setAttribute('aria-selected','false')});
       tab.classList.add('active');tab.setAttribute('aria-selected','true');
       panels.forEach(p=>p.hidden=true);
       document.getElementById(tab.dataset.target).hidden=false;
+      moveThumb(tab);
     });
   });
+  requestAnimationFrame(()=>moveThumb(document.querySelector('.loc-tab.active')));
+  window.addEventListener('resize',()=>moveThumb(document.querySelector('.loc-tab.active')));
 
   // sticky "Get the app" companion pill — show after hero, hide near footer
   const companion=document.getElementById('app-companion');
